@@ -45,10 +45,16 @@
     Enable=Source,Sink,Media,Socket
   ";
 
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 14d";
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 14d";
+    };
+
+    useSandbox = true;
+
+    package = pkgs.nixUnstable;
   };
 
   # Set your time zone.
@@ -115,6 +121,17 @@
     layout = "us";
     xkbVariant = "altgr-intl";
 
+    displayManager = {
+      lightdm = {
+        enable = true;
+
+        greeter = {
+          enable = true;
+          name = "gtk";
+        };
+      };
+    };
+
     desktopManager = {
       default = "none";
       xterm.enable = false;
@@ -127,6 +144,8 @@
 
     libinput = {
       enable = true;
+      clickMethod = "clickfinger";
+      disableWhileTyping = true;
     };
   };
 
