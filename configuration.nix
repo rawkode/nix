@@ -49,7 +49,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
 
     useSandbox = true;
@@ -140,6 +140,11 @@
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
+    };
+
+    redshift = {
+      enable = true;
+      provider = "geoclue2";
     };
 
     libinput = {
