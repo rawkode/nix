@@ -1,9 +1,13 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   modifier = "Mod4";
   theme = (import ./themes/base16.nix).theme;
 in {
+  home.packages = (with pkgs; [
+    i3lock
+  ]);
+
   xsession = {
     enable = true;
 
@@ -78,8 +82,8 @@ in {
           lib.mkOptionDefault {
             "${modifier}+Shift+e" = "exec i3-msg exit";
             "${modifier}+Pause" = "exec i3-msg exit";
-            "${modifier}+l" = "exec i3-lock --color ${theme.color6}";
-            "Pause" = "exec i3-lock --color ${theme.color6}";
+            "${modifier}+l" = "exec i3lock --color ${theme.color6}";
+            "Pause" = "exec i3lock --color ${theme.color6}";
 
             "${modifier}+1" = "workspace 1";
             "${modifier}+2" = "workspace 2";
