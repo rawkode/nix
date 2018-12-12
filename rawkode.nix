@@ -40,34 +40,12 @@ in {
     tldr
     unzip
     vim
-    vscode
     wget
     zsh
   ] ++ [
     # Communication
     slack
     wavebox
-  ] ++ [
-    # Go
-    go
-  ] ++ [
-    # Google Cloud
-    google-cloud-sdk
-  ] ++ [
-    # JavaScript
-    nodejs
-    yarn
-  ] ++ [
-    # Pony
-    ponyc
-    pony-stable
-  ] ++ [
-    # Rust
-    rustup
-  ] ++ [
-    # Web Browsers
-    chromium
-    firefox
   ]);
 
   imports = include ./includes;
