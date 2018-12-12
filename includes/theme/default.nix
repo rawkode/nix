@@ -33,7 +33,6 @@
     "Xft.lcdfilter" = "lcddefault";
 
     "Xcursor.theme" = "Bibata Oil";
-    "Xcursor.size" = 42;
 
     "*.foreground" =  "#d0d0d0";
     "*.background" = "#151515";
