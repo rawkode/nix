@@ -44,9 +44,6 @@ in {
     wget
     zsh
   ] ++ [
-    # Android
-    androidsdk
-  ] ++ [
     # Communication
     slack
     wavebox
@@ -54,9 +51,6 @@ in {
     # Crystal
     crystal
     shards
-  ] ++ [
-    # Dart
-    dart
   ] ++ [
     # Docker
     docker_compose
