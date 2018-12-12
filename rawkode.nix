@@ -24,18 +24,9 @@ in {
   };
 
   home.packages = (with pkgs; [
-    direnv
-    exa
-    fzf
     gnumake
-    jq
     lxappearance
-    ripgrep
-    tldr
-    unzip
     vim
-    wget
-    zsh
   ] ++ [
     # Communication
     slack
