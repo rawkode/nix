@@ -37,23 +37,14 @@
     kbfs.enable = true;
   };
 
-  programs.git = {
-    enable = true;
-    userName  = "David McKay";
-    userEmail = "rawkode@pm.me";
-  };
-
   # programs.home-manager = {
   #   enable = true;
   # };
 
   home.packages = (with pkgs; [
-    # Core
-    alacritty
     direnv
     exa
     fzf
-    git
     gnumake
     jq
     lxappearance
@@ -112,4 +103,9 @@
     chromium
     firefox
   ]);
+
+  imports = [
+    ./includes/alacritty
+    ./includes/git
+  ];
 }
