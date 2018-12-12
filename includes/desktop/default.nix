@@ -2,9 +2,9 @@
 
 {
   home.packages = (with pkgs; [
-    #ant-theme
     arc-icon-theme
     arc-theme
+    gnome3.nautilus
     materia-theme
   ]);
 
