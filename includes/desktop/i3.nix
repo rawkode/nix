@@ -13,6 +13,10 @@ in {
       config = {
         modifier = modifier;
 
+        window = {
+          titlebar = false;
+        };
+
         bars = [];
 
         focus = {
@@ -135,7 +139,7 @@ in {
 
             "XF86AudioLowerVolume" = "exec pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5% && V=`pamixer --get-volume` && notify-send \"Lowering Volume to \${V}%\"";
 
-            "${modifier}+Return" = "alacritty";
+            "${modifier}+Return" = "exec alacritty";
 
             "${modifier}+space" = "exec rofi -show drun";
             "${modifier}+Home" = "exec rofi -show drun";
