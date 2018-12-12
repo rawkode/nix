@@ -72,10 +72,10 @@ in {
 
         keybindings =
           lib.mkOptionDefault {
-            "${modifier}+Shift+e" = "i3-msg exit";
-            "${modifier}+Pause" = "i3-msg exit";
-            "${modifier}+l" = "i3-lock --color ${theme.color6}";
-            "Pause" = "i3-lock --color ${theme.color6}";
+            "${modifier}+Shift+e" = "exec i3-msg exit";
+            "${modifier}+Pause" = "exec i3-msg exit";
+            "${modifier}+l" = "exec i3-lock --color ${theme.color6}";
+            "Pause" = "exec i3-lock --color ${theme.color6}";
 
             "${modifier}+1" = "workspace 1";
             "${modifier}+2" = "workspace 2";
@@ -126,7 +126,7 @@ in {
 
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+r" = "restart";
-            "${modifier}+p" = "polymar-msg cmd restart";
+            "${modifier}+p" = "exec polymar-msg cmd restart";
 
             "${modifier}+q" = "kill";
             "${modifier}+r" = "resize";
@@ -137,13 +137,13 @@ in {
 
             "${modifier}+Return" = "alacritty";
 
-            "${modifier}+space" = "rofi -show drun";
-            "${modifier}+Home" = "rofi -show drun";
+            "${modifier}+space" = "exec rofi -show drun";
+            "${modifier}+Home" = "exec rofi -show drun";
 
-            "${modifier}+End" = "rofi -show window";
-            "Control+Down" = "rofi -show window";
+            "${modifier}+End" = "exec rofi -show window";
+            "Control+Down" = "exec rofi -show window";
 
-            "Print" = "flameshot gui";
+            "Print" = "exec flameshot gui";
           };
         modes = {
           resize = {

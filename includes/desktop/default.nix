@@ -2,7 +2,10 @@
 
 let theme = (import ./themes/base16.nix).theme;
 in {
-  imports = [./i3.nix ];
+  imports = [
+    ./i3.nix
+    ./rofi.nix
+  ];
 
   home.packages = (with pkgs; [
     arc-icon-theme
