@@ -5,7 +5,7 @@ let
 
   isDir = path: builtins.pathExists (path + "/.");
 
-  includes = path:
+  include = path:
     if isDir path
     then
       let
@@ -120,6 +120,6 @@ in {
     firefox
   ]);
 
-  imports = includes ./includes;
+  imports = include ./includes;
 }
 
