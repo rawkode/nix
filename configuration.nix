@@ -145,6 +145,10 @@
 
     libinput = {
       enable = true;
+
+      naturalScrolling = true;
+      scrollMethod = "twofinger";
+      tapping = true;
       clickMethod = "clickfinger";
       disableWhileTyping = true;
     };
