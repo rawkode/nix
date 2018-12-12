@@ -29,25 +29,6 @@ in {
     enableProfileFonts = true;
   };
 
-  gtk = {
-    enable = true;
-
-    font = {
-      name = "Bitter 11";
-      package = pkgs.google-fonts;
-    };
-
-    theme = {
-      name = "Arc-Darker";
-      package = pkgs.arc-theme;
-    };
-
-    iconTheme = {
-      name = "Arc";
-      package = pkgs.arc-icon-theme;
-    };
-  };
-
   services = {
     keybase.enable = true;
     kbfs.enable = true;

@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./glibc.nix
     ];
 
   fileSystems."/".options = [ "noatime" "nodiratime" ];
