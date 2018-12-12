@@ -1,6 +1,22 @@
 { config, pkgs, ... }:
 
-{
+let
+  nixpkgs = import ../nixpkgs;
+
+  isDir = path: builtins.pathExists (path + "/.");
+
+  includes = path:
+    if isDir path
+    then
+      let
+        content = builtins.readDir path;
+      in
+        map (n: import (path + ("/" + n)))
+            (builtins.filter (n: builtins.match ".*\\.nix" n != null || builtins.pathExists (path + ("/" + n + "/default.nix")))
+                    (builtins.attrNames content))
+    else
+    import path;
+in {
   nixpkgs.config = {
     allowUnfree = true;
 
@@ -104,8 +120,6 @@
     firefox
   ]);
 
-  imports = [
-    ./includes/alacritty
-    ./includes/git
-  ];
+  imports = includes ./includes;
 }
+
