@@ -97,6 +97,7 @@
 
   fonts = {
     enableCoreFonts = true;
+
     fonts = [
       pkgs.google-fonts
       pkgs.nerdfonts
@@ -140,11 +141,6 @@
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-    };
-
-    redshift = {
-      enable = true;
-      provider = "geoclue2";
     };
 
     libinput = {
