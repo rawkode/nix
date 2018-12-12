@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  nixpkgs = import ../nixpkgs;
-
   isDir = path: builtins.pathExists (path + "/.");
 
   include = path:
@@ -19,10 +17,6 @@ let
 in {
   nixpkgs.config = {
     allowUnfree = true;
-
-    android_sdk = {
-      accept_license = true;
-    };
   };
 
   fonts.fontconfig = {
