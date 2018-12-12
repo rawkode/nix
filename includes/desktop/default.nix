@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let theme = (import ./themes/base16.nix).theme;
 in {
+  imports = [./i3.nix ];
+
   home.packages = (with pkgs; [
     arc-icon-theme
     arc-theme
