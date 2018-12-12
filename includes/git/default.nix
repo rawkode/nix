@@ -61,8 +61,20 @@
         shortlog = "format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,cyan)%>(12,trunc)%ad%C(auto,green) %aN %C(auto,reset)%s%C(auto,red)% gD% D";
       };
 
+      pull = {
+        rebase = true;
+      };
+
+      rebase = {
+        autostash = true;
+      };
+
       rerere = {
-        enabled = "true";
+        enabled = true;
+      };
+
+      stash = {
+        showPatch = true;
       };
     };
 
