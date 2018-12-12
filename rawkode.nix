@@ -48,9 +48,6 @@ in {
     slack
     wavebox
   ] ++ [
-    # Docker
-    docker_compose
-  ] ++ [
     # Go
     go
   ] ++ [
@@ -60,10 +57,6 @@ in {
     # JavaScript
     nodejs
     yarn
-  ] ++ [
-    # Kubernetes
-    kubectl
-    kubernetes-helm
   ] ++ [
     # Pony
     ponyc
