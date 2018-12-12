@@ -148,7 +148,7 @@
     home = "/home/rawkode";
     description = "David McKay";
     extraGroups = [ "rawkode" "audio" "disk" "docker" "networkmanager" "plugdev" "wheel" ];
-    shell = "/run/current-system/sw/bin/zsh";
+    shell = pkgs.zsh;
   };
 
   virtualisation = {
