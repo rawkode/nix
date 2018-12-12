@@ -48,10 +48,6 @@ in {
     slack
     wavebox
   ] ++ [
-    # Crystal
-    crystal
-    shards
-  ] ++ [
     # Docker
     docker_compose
   ] ++ [
