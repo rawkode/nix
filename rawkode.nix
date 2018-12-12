@@ -29,15 +29,6 @@ in {
     enableProfileFonts = true;
   };
 
-  services = {
-    keybase.enable = true;
-    kbfs.enable = true;
-  };
-
-  # programs.home-manager = {
-  #   enable = true;
-  # };
-
   home.packages = (with pkgs; [
     direnv
     exa
@@ -79,11 +70,6 @@ in {
     # JavaScript
     nodejs
     yarn
-  ] ++ [
-    # Keybase
-    kbfs
-    keybase
-    keybase-gui
   ] ++ [
     # Kubernetes
     kubectl
