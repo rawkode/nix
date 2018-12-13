@@ -62,7 +62,12 @@
       };
 
       pull = {
+        default = "current";
         rebase = true;
+      };
+
+      push = {
+        default = "current";
       };
 
       rebase = {
