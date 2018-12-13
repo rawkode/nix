@@ -137,12 +137,12 @@ in {
         alsaSupport = true;
       };
 
-      script = "polybar top &";
+      script = '''';
 
       config = {
         "bar/top" = {
           width = "100%";
-          bottom = true;
+          #bottom = true;
           height = "32";
           radius = 0;
           fixed-center = true;
@@ -160,10 +160,10 @@ in {
           background = theme.background;
           foreground = theme.foreground;
 
-          font-0 = "Noto Color Emoji:scale=11";
-          font-1 = "Font Awesome 5 Free:style=Solid:size=10;1";
-          font-2 = "Font Awesome 5 Brands:size=10;1";
-          font-3 = "FuraCode NerdFont:size=11";
+          font-0 = "FuraCode NerdFont:size=11";
+          font-1 = "Noto Color Emoji:scale=11";
+          font-2 = "Font Awesome 5 Free:style=Solid:size=10;1";
+          font-3 = "Font Awesome 5 Brands:size=10;1";
 
           modules-left = "i3 xwindow";
           modules-center = "time date";
@@ -184,11 +184,11 @@ in {
           type = "internal/xwindow";
 
           label = "  %title:0:120:...%";
-          label-padding = 5;
-          padding-left = 8;
+          label-padding = 2;
 
+          format-spacing = 8;
           format-background = theme.color6;
-          format-foreground = theme.color15;
+          format-foreground = theme.background;
         };
 
         "module/i3" = {
@@ -205,23 +205,27 @@ in {
           label-mode-background = theme.background;
 
           label-focused = "%index%";
-          label-focused-background = theme.background;
-          label-focused-underline = theme.color4;
+          label-focused-background = theme.color6;
+          label-focused-foreground = theme.background;
+          label-focused-underline = theme.color6;
           label-focused-padding = 2;
 
           label-unfocused = "%index%";
           label-unfocused-background = theme.background;
-          label-unfocused-underline = theme.color7;
+          label-unfocused-foreground = theme.color8;
+          label-unfocused-underline = theme.color6;
           label-unfocused-padding = 2;
 
           label-visible = "%index%";
           label-visible-background = theme.background;
-          label-visible-underline = theme.color4;
+          label-visible-foreground = theme.color8;
+          label-visible-underline = theme.color6;
           label-visible-padding = 2;
 
           label-urgent = "%index%";
-          label-urgent-background = theme.background;
-          label-urgent-underline = theme.color1;
+          label-urgent-background = theme.color1;
+          label-urgent-foreground = theme.color15;
+          label-urgent-underline = theme.color6;
           label-urgent-padding = 2;
         };
 
@@ -244,7 +248,7 @@ in {
           interval = 1.0;
 
           format-background = theme.background;
-          format-foreground = theme.color6;
+          format-foreground = theme.color2;
 
           label = "  %date%  ";
 

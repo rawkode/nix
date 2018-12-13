@@ -20,7 +20,7 @@ in {
         };
 
         fonts = [
-          "FuraCode Nerd Font 11"
+          "FuraCode Nerd Font 9"
         ];
 
         modifier = modifier;
@@ -36,19 +36,19 @@ in {
           background = theme.background;
 
           focused = {
-            border = "$color12";
+            border = "$color4";
             background = "$color4";
             text = "$color15";
             indicator = "$color4";
-            childBorder = "$color12";
+            childBorder = "$color4";
           };
 
           unfocused = {
-            border = "$color0";
+            border = "$background";
             background = "$background";
             text = "$foreground";
-            indicator = "$color2";
-            childBorder = "$color0";
+            indicator = "$background";
+            childBorder = "$background";
           };
 
           focusedInactive = {
@@ -56,7 +56,7 @@ in {
             background = "$background";
             text = "$foreground";
             indicator = "$color2";
-            childBorder = "$color0";
+            childBorder = "$background";
           };
 
           placeholder = {
@@ -64,7 +64,7 @@ in {
             background = "$background";
             text = "$foreground";
             indicator = "$color2";
-            childBorder = "$color0";
+            childBorder = "$background";
           };
 
           urgent = {
@@ -72,7 +72,7 @@ in {
             background = "$background";
             text = "$color15";
             indicator = "$color1";
-            childBorder = "$color0";
+            childBorder = "$background";
           };
         };
 
@@ -173,6 +173,10 @@ in {
         startup = [
           {
             command = "compton";
+            notification = false;
+          }
+          {
+            command = "polybar top";
             notification = false;
           }
           {
