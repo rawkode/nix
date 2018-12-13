@@ -34,10 +34,11 @@ in {
 
         colors = {
           background = theme.background;
+
           focused = {
             border = "$color12";
             background = "$color4";
-            text = "$color8";
+            text = "$color15";
             indicator = "$color4";
             childBorder = "$color12";
           };

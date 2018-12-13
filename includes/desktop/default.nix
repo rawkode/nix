@@ -11,8 +11,12 @@ in {
     arc-icon-theme
     arc-theme
     bibata-cursors
+    font-awesome_5
     gnome3.nautilus
+    google-fonts
     materia-theme
+    nerdfonts
+    noto-fonts-emoji
     pasystray
     pavucontrol
   ]);
@@ -136,75 +140,41 @@ in {
       script = "polybar top &";
 
       config = {
-        colors = {
-          background = "\${xrdb:background}";
-          foreground = "\${xrdb:foreground}";
-
-          primary = "\${xrdb:color4}";
-          secondary = "\${xrdb:color2}";
-          alert = "\${xrdb:color1}";
-
-          black = "\${xrdb:color0}";
-          blackLight = "\${xrdb:color8}";
-
-          red = "\${xrdb:color1}";
-          redLight = "\${xrdb:color9}";
-
-          green = "\${xrdb:color2}";
-          greenLight = "\${xrdb:color10}";
-
-          yellow = "\${xrdb:color3}";
-          yellowLight = "\${xrdb:color11}";
-
-          purple = "\${xrdb:color4}";
-          purpleLight = "\${xrdb:color12}";
-
-          pink = "\${xrdb:color5}";
-          pinkLight = "\${xrdb:color13}";
-
-          blue = "\${xrdb:color6}";
-          blueLight = "\${xrdb:color14}";
-
-          grey = "\${xrdb:color7}";
-          greyLight = "\${xrdb:color15}";
-        };
-
         "bar/top" = {
           width = "100%";
+          bottom = true;
           height = "32";
-
           radius = 0;
-
           fixed-center = true;
           underline-size = 4;
-          underline-color = "\${colors.primary}";
+          underline-color = theme.color6;
 
-          spacing = 2;
-          module-margin = 2;
-          module-padding = 2;
-          border-top-size = 2;
+          spacing = 0;
+          module-margin = 0;
+          module-padding = 0;
+          border-top-size = 0;
           border-bottom-size = 0;
           border-right-size = 0;
           border-left-size = 0;
 
-          background = "\${colors.background}";
-          foreground = "\${colors.foreground}";
+          background = theme.background;
+          foreground = theme.foreground;
 
-          font-0 = "roboto:pixelsize=11";
-          font-1 = "Noto Color Emoji:scale=11";
-          font-2 = "Font Awesome 5 Free:style=Solid:size=10;1";
-          font-3 = "Font Awesome 5 Brands:size=10;1";
+          font-0 = "Noto Color Emoji:scale=11";
+          font-1 = "Font Awesome 5 Free:style=Solid:size=10;1";
+          font-2 = "Font Awesome 5 Brands:size=10;1";
+          font-3 = "FuraCode NerdFont:size=11";
 
           modules-left = "i3 xwindow";
-          modules-center = "date";
-          modules-right = "battery volume wlan";
+          modules-center = "time date";
+          modules-right = "wlan volume battery";
 
           tray-position = "right";
           tray-padding = 16;
-          tray-offset-x = 16;
+          tray-offset-x = 0;
 
           tray-transparent = false;
-          tray-background = "\${colors.background}";
+          tray-background = theme.background;
 
           cursor-click = "pointer";
           cursor-scroll = "ns-resize";
@@ -213,11 +183,12 @@ in {
         "module/xwindow" = {
           type = "internal/xwindow";
 
-          label = " 💻  %title:0:120:...% ";
-          label-padding = 2;
+          label = "  %title:0:120:...%";
+          label-padding = 5;
+          padding-left = 8;
 
-          format-background = "\${colors.background}";
-          format-foreground = "\${colors.blueLight}";
+          format-background = theme.color6;
+          format-foreground = theme.color15;
         };
 
         "module/i3" = {
@@ -230,28 +201,41 @@ in {
           format = "<label-state> <label-mode>";
 
           label-mode-padding = 2;
-          label-mode-foreground = "\${colors.foreground}";
-          label-mode-background = "\${colors.background}";
+          label-mode-foreground = theme.foreground;
+          label-mode-background = theme.background;
 
           label-focused = "%index%";
-          label-focused-background = "\${colors.background}";
-          label-focused-underline = "\${colors.primary}";
+          label-focused-background = theme.background;
+          label-focused-underline = theme.color4;
           label-focused-padding = 2;
 
           label-unfocused = "%index%";
-          label-unfocused-background = "\${colors.background}";
-          label-unfocused-underline = "\${colors.background}";
+          label-unfocused-background = theme.background;
+          label-unfocused-underline = theme.color7;
           label-unfocused-padding = 2;
 
           label-visible = "%index%";
-          label-visible-background = "\${colors.background}";
-          label-visible-underline = "\${colors.secondary}";
+          label-visible-background = theme.background;
+          label-visible-underline = theme.color4;
           label-visible-padding = 2;
 
           label-urgent = "%index%";
-          label-urgent-background = "\${colors.alert}";
-          label-urgent-underline = "\${colors.alert}";
+          label-urgent-background = theme.background;
+          label-urgent-underline = theme.color1;
           label-urgent-padding = 2;
+        };
+
+        "module/time" = {
+          type = "internal/date";
+
+          interval = 1.0;
+
+          format-background = theme.background;
+          format-foreground = theme.color5;
+
+          label = "  %time%  ";
+
+          time = " %H:%M    ";
         };
 
         "module/date" = {
@@ -259,13 +243,12 @@ in {
 
           interval = 1.0;
 
-          format-background = "\${colors.yellowLight}";
-          format-foreground = "\${colors.blackLight}";
+          format-background = theme.background;
+          format-foreground = theme.color6;
 
-          label = " %time% ";
+          label = "  %date%  ";
 
-          time = "  %H:%M ";
-          time-alt = "  %A, %e %B ";
+          date = "    %A, %e %B ";
         };
 
 
@@ -281,17 +264,17 @@ in {
 
           label-charging = "%percentage%";
           format-charging = "<animation-charging>  <label-charging>";
-          format-charging-background = "\${colors.pinkLight}";
+          format-charging-background = theme.color15;
           format-charging-padding = 4;
 
           label-discharging = "%percentage%";
           format-discharging = "<ramp-capacity>  <label-discharging>";
-          format-discharging-background = "\${colors.pinkLight}";
+          format-discharging-background = theme.color5;
           format-discharging-padding = 4;
 
           label-full = "%percentage%";
           format-full = "<ramp-capacity>  <label-full>";
-          format-full-background = "\${colors.pinkLight}";
+          format-full-background = theme.color0;
           format-full-padding = 4;
 
           ramp-capacity-0 = "";
@@ -330,15 +313,15 @@ in {
           label-volume = "%percentage%";
 
           format-volume = "<ramp-volume> <label-volume>";
-          format-volume-foreground = "\${colors.blackLight}";
-          format-volume-background = "\${colors.blueLight}";
+          format-volume-foreground = theme.foreground;
+          format-volume-background = theme.color3;
           format-volume-padding = 2;
 
           label-muted = " muted";
-          label-muted-foreground = "\${colors.greyLight}";
+          label-muted-foreground = theme.color15;
 
           format-muted = "<label-muted>";
-          format-muted-background = "\${colors.redLight}";
+          format-muted-background = theme.color8;
           format-muted-padding = 2;
 
           ramp-volume-0 = "";
@@ -355,13 +338,13 @@ in {
           interval = 5;
 
           label-connected = " %essid%";
-          label-connected-background = "\${colors.greenLight}";
-          label-connected-foreground = "\${colors.blackLight}";
+          label-connected-background = theme.color2;
+          label-connected-foreground = theme.foreground;
           label-connected-padding = 2;
 
           label-disconnected = " Not Connected";
-          label-disconnected-background = "\${colors.redLight}";
-          label-disconnected-foreground = "\${colors.blackLight}";
+          label-disconnected-background = theme.background;
+          label-disconnected-foreground = theme.foreground;
           label-disconnected-padding = 2;
         };
 

@@ -96,12 +96,6 @@
 
   fonts = {
     enableCoreFonts = true;
-
-    fonts = [
-      pkgs.google-fonts
-      pkgs.nerdfonts
-      pkgs.noto-fonts
-    ];
   };
 
   services.printing.enable = true;
