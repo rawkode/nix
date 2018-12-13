@@ -47,7 +47,7 @@ mouse:
   triple_click: { threshold: 300 }
 
 selection:
-  semantic_escape_chars: ',│`|:" ()[]{}<>-'
+  semantic_escape_chars: ',│`|:" ()[]{}<>'
   save_to_clipboard: false
 
 dynamic_title: true
