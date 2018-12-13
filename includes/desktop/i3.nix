@@ -86,8 +86,9 @@ in {
           lib.mkOptionDefault {
             "${modifier}+Shift+e" = "exec --no-startup-id i3-msg exit";
             "${modifier}+Pause" = "exec --no-startup-id i3-msg exit";
-            "${modifier}+l" = "exec --no-startup-id i3lock --color ${theme.color6}";
-            "Pause" = "exec --no-startup-id i3lock --color ${theme.color6}";
+            "${modifier}+l" = "exec i3lock --color '${theme.background}'";
+            "Pause" = "exec i3lock --color '${theme.background}'";
+
 
             "${modifier}+1" = "workspace 1";
             "${modifier}+2" = "workspace 2";
