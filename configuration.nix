@@ -99,6 +99,8 @@
     yubikey-personalization
   ];
 
+  services.dbus.packages = [ pkgs.blueman ];
+
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 

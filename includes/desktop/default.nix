@@ -89,11 +89,15 @@ in {
   };
 
   services = {
+    pasystray.enable = true;
+
     compton = {
       enable = true;
       blur = true;
       shadow = true;
 
+      # This rule stops other windows on the same workspace being
+      # the "background" when stacked or tabbed.
       opacityRule = [
         "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
       ];
@@ -207,7 +211,7 @@ in {
         "module/xwindow" = {
           type = "internal/xwindow";
 
-          label = "  %title:0:120:...%";
+          label = "  %title:0:35:...%";
           label-padding = 2;
 
           format-spacing = 8;
@@ -288,17 +292,17 @@ in {
 
           label-charging = "%percentage%";
           format-charging = "<animation-charging>  <label-charging>";
-          format-charging-background = theme.color15;
+          format-charging-background = theme.color4;
           format-charging-padding = 4;
 
           label-discharging = "%percentage%";
           format-discharging = "<ramp-capacity>  <label-discharging>";
-          format-discharging-background = theme.color5;
+          format-discharging-background = theme.color3;
           format-discharging-padding = 4;
 
           label-full = "%percentage%";
           format-full = "<ramp-capacity>  <label-full>";
-          format-full-background = theme.color0;
+          format-full-background = theme.color2;
           format-full-padding = 4;
 
           ramp-capacity-0 = "";
@@ -306,6 +310,13 @@ in {
           ramp-capacity-2 = "";
           ramp-capacity-3 = "";
           ramp-capacity-4 = "";
+
+          animation-discharging-0 = "";
+          animation-discharging-1 = "";
+          animation-discharging-2 = "";
+          animation-discharging-3 = "";
+          animation-discharging-4 = "";
+          animation-discharging-framerate = 750;
 
           animation-charging-0 = "";
           animation-charging-1 = "";
@@ -338,7 +349,7 @@ in {
 
           format-volume = "<ramp-volume> <label-volume>";
           format-volume-foreground = theme.foreground;
-          format-volume-background = theme.color3;
+          format-volume-background = theme.color5;
           format-volume-padding = 2;
 
           label-muted = " muted";

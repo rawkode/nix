@@ -6,18 +6,18 @@ in {
   programs.rofi = {
     enable = true;
 
-    lines = 5;
+    lines = 10;
     location = "center";
-    width = 40;
+    width = 60;
 
     padding = 5;
-    borderWidth = 5;
+    borderWidth = 2;
 
     colors = {
       window = {
         background = theme.background;
-        border = theme.foreground;
-        separator = theme.foreground;
+        border = theme.color6;
+        separator = theme.color4;
       };
 
       rows = {
