@@ -13,6 +13,8 @@ in {
     bibata-cursors
     gnome3.nautilus
     materia-theme
+    pasystray
+    pavucontrol
   ]);
 
   gtk = {

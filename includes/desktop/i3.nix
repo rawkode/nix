@@ -188,6 +188,10 @@ in {
             notification = false;
           }
           {
+            command = "pasystray";
+            notification = false;
+          }
+          {
             command = "setxkbmap us -variant altgr-intl";
             notification = false;
           }
