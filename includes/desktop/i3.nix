@@ -171,11 +171,7 @@ in {
 
         startup = [
           {
-            command = "compton --config $HOME/.config/compton.conf -b";
-            notification = false;
-          }
-          {
-            command = "nitrogen --restore";
+            command = "compton";
             notification = false;
           }
           {

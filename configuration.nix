@@ -74,7 +74,6 @@
     gnupg
     insomnia
     networkmanagerapplet
-    nitrogen
     nix-prefetch-git
     pamix
     stdenv
