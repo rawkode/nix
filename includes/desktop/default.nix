@@ -73,33 +73,45 @@ in {
       enable = true;
 
       settings = {
+        frame = {
+          width = 2;
+          color = theme.color4;
+        };
+
         global = {
-          geometry = "950x80-30+70";
-          padding = 32;
-          horizontal_padding = 30;
-          line_height = 4;
+          geometry = "300x5+50-20";
+
+          transparency = 20;
+
+          padding = 8;
+          horizontal_padding = 8;
+
+          line_height = 0;
+
+          separator_color = "frame";
+
           markup = "full";
           alignment = "left";
           word_wrap = "true";
         };
 
         shortcuts = {
-          close = "ctrl+escape";
-          close_all = "ctrl+shift+escape";
+          close = "ctrl+Escape";
+          close_all = "ctrl+shift+Escape";
         };
 
         urgency_low = {
           timeout = 4;
 
           foreground = theme.foreground;
-          background = theme.background;
+          background = theme.color0;
         };
 
         urgency_normal = {
           timeout = 8;
 
           foreground = theme.foreground;
-          background = theme.background;
+          background = theme.color0;
         };
 
         urgency_critical = {
