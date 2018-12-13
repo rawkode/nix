@@ -21,4 +21,7 @@
     wget
     zsh
   ]);
+
+  programs.autorandr.enable = true;
+  #programs.direnv.enable = true;
 }

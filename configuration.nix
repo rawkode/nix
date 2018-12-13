@@ -64,18 +64,12 @@
   environment.systemPackages = (with pkgs; [
     asciinema
     autorandr
-    blueman
     clipit
-    compton
-    dunst
-    flameshot
     gnome3.dconf
     gnome3.vte
     gnupg
     insomnia
-    networkmanagerapplet
     nix-prefetch-git
-    pamix
     stdenv
     vlc
     # i3

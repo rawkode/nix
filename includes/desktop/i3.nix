@@ -148,7 +148,7 @@ in {
 
             "XF86AudioLowerVolume" = "exec  --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5% && V=`pamixer --get-volume` && notify-send \"Lowering Volume to \${V}%\"";
 
-            "${modifier}+Return" = "exec  --no-startup-id alacritty";
+            "${modifier}+Return" = "exec  --no-startup-id termite";
 
             "${modifier}+space" = "exec --no-startup-id rofi -show drun";
             "${modifier}+Home" = "exec --no-startup-id rofi -show drun";
@@ -180,7 +180,7 @@ in {
             notification = false;
           }
           {
-            command = "dunst";
+            command = "nitrogen --restore";
             notification = false;
           }
           {
@@ -188,16 +188,8 @@ in {
             notification = false;
           }
           {
-            command = "pasystray";
-            notification = false;
-          }
-          {
             command = "setxkbmap us -variant altgr-intl";
             notification = false;
-          }
-          {
-            command = "notify-send -a i3 \"loaded\" \"👋 Welcome 👋\"";
-            notification = true;
           }
         ];
         window.commands = [];
@@ -223,6 +215,13 @@ in {
         set_from_resource	$color13	color13
         set_from_resource	$color14	color14
         set_from_resource	$color15	color15
+
+        assign [class="Chromium"] 1
+        assign [class="Visual Studio Code"] 2
+
+        assign [class="Wavebox"] 10
+        assign [class="Slack"] 10
+        assign [class="Signal"] 10
       '';
     };
   };

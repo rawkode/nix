@@ -23,6 +23,11 @@ in {
     enableProfileFonts = true;
   };
 
+  programs.home-manager = {
+    enable = true;
+    path = https://github.com/rycee/home-manager/archive/master.tar.gz;
+  };
+
   home.packages = (with pkgs; [
     gnumake
     lxappearance

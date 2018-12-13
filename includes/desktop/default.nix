@@ -11,11 +11,15 @@ in {
     arc-icon-theme
     arc-theme
     bibata-cursors
+    compton
+    dunst
     font-awesome_5
     gnome3.nautilus
     google-fonts
     materia-theme
     nerdfonts
+    networkmanagerapplet
+    nitrogen
     noto-fonts-emoji
     pasystray
     pavucontrol
@@ -68,11 +72,31 @@ in {
     "*.color15"     = theme.color15;
   };
 
+  programs = {
+    urxvt = {
+      enable = true;
+      fonts = [
+        "xft:FuraCode Nerd Font:size=11"
+      ];
+    };
+  };
+
+  programs.termite = {
+    enable = true;
+    font = "FuraCode Nerd Font, 11";
+
+    backgroundColor = "rgba(63, 63, 63, 0.8)";
+  };
+
   services = {
     compton = {
       enable = true;
       blur = true;
       shadow = true;
+
+      opacityRule = [
+        "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+      ];
     };
 
     dunst = {
@@ -232,8 +256,6 @@ in {
         "module/time" = {
           type = "internal/date";
 
-          interval = 1.0;
-
           format-background = theme.background;
           format-foreground = theme.color5;
 
@@ -244,8 +266,6 @@ in {
 
         "module/date" = {
           type = "internal/date";
-
-          interval = 1.0;
 
           format-background = theme.background;
           format-foreground = theme.color2;
