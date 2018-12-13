@@ -10,6 +10,7 @@ in {
   home.packages = (with pkgs; [
     arc-icon-theme
     arc-theme
+    bibata-cursors
     gnome3.nautilus
     materia-theme
   ]);
@@ -83,24 +84,22 @@ in {
         };
 
         shortcuts = {
-          close = "ctrl+space";
-          close_all = "ctrl+shift+space";
-          history = "ctrl+grave";
-          context = "ctrl+shift+period";
+          close = "ctrl+escape";
+          close_all = "ctrl+shift+escape";
         };
 
         urgency_low = {
           timeout = 4;
 
-          foreground = theme.color7;
-          background = theme.color5;
+          foreground = theme.foreground;
+          background = theme.background;
         };
 
         urgency_normal = {
           timeout = 8;
 
-          foreground = theme.color7;
-          background = theme.color3;
+          foreground = theme.foreground;
+          background = theme.background;
         };
 
         urgency_critical = {

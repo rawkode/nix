@@ -27,10 +27,6 @@ in {
     gnumake
     lxappearance
     vim
-  ] ++ [
-    # Communication
-    slack
-    wavebox
   ]);
 
   imports = include ./includes;

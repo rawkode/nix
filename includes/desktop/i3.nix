@@ -15,6 +15,14 @@ in {
       enable = true;
 
       config = {
+        window = {
+          titlebar = true;
+        };
+
+        fonts = [
+          "FuraCode Nerd Font 11"
+        ];
+
         modifier = modifier;
 
         bars = [];
@@ -61,7 +69,7 @@ in {
           urgent = {
             border = "$color0";
             background = "$background";
-            text = "$foreground";
+            text = "$color15";
             indicator = "$color1";
             childBorder = "$color0";
           };
@@ -180,6 +188,10 @@ in {
           }
           {
             command = "nm-applet";
+            notification = false;
+          }
+          {
+            command = "setxkbmap us -variant altgr-intl";
             notification = false;
           }
           {

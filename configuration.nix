@@ -117,8 +117,11 @@
 
   programs.gnupg.agent.enable = false;
 
+  i18n.consoleUseXkbConfig = true;
+
   services.xserver = {
     enable = true;
+
     layout = "us";
     xkbVariant = "altgr-intl";
 
@@ -131,13 +134,14 @@
         };
 
         extraSeatDefaults = ''
-          greeter-show-manual-login = true;
+          greeter-show-manual-login = false;
         '';
       };
     };
 
     desktopManager = {
       default = "none";
+
       xterm.enable = false;
     };
 
