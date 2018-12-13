@@ -17,10 +17,6 @@ in {
       config = {
         modifier = modifier;
 
-        window = {
-          titlebar = false;
-        };
-
         bars = [];
 
         focus = {
@@ -80,10 +76,10 @@ in {
 
         keybindings =
           lib.mkOptionDefault {
-            "${modifier}+Shift+e" = "exec i3-msg exit";
-            "${modifier}+Pause" = "exec i3-msg exit";
-            "${modifier}+l" = "exec i3lock --color ${theme.color6}";
-            "Pause" = "exec i3lock --color ${theme.color6}";
+            "${modifier}+Shift+e" = "exec --no-startup-id i3-msg exit";
+            "${modifier}+Pause" = "exec --no-startup-id i3-msg exit";
+            "${modifier}+l" = "exec --no-startup-id i3lock --color ${theme.color6}";
+            "Pause" = "exec --no-startup-id i3lock --color ${theme.color6}";
 
             "${modifier}+1" = "workspace 1";
             "${modifier}+2" = "workspace 2";
@@ -134,31 +130,32 @@ in {
 
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+r" = "restart";
-            "${modifier}+p" = "exec polymar-msg cmd restart";
+            "${modifier}+p" = "exec --no-startup-id polybar-msg cmd restart";
 
             "${modifier}+q" = "kill";
-            "${modifier}+r" = "resize";
+            "${modifier}+r" = "mode \"resize\"";
 
-            "XF86AudioRaiseVolume" = "exec pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5% && V=`pamixer --get-volume` && notify-send \"Raising Volume to \${V}%\"";
+            "XF86AudioRaiseVolume" = "exec  --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5% && V=`pamixer --get-volume` && notify-send \"Raising Volume to \${V}%\"";
 
-            "XF86AudioLowerVolume" = "exec pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5% && V=`pamixer --get-volume` && notify-send \"Lowering Volume to \${V}%\"";
+            "XF86AudioLowerVolume" = "exec  --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5% && V=`pamixer --get-volume` && notify-send \"Lowering Volume to \${V}%\"";
 
-            "${modifier}+Return" = "exec alacritty";
+            "${modifier}+Return" = "exec  --no-startup-id alacritty";
 
-            "${modifier}+space" = "exec rofi -show drun";
-            "${modifier}+Home" = "exec rofi -show drun";
+            "${modifier}+space" = "exec --no-startup-id rofi -show drun";
+            "${modifier}+Home" = "exec --no-startup-id rofi -show drun";
 
-            "${modifier}+End" = "exec rofi -show window";
-            "Control+Down" = "exec rofi -show window";
+            "${modifier}+End" = "exec --no-startup-id rofi -show window";
+            "Control+Down" = "exec --no-startup-id rofi -show window";
 
-            "Print" = "exec flameshot gui";
+            "Print" = "exec --no-startup-id flameshot gui";
           };
+
         modes = {
           resize = {
-            Left = "resize shrink width 10 px or 10 ppt";
-            Down = "resize grow height 10 px or 10 ppt";
-            Up = "resize shrink height 10 px or 10 ppt";
-            Right = "resize grow width 10 px or 10 ppt";
+            Up = "resize grow height 10 px or 10 ppt";
+            Right = "resize shrink width 10 px or 10 ppt";
+            Down = "resize shrink height 10 px or 10 ppt";
+            Left = "resize grow width 10 px or 10 ppt";
             Return = "mode \"default\"";
             Escape = "mode \"default\"";
           };

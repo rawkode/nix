@@ -129,7 +129,12 @@
         greeter = {
           enable = true;
           name = "gtk";
+          package = pkgs.lightdm_gtk_greeter;
         };
+
+        extraSeatDefaults = ''
+          greeter-show-manual-login = true;
+        '';
       };
     };
 
