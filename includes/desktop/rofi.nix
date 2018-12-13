@@ -1,7 +1,7 @@
 { ... }:
 
 let
-  theme = (import ./themes/base16.nix).theme;
+  theme = (import ./themes/brewer.nix).theme;
 in {
   programs.rofi = {
     enable = true;

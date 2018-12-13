@@ -1,5 +1,5 @@
 let theme = {
-  foreground  = "#b7b8b9";
+  foreground  = "#fcfdfe";
   background  = "#0c0d0e";
   cursorColor = "#b7b8b9";
   color0      = "#0c0d0e";
@@ -18,6 +18,7 @@ let theme = {
   color14     = "#80b1d3";
   color7      = "#b7b8b9";
   color15     = "#fcfdfe";
-} in {
+};
+in {
   theme = theme;
 }

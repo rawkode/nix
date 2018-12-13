@@ -2,7 +2,7 @@
 
 let
   modifier = "Mod4";
-  theme = (import ./themes/base16.nix).theme;
+  theme = (import ./themes/brewer.nix).theme;
 in {
   home.packages = (with pkgs; [
     i3lock
@@ -139,7 +139,6 @@ in {
 
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+r" = "restart";
-            "${modifier}+p" = "exec --no-startup-id polybar-msg cmd restart";
 
             "${modifier}+q" = "kill";
             "${modifier}+r" = "mode \"resize\"";
@@ -173,10 +172,6 @@ in {
         startup = [
           {
             command = "compton";
-            notification = false;
-          }
-          {
-            command = "polybar top";
             notification = false;
           }
           {
