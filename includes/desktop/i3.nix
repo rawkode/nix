@@ -217,7 +217,7 @@ in {
         set_from_resource	$color15	color15
 
         assign [class="Chromium"] 1
-        assign [class="Visual Studio Code"] 2
+        assign [class="Code"] 2
 
         assign [class="Wavebox"] 10
         assign [class="Slack"] 10
