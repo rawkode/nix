@@ -144,7 +144,10 @@ in {
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+r" = "restart";
 
+            # Restart Polybar when systray crashes
             "${modifier}+p" = "exec --no-startup-id polybar-msg cmd restart";
+            # Fix Bluetooth after a sleep / suspend
+            "${modifier}+b" = "exec --no-startup-id systemctl --user daemon-reload && systemctl --user restart pulseaudio";
 
             "${modifier}+q" = "kill";
             "${modifier}+r" = "mode \"resize\"";
