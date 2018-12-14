@@ -144,6 +144,8 @@ in {
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+r" = "restart";
 
+            "${modifier}+p" = "exec --no-startup-id polybar-msg cmd restart";
+
             "${modifier}+q" = "kill";
             "${modifier}+r" = "mode \"resize\"";
 

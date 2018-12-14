@@ -169,6 +169,8 @@ in {
 
       config = {
         "bar/top" = {
+          enable-ipc = true;
+
           width = "100%";
           #bottom = true;
           height = "32";
