@@ -64,6 +64,7 @@
   environment.systemPackages = (with pkgs; [
     asciinema
     autorandr
+    blueman
     clipit
     gnome3.dconf
     gnome3.vte
@@ -99,10 +100,12 @@
     yubikey-personalization
   ];
 
-  services.dbus.packages = [ pkgs.blueman ];
-
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   programs.gnupg.agent.enable = false;
 

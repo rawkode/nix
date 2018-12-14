@@ -5,5 +5,6 @@
     signal-desktop
     slack
     wavebox
+    zoom-us
   ]);
 }
