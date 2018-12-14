@@ -123,6 +123,9 @@ in {
             "${modifier}+Shift+Left" = "move left";
             "${modifier}+Shift+Down" = "move down";
 
+            "${modifier}+Prior" = "workspace prev";
+            "${modifier}+Next" = "workspace next";
+
             "${modifier}+h" = "split h";
             "${modifier}+v" = "split v";
 
