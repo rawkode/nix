@@ -1,8 +1,18 @@
+# cd
+alias cd=' cd'
+
+# ls
+alias tree=' exa --long --tree --level=2'
+alias treee=' exa --long --tree --level=3'
+alias treee=' exa --long --tree --level=4'
+alias treeee=' exa --long --tree --level=5'
+alias treeee=' exa --long --tree --level=6'
+alias ls=' exa --git'
+alias ll=' exa --git -l'
+
 # Development Aliases
 alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
-
-alias tree=' tree -L 3 -d -I "vendor|cache|log|logs"'
 
 # Arch
 alias pacman=' yay --color=always'
@@ -21,12 +31,9 @@ alias kl='kubectl logs'
 alias kcx='kubectl config get-contexts'
 alias ksx='kubectl config use-context'
 
-# Lockscreen
-alias lock=" xsecurelock"
-
 # Development aliases
-alias dev=' cd $HOME/Code/src/'
-alias sand=' cd $HOME/Code/sandbox/'
+alias src=' cd $HOME/Code/src/'
+alias box=' cd $HOME/Code/sandbox/'
 
 # Fuck typing xdg-open
 alias open=' xdg-open'
@@ -35,13 +42,6 @@ alias open=' xdg-open'
 alias vi=' code'
 alias vim=' code'
 alias nvim=' code'
-
-# cd
-alias cd=' cd'
-
-# ls
-alias ls=' ls --color=auto'
-alias ll=' ls -l --color=auto'
 
 # gpg2
 alias gpg='gpg2'
