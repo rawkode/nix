@@ -6,7 +6,7 @@ alias tree=' exa --long --tree --level=2'
 alias treee=' exa --long --tree --level=3'
 alias treee=' exa --long --tree --level=4'
 alias treeee=' exa --long --tree --level=5'
-alias treeee=' exa --long --tree --level=6'
+alias treeeee=' exa --long --tree --level=6'
 alias ls=' exa --git'
 alias ll=' exa --git -l'
 
