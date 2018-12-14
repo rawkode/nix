@@ -216,12 +216,12 @@ in {
         set_from_resource	$color14	color14
         set_from_resource	$color15	color15
 
-        assign [class="Chromium"] 1
-        assign [class="Code"] 2
+        assign [window_role="browser"] 1
 
-        assign [class="Wavebox"] 10
-        assign [class="Slack"] 10
-        assign [class="Signal"] 10
+        assign [class="code"] 2
+        assign [class="wavebox"] 10
+        assign [class="slack"] 10
+        assign [class="signal"] 10
       '';
     };
   };
