@@ -216,8 +216,7 @@ in {
         set_from_resource	$color14	color14
         set_from_resource	$color15	color15
 
-        assign [window_role="browser"] 1
-
+        assign [class="chromium"] 1
         assign [class="code"] 2
         assign [class="wavebox"] 10
         assign [class="slack"] 10
