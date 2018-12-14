@@ -7,32 +7,25 @@ export AUTOENV_FILE_ENTER=.env
 
 export DOCKER_BUILDKIT=1
 
+alias gl=" gitlab"
+alias gh=" github"
+alias bb=" bitbucket"
+alias jo=" jaumo"
+
 function github() {
   cd $HOME/Code/src/github.com/$1
 }
-
-alias gh=" github"
 
 function gitlab() {
   cd $HOME/Code/src/gitlab.com/$1
 }
 
-alias gl=" gitlab"
-
-function gt8() {
-  cd $HOME/Code/code.devtech.gt8.online/$1
-}
-
-alias bb=" bitbucket"
-
 function bitbucket() {
-  cd $HOME/Code/bitbucket.org/$1
+  cd $HOME/Code/src/bitbucket.org/$1
 }
-
-alias jo=" jaumo"
 
 function jaumo() {
-  cd $HOME/Code/gitlab.jaumo.com/$1
+  cd $HOME/Code/src/gitlab.jaumo.com/$1
 }
 
 # Set GPG TTY
@@ -130,5 +123,5 @@ zstyle ':completion:*' matcher-list '' \
 autoload -Uz compinit
 compinit -u
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
