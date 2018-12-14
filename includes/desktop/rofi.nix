@@ -6,30 +6,29 @@ in {
   programs.rofi = {
     enable = true;
 
-    lines = 10;
+    lines = 3;
     location = "center";
-    width = 60;
+    width = 70;
 
-    padding = 5;
-    borderWidth = 2;
+    padding = 16;
+    borderWidth = 4;
 
     colors = {
       window = {
         background = theme.background;
-        border = theme.color6;
-        separator = theme.color4;
+        border = theme.color5;
+        separator = theme.color5;
       };
 
       rows = {
         normal = {
           background = theme.background;
-          foreground = theme.foreground;
-
           backgroundAlt = theme.background;
+          foreground = theme.color8;
 
           highlight = {
-            background = theme.color6;
-            foreground = theme.color15;
+            background = theme.color2;
+            foreground = theme.foreground;
           };
         };
 
