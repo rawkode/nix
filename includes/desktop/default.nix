@@ -83,7 +83,7 @@ in {
 
   programs.termite = {
     enable = true;
-    font = "FuraCode Nerd Font, 11";
+    font = "Hack Nerd Font Mono, 11";
 
     backgroundColor = "rgba(63, 63, 63, 0.8)";
   };

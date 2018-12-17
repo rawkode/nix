@@ -10,6 +10,9 @@
   home.file.".zsh/powerlevel9k.zsh".source = ./zsh/powerlevel9k.zsh;
   home.file.".zsh/zplug.zsh".source = ./zsh/zplug.zsh;
 
+  home.file.".config/fish/config.fish".source = ./fish/config.fish;
+  home.file.".config/fish/fishfile".source = ./fish/fishfile;
+
   home.packages = (with pkgs; [
     direnv
     exa
@@ -23,5 +26,5 @@
   ]);
 
   programs.autorandr.enable = true;
-  #programs.direnv.enable = true;
+  programs.direnv.enable = true;
 }
