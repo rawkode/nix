@@ -125,3 +125,6 @@ compinit -u
 
 export FZF_DEFAULT_COMMAND='rg -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export "GPG_TTY=$(tty)"
+export "SSH_AUTH_SOCK=${HOME}/.gnupg/S.gpg-agent.ssh"
