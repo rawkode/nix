@@ -13,13 +13,16 @@ tabspaces: 2
 
 font:
   normal:
-    family: FuraCode Nerd Font
+    family: FuraCode Nerd Font Mono
+    style: Retina
 
   bold:
-    family: FuraCode Nerd Font
+    family: FuraCode Nerd Font Mono
+    style: Retina
 
   italic:
-    family: FuraCode Nerd Font
+    family: FuraCode Nerd Font Mono
+    style: Retina
 
   size: 11.0
 

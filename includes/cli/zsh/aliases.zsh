@@ -42,6 +42,3 @@ alias open=' xdg-open'
 alias vi=' code'
 alias vim=' code'
 alias nvim=' code'
-
-# gpg2
-alias gpg='gpg2'
