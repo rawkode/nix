@@ -4,6 +4,10 @@
   imports =
     [
       ./hardware-configuration.nix
+      (builtins.fetchTarball {
+        sha256 = "1qmq5zwd4qdxdxh4zxc7yr7qwajgnsjdw2npw0rfkyahmrqw3j02";
+        url = "https://github.com/msteen/nixos-vsliveshare/archive/86624fe317c24df90e9451dd5741220c98d2249d.tar.gz";
+      })
     ];
 
   fileSystems."/".options = [ "noatime" "nodiratime" ];
@@ -29,7 +33,7 @@
   };
 
   networking = {
-    hostName = "p4x-639";
+    hostName = "nixos";
 
     networkmanager = {
       enable = true;
@@ -98,6 +102,12 @@
   services.printing.enable = true;
 
   services.pcscd.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    gnupg
+    yubikey-personalization
+  ];
+
   services.udev.packages = with pkgs; [
     yubikey-personalization
   ];
@@ -106,6 +116,7 @@
 
   hardware.pulseaudio = {
     enable = true;
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
 
@@ -147,6 +158,8 @@
     libinput = {
       enable = true;
 
+      # This only applies to the trackpad, need to check if we
+      # can find a way to do this for mice too.
       naturalScrolling = true;
       scrollMethod = "twofinger";
       tapping = true;
@@ -186,6 +199,14 @@
       enable = true;
       storageDriver = "devicemapper";
     };
+  };
+
+  # VS Code Live Share Hack
+  services.vsliveshare = {
+    enable = true;
+    enableWritableWorkaround = true;
+    enableDiagnosticsWorkaround = true;
+    extensionsDir = "/home/rawkode/.vscode/extensions";
   };
 
   system.stateVersion = "18.09";

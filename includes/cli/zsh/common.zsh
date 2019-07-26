@@ -28,16 +28,6 @@ function jaumo() {
   cd $HOME/Code/src/gitlab.jaumo.com/$1
 }
 
-# Set GPG TTY
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
-
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ];
-then
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-fi
-
 export EDITOR="code --wait"
 export PAGER=less
 export MANPAGER=less

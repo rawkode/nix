@@ -15,12 +15,10 @@ let
     else
     import path;
 in {
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   fonts.fontconfig = {
-    enableProfileFonts = true;
+    enable = true;
   };
 
   programs.home-manager = {
