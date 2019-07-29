@@ -16,11 +16,13 @@ in {
     font-awesome_5
     gnome3.nautilus
     google-fonts
-    materia-theme
     nerdfonts
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    materia-theme
     networkmanagerapplet
     nitrogen
-    noto-fonts-emoji
     pasystray
     pavucontrol
   ]);

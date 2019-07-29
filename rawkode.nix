@@ -17,8 +17,23 @@ let
 in {
   nixpkgs.config.allowUnfree = true;
 
-  fonts.fontconfig = {
-    enable = true;
+  # fonts = {
+  #   enableCoreFonts = true;
+  #   enableFontDir = true;
+  #   fontconfig.ultimate = {
+  #     enable = true;
+  #     preset = "osx";
+  #   };
+
+  #   fonts = with pkgs; [
+  #     emojione
+  #     google-fonts
+  #   ];
+  # };
+  fonts = {
+    fontconfig = {
+      enable = true;
+    };
   };
 
   programs.home-manager = {

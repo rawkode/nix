@@ -26,7 +26,6 @@
     zsh
   ]);
 
-  programs.autorandr.enable = true;
   programs.direnv.enable = true;
   programs.ssh.enable = true;
 

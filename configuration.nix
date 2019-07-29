@@ -87,6 +87,7 @@
     pinentry
     polybar
     rofi
+    yubikey-personalization
   ]);
 
   environment.interactiveShellInit = ''
@@ -97,16 +98,21 @@
 
   fonts = {
     enableCoreFonts = true;
+    enableFontDir = true;
+    fontconfig.ultimate = {
+      enable = true;
+      preset = "osx";
+    };
+
+    fonts = with pkgs; [
+      emojione
+      google-fonts
+    ];
   };
 
   services.printing.enable = true;
 
   services.pcscd.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    gnupg
-    yubikey-personalization
-  ];
 
   services.udev.packages = with pkgs; [
     yubikey-personalization
@@ -120,9 +126,13 @@
     package = pkgs.pulseaudioFull;
   };
 
-  programs.gnupg.agent.enable = false;
+  programs = {
+    gnupg.agent.enable = false;
+  };
 
   i18n.consoleUseXkbConfig = true;
+
+  services.autorandr.enable = true;
 
   services.xserver = {
     enable = true;
@@ -131,16 +141,9 @@
     xkbVariant = "altgr-intl";
 
     displayManager = {
-      lightdm = {
+      gdm = {
         enable = true;
-
-        greeter = {
-          enable = true;
-        };
-
-        extraSeatDefaults = ''
-          greeter-show-manual-login = false;
-        '';
+        wayland = true;
       };
     };
 
