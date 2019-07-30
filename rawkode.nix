@@ -17,19 +17,6 @@ let
 in {
   nixpkgs.config.allowUnfree = true;
 
-  # fonts = {
-  #   enableCoreFonts = true;
-  #   enableFontDir = true;
-  #   fontconfig.ultimate = {
-  #     enable = true;
-  #     preset = "osx";
-  #   };
-
-  #   fonts = with pkgs; [
-  #     emojione
-  #     google-fonts
-  #   ];
-  # };
   programs.home-manager = {
     enable = true;
     path = https://github.com/rycee/home-manager/archive/master.tar.gz;
@@ -43,4 +30,3 @@ in {
 
   imports = include ./includes;
 }
-
