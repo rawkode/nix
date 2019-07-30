@@ -100,7 +100,11 @@ in {
 
       # This rule stops other windows on the same workspace being
       # the "background" when stacked or tabbed.
+      showExclude = [
+        "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+      ];
       opacityRule = [
+        "95:class_g = 'URxvt' && !_NET_WM_STATE@:32a",
         "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
       ];
     };
