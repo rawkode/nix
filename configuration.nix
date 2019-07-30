@@ -206,13 +206,5 @@
     };
   };
 
-  # VS Code Live Share Hack
-  services.vsliveshare = {
-    enable = true;
-    enableWritableWorkaround = true;
-    enableDiagnosticsWorkaround = true;
-    extensionsDir = "/home/rawkode/.vscode/extensions";
-  };
-
   system.stateVersion = "19.03";
 }
