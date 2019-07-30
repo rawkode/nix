@@ -134,6 +134,8 @@
 
   services.autorandr.enable = true;
 
+  security.pam.services.gdm.enableGnomeKeyring = true;
+
   services.xserver = {
     enable = true;
 
