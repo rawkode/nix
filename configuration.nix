@@ -90,6 +90,8 @@
     yubikey-personalization
   ]);
 
+  programs.sway.enable = true;
+
   environment.interactiveShellInit = ''
     if [[ "$VTE_VERSION" > 3405 ]]; then
       source "${pkgs.gnome3.vte}/etc/profile.d/vte.sh"
@@ -126,9 +128,7 @@
     package = pkgs.pulseaudioFull;
   };
 
-  programs = {
-    gnupg.agent.enable = false;
-  };
+  programs.gnupg.agent.enable = false;
 
   i18n.consoleUseXkbConfig = true;
 
@@ -212,5 +212,5 @@
     extensionsDir = "/home/rawkode/.vscode/extensions";
   };
 
-  system.stateVersion = "18.09";
+  system.stateVersion = "19.03";
 }

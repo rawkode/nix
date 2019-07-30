@@ -30,12 +30,6 @@ in {
   #     google-fonts
   #   ];
   # };
-  fonts = {
-    fontconfig = {
-      enable = true;
-    };
-  };
-
   programs.home-manager = {
     enable = true;
     path = https://github.com/rycee/home-manager/archive/master.tar.gz;
