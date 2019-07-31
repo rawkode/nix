@@ -3,6 +3,6 @@
 with pkgs;
 {
   home.packages = (with pkgs; [
-    terraform
+    terraform_0_12
   ]);
 }
