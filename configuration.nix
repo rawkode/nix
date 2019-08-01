@@ -72,6 +72,8 @@
     autorandr
     blueman
     clipit
+    gnome-mpv
+    mpv
     gnome3.dconf
     gnome3.vte
     gnupg
