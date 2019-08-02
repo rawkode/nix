@@ -3,6 +3,7 @@
 {
   imports =
     [
+      ./containers.nix
       ./git.nix
     ];
 
@@ -26,6 +27,9 @@
     # Go
     go
 
+    # Google Cloud
+    google-cloud-sdk
+
     # JavaScript
     nodejs
     yarn
@@ -41,5 +45,11 @@
 
     # Rust
     rustup
+
+    # Terraform
+    terraform_0_12
+
+    # Visual Studio Code
+    vscode
   ]);
 }
