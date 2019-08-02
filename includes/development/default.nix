@@ -38,6 +38,9 @@
     ponyc
     pony-stable
 
+    # Pulumi
+    pulumi-bin
+
     # Python
     pipenv
     python
