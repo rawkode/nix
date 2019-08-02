@@ -74,6 +74,9 @@
     clipit
     flameshot
     gnome-mpv
+    kbfs
+    keybase
+    keybase-gui
     mpv
     gnome3.dconf
     gnome3.vte
@@ -92,6 +95,17 @@
     rofi
     yubikey-personalization
   ]);
+
+  services = {
+    kbfs = {
+      enable = true;
+      mountPoint = "Keybase";
+    };
+
+    keybase = {
+      enable = true;
+    };
+  };
 
   programs.sway.enable = true;
 
