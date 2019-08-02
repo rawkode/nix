@@ -130,7 +130,7 @@
   };
 
   services.printing.enable = true;
-
+  services.blueman-applet.enable = true;
   services.pcscd.enable = true;
 
   services.udev.packages = with pkgs; [
