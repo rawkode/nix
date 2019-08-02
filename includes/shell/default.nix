@@ -14,6 +14,7 @@
   home.file.".config/fish/fishfile".source = ./fish/fishfile;
 
   home.packages = (with pkgs; [
+    bat
     direnv
     exa
     fzf

@@ -7,6 +7,7 @@
     kind
     kubectl
     kubernetes-helm
+    podman
     runc
   ]);
 }
