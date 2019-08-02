@@ -72,6 +72,7 @@
     autorandr
     blueman
     clipit
+    flameshot
     gnome-mpv
     mpv
     gnome3.dconf
