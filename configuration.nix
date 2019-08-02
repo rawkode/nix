@@ -130,7 +130,6 @@
   };
 
   services.printing.enable = true;
-  services.blueman-applet.enable = true;
   services.pcscd.enable = true;
 
   services.udev.packages = with pkgs; [
@@ -194,6 +193,10 @@
     allowUnfree = true;
 
     packageOverrides = pkgs: rec {
+      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
+
       polybar = pkgs.polybar.override {
         i3Support = true;
       };
