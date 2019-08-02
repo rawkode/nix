@@ -1,8 +1,7 @@
 #!/usr/bin/env sh
+mkdir -p $HOME/.config/nixpkgs
 
 if ! [ -x "$(command -v home-manager)" ]; then
-    mkdir -p $HOME/.config/nixpkgs
-
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
     nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
     nix-channel --update
