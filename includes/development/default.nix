@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [
+      ./git.nix
+    ];
+
   nixpkgs.config = {
     android_sdk = {
       accept_license = true;
@@ -17,6 +22,9 @@
 
     # Flutter
     # flutter
+
+    # Go
+    go
 
     # JavaScript
     nodejs

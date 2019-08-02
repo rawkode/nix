@@ -40,7 +40,7 @@
       };
 
       commit = {
-        template = "~/.git/templates/commit";
+        template = "~/.config/git/templates/commit.txt";
       };
 
       diff = {
@@ -92,5 +92,5 @@
     ];
   };
 
-  home.file.".config/git/templates/commit.txt".source = ./commit-template.txt;
+  home.file.".config/git/templates/commit.txt".source = ./git-commit-template.txt;
 }
