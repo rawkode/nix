@@ -27,4 +27,6 @@ fi
 cp ./rawkode.nix $HOME/.config/nixpkgs/home.nix
 cp -R includes $HOME/.config/nixpkgs/
 
+nix-channel --update
+
 home-manager switch
