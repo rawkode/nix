@@ -3,6 +3,6 @@
 {
   home.packages = (with pkgs; [
     firefox
-    chromium
+    google-chrome
   ]);
 }
