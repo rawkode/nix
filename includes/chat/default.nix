@@ -6,7 +6,7 @@
     signal-desktop
     slack
     #spectral
-    wavebox
+    #wavebox
     zoom-us
   ]);
 }

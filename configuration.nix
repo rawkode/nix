@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      (builtins.fetchTarball {
-        sha256 = "1qmq5zwd4qdxdxh4zxc7yr7qwajgnsjdw2npw0rfkyahmrqw3j02";
-        url = "https://github.com/msteen/nixos-vsliveshare/archive/86624fe317c24df90e9451dd5741220c98d2249d.tar.gz";
-      })
-    ];
+  imports = [
+    ./hardware-configuration.nix
+
+    (builtins.fetchTarball {
+      url = "https://github.com/msteen/nixos-vsliveshare/archive/e6ea0b04de290ade028d80d20625a58a3603b8d7.tar.gz";
+      sha256 = "12riba9dlchk0cvch2biqnikpbq4vs22gls82pr45c3vzc3vmwq9";
+    })
+  ];
 
   fileSystems."/".options = [ "noatime" "nodiratime" ];
 
@@ -68,7 +68,6 @@
 
   # List packages installed in system profile.
   environment.systemPackages = (with pkgs; [
-    asciinema
     autorandr
     blueman
     clipit
@@ -94,6 +93,8 @@
     polybar
     rofi
     yubikey-personalization
+
+    vscode
   ]);
 
   services = {
@@ -193,10 +194,6 @@
     allowUnfree = true;
 
     packageOverrides = pkgs: rec {
-      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-
       polybar = pkgs.polybar.override {
         i3Support = true;
       };
@@ -224,6 +221,13 @@
       enable = true;
       storageDriver = "devicemapper";
     };
+  };
+
+  services.vsliveshare = {
+    enable = true;
+    enableWritableWorkaround = true;
+    enableDiagnosticsWorkaround = true;
+    extensionsDir = "/home/rawkode/.vscode/extensions";
   };
 
   system.stateVersion = "19.03";

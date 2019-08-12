@@ -2,16 +2,6 @@
 mkdir -p $HOME/.config/nixpkgs
 
 if ! [ -x "$(command -v home-manager)" ]; then
-    cat << EOF > $HOME/.config/nixpkgs/config.nix
-{
-  packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
-}
-EOF
-
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
     nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
     nix-channel --update

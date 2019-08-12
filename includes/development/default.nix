@@ -5,6 +5,7 @@
     [
       ./containers.nix
       ./git.nix
+      ./vscode.nix
     ];
 
   nixpkgs.config = {
@@ -51,8 +52,5 @@
 
     # Terraform
     terraform_0_12
-
-    # Visual Studio Code
-    vscode
   ]);
 }
