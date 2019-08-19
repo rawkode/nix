@@ -3,6 +3,7 @@
 with pkgs;
 {
   home.packages = (with pkgs; [
-    #shotcut
+    obs-studio
+    shotcut
   ]);
 }
