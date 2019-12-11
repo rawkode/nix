@@ -3,11 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-
-    (builtins.fetchTarball {
-      url = "https://github.com/msteen/nixos-vsliveshare/archive/e6ea0b04de290ade028d80d20625a58a3603b8d7.tar.gz";
-      sha256 = "12riba9dlchk0cvch2biqnikpbq4vs22gls82pr45c3vzc3vmwq9";
-    })
   ];
 
   fileSystems."/".options = [ "noatime" "nodiratime" ];
@@ -46,10 +41,6 @@
   };
 
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.extraConfig = "
-    [General]
-    Enable=Source,Sink,Media,Socket
-  ";
 
   nix = {
     gc = {
@@ -68,47 +59,9 @@
 
   # List packages installed in system profile.
   environment.systemPackages = (with pkgs; [
-    autorandr
-    blueman
-    clipit
-    flameshot
-    gnome-mpv
-    kbfs
-    keybase
-    keybase-gui
-    mpv
     gnome3.dconf
     gnome3.vte
-    gnupg
-    insomnia
-    nix-prefetch-git
-    stdenv
-    vlc
-    # i3
-    i3
-    i3lock
-    # This is required for i3 support in polybar
-    jsoncpp
-    pinentry
-    polybar
-    rofi
-    yubikey-personalization
-
-    vscode
   ]);
-
-  services = {
-    kbfs = {
-      enable = true;
-      mountPoint = "Keybase";
-    };
-
-    keybase = {
-      enable = true;
-    };
-  };
-
-  programs.sway.enable = true;
 
   environment.interactiveShellInit = ''
     if [[ "$VTE_VERSION" > 3405 ]]; then
@@ -117,14 +70,10 @@
   '';
 
   fonts = {
-    enableCoreFonts = true;
     enableFontDir = true;
-    fontconfig.ultimate = {
-      enable = true;
-      preset = "osx";
-    };
 
     fonts = with pkgs; [
+      corefonts
       emojione
       google-fonts
     ];
@@ -132,10 +81,6 @@
 
   services.printing.enable = true;
   services.pcscd.enable = true;
-
-  services.udev.packages = with pkgs; [
-    yubikey-personalization
-  ];
 
   sound.enable = true;
 
@@ -145,11 +90,7 @@
     package = pkgs.pulseaudioFull;
   };
 
-  programs.gnupg.agent.enable = false;
-
   i18n.consoleUseXkbConfig = true;
-
-  services.autorandr.enable = true;
 
   security.pam.services.gdm.enableGnomeKeyring = true;
 
@@ -167,14 +108,8 @@
     };
 
     desktopManager = {
-      default = "none";
-
-      xterm.enable = false;
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
+      default = "gnome-session";
+      gnome3.enable = true;
     };
 
     libinput = {
@@ -192,12 +127,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-
-    packageOverrides = pkgs: rec {
-      polybar = pkgs.polybar.override {
-        i3Support = true;
-      };
-    };
   };
 
   users.groups.rawkode = {};
@@ -211,24 +140,11 @@
   };
 
   virtualisation = {
-    virtualbox.host = {
-      enable = true;
-      enableHardening = false;
-      addNetworkInterface = true;
-    };
-
     docker = {
       enable = true;
       storageDriver = "devicemapper";
     };
   };
 
-  services.vsliveshare = {
-    enable = true;
-    enableWritableWorkaround = true;
-    enableDiagnosticsWorkaround = true;
-    extensionsDir = "/home/rawkode/.vscode/extensions";
-  };
-
-  system.stateVersion = "19.03";
+  system.stateVersion = "19.09";
 }

@@ -18,7 +18,6 @@
     direnv
     exa
     fzf
-    pinentry
     ripgrep
     tldr
     unzip
@@ -29,12 +28,4 @@
 
   programs.direnv.enable = true;
   programs.ssh.enable = true;
-
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    extraConfig = ''
-      pinentry-program ${pkgs.pinentry}/bin/pinentry-gtk-2
-    '';
-  };
 }

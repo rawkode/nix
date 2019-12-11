@@ -5,7 +5,6 @@ scrolling:
   history: 2048
 
   multiplier: 5
-  faux_multiplier: 5
 
   auto_scroll: false
 
@@ -13,16 +12,16 @@ tabspaces: 2
 
 font:
   normal:
-    family: FuraCode Nerd Font Mono
-    style: Retina
+    family: Cascadia Code
+    style: Regular
 
   bold:
-    family: FuraCode Nerd Font Mono
-    style: Retina
+    family: Cascadia Code
+    style: Bold
 
   italic:
-    family: FuraCode Nerd Font Mono
-    style: Retina
+    family: Cascadia Code
+    style: Italic
 
   size: 11.0
 
