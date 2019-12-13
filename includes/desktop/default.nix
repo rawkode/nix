@@ -6,14 +6,8 @@ in {
     arc-icon-theme
     arc-theme
     bibata-cursors
-    font-awesome_5
-    google-fonts
     gnome3.gnome-tweaks
     materia-theme
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
   ]);
 
   gtk = {
@@ -21,7 +15,6 @@ in {
 
     font = {
       name = "Cascadia Code 11";
-      package = pkgs.cascadia-code;
     };
 
     theme = {

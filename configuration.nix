@@ -73,10 +73,22 @@
     enableFontDir = true;
 
     fonts = with pkgs; [
+      cascadia-code
       corefonts
       emojione
       google-fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
     ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Cascadia Code" ];
+        sansSerif = [ "Bitter" ];
+        serif     = [ "Bitter" ];
+      };
+    };
   };
 
   services.printing.enable = true;
@@ -93,6 +105,7 @@
   i18n.consoleUseXkbConfig = true;
 
   security.pam.services.gdm.enableGnomeKeyring = true;
+  services.gnome3.gnome-keyring.enable = true;
 
   services.xserver = {
     enable = true;
@@ -108,7 +121,7 @@
     };
 
     desktopManager = {
-      default = "gnome-session";
+      default = "none";
       gnome3.enable = true;
     };
 
@@ -145,6 +158,8 @@
       storageDriver = "devicemapper";
     };
   };
+
+  nix.trustedUsers = ["rawkode"];
 
   system.stateVersion = "19.09";
 }

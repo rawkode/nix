@@ -2,6 +2,7 @@
 
 {
   home.packages = (with pkgs; [
+    fuse
     gnupg
     kbfs
     keybase
