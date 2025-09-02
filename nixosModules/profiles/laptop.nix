@@ -3,7 +3,7 @@
 {
   imports = [
     ./desktop.nix
-    ../networking/tailscale
+    # ../networking/tailscale  # Now in base profile
   ];
 
   # Power management

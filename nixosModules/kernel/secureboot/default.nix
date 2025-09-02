@@ -16,23 +16,32 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    boot = {
-      # Lanzaboote currently replaces the systemd-boot module.
-      # This setting is usually set to true in configuration.nix
-      # generated at installation time. So we force it to false
-      # for now.
-      loader.systemd-boot.enable = lib.mkForce false;
+  config = mkMerge [
+    # When secure boot is enabled, use lanzaboote
+    (mkIf cfg.enable {
+      boot = {
+        # Lanzaboote currently replaces the systemd-boot module.
+        # This setting is usually set to true in configuration.nix
+        # generated at installation time. So we force it to false
+        # for now.
+        loader.systemd-boot.enable = lib.mkForce false;
 
-      lanzaboote = {
-        enable = true;
-        pkiBundle = "/var/lib/sbctl";
+        lanzaboote = {
+          enable = true;
+          pkiBundle = "/var/lib/sbctl";
+        };
       };
-    };
 
-    environment.systemPackages = with pkgs; [
-      sbctl
-      tpm2-tss
-    ];
-  };
+      environment.systemPackages = with pkgs; [
+        sbctl
+        tpm2-tss
+      ];
+    })
+    
+    # When secure boot is disabled, use systemd-boot
+    (mkIf (!cfg.enable) {
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.systemd-boot.configurationLimit = 10;
+    })
+  ];
 }

@@ -9,6 +9,8 @@ let
   wallpaper = config.stylix.image;
 in
 {
+  imports = [ ../waybar ];
+  
   services.swayosd.enable = true;
 
   services.gnome-keyring = {
@@ -31,26 +33,6 @@ in
   };
 
   systemd.user.services = {
-    polkit-gnome = {
-      Unit = {
-        Description = "PolicyKit Authentication Agent provided by niri-flake";
-        WantedBy = [ "niri.service" ];
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
-
     swaync = {
       Unit = {
         Description = "SwayNotificationCenter for niri";
@@ -90,27 +72,6 @@ in
       };
     };
 
-    waybar = {
-      Unit = {
-        Description = "Waybar for niri";
-        Documentation = "https://github.com/Alexays/Waybar/wiki";
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session-pre.target" ];
-      };
-
-      Service = {
-        Type = "simple";
-        ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
-        ExecStart = "${pkgs.waybar}/bin/waybar";
-        ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
-        Restart = "on-failure";
-        RestartSec = "1s";
-      };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
   };
 
   programs.fuzzel = {

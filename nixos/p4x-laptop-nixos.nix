@@ -94,7 +94,7 @@
       };
 
       # Boot configuration
-      boot.loader.systemd-boot.enable = true;
+      boot.loader.systemd-boot.enable = lib.mkDefault true;
       boot.loader.efi.canTouchEfiVariables = true;
       boot.loader.efi.efiSysMountPoint = "/boot";
 

@@ -10,6 +10,8 @@
     ../flatpak
     ../1password
     ../chrome
+    ../niri
+    ../plymouth
   ];
 
   # Desktop services

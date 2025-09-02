@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
-    ../containers
+    # ../containers  # Now in base profile
     ../documentation
   ];
 
@@ -37,21 +37,7 @@
     podman-compose
   ];
 
-  # Docker support
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-    autoPrune = {
-      enable = true;
-      dates = "weekly";
-    };
-  };
-
-  # Podman support  
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
+  # Docker and Podman configuration moved to containers module in base profile
 
   # Development-friendly kernel parameters
   boot.kernel.sysctl = {

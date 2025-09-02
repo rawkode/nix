@@ -1,4 +1,8 @@
 { lib, pkgs, ... }:
+let
+  fileAsSeparatedString = path: 
+    lib.strings.concatStringsSep "\n" (lib.strings.splitString "\n" (builtins.readFile path));
+in
 {
   home.file.".bashrc".source = ./auto-fish.sh;
 
@@ -25,17 +29,17 @@
       "ctrl-\\[".command = "builtin cd ..; commandline -f repaint";
     };
 
-    interactiveShellInit = lib.rawkOS.fileAsSeparatedString ./interactiveInit.fish;
+    interactiveShellInit = fileAsSeparatedString ./interactiveInit.fish;
 
     functions = {
       magic-enter = {
         description = "Magic Enter";
-        body = lib.rawkOS.fileAsSeparatedString ./magic-enter.fish;
+        body = fileAsSeparatedString ./magic-enter.fish;
       };
 
       magic-enter-command = {
         description = "Magic Enter AutoCommands";
-        body = lib.rawkOS.fileAsSeparatedString ./magic-enter-command.fish;
+        body = fileAsSeparatedString ./magic-enter-command.fish;
       };
     };
   };

@@ -8,6 +8,14 @@
     ../user
     ../sudo
     ../systemd
+    
+    # Essential services for all hosts
+    ../containers      # Docker & Podman
+    ../tailscale      # VPN networking
+    ../power-profiles-daemon  # Power management
+    ../below          # System monitoring
+    ../kernel/secureboot  # Secure Boot management
+    ../tpm2           # TPM support
   ];
 
   # Essential packages for all systems

@@ -4,7 +4,8 @@
       "Bash(tree:*)",
       "Bash(nix flake show:*)",
       "Bash(sed:*)",
-      "Bash(nix flake check:*)"
+      "Bash(nix flake check:*)",
+      "Bash(nix eval:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,6 +1,13 @@
 { lib, pkgs, ... }:
 {
-  imports = [ (lib.snowfall.fs.get-file "modules/shared/stylix/default.nix") ];
+  imports = [ ../stylix ];
+
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+  };
 
   home.packages = with pkgs; [
     nixd

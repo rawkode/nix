@@ -81,17 +81,19 @@
     };
   };
 
-  outputs = inputs@{ self, flakelight, nixpkgs, treefmt-nix, home-manager, ... }:
+  outputs = { flakelight, ... }@inputs:
     flakelight ./. {
       inherit inputs;
       
       # System configurations
       systems = [ "x86_64-linux" ];
       
-      # Don't use auto-discovery for nixosConfigurations due to path issues
-      # nixDir = ./.;
+      # Enable auto-discovery for modules and configurations
+      # But we'll manually handle homeModules since they're Home Manager modules
+      nixDir = ./.;
       
-      # Explicitly define nixosConfigurations to handle path correctly
+      # Override nixosConfigurations to handle our specific structure
+      # Flakelight will auto-discover nixosModules and homeModules
       nixosConfigurations = {
         p4x-framework-nixos = import ./nixos/p4x-framework-nixos.nix;
         p4x-desktop-nixos = import ./nixos/p4x-desktop-nixos.nix;
@@ -104,67 +106,46 @@
         joypixels.acceptLicense = true;
       };
 
-      # Additional overlays beyond auto-discovered ones
+      # Compose overlays
       withOverlays = [
         inputs.nur.overlays.default
+        # Inline overlay for external channel inputs and custom packages
         (final: prev: {
+          # External packages from other nixpkgs branches
+          clickup = (import inputs.clickup {
+            system = prev.system;
+            config.allowUnfree = true;
+          }).clickup or null;
+          inherit (inputs.cue.legacyPackages.${prev.system}) cue cue-wasm;
           v4l-utils = inputs.v4l2.legacyPackages.${prev.system}.v4l-utils;
+          
+          # Add rawkOS library extensions
+          lib = prev.lib // {
+            rawkOS = import ./lib { lib = prev.lib; };
+          };
         })
       ];
 
-      # Per-system configuration
-      perSystem = pkgs: {
-        # Formatter using treefmt
-        formatter = (treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
-        
-        # Apps that can be run with 'nix run'
-        apps = {
-          update = {
-            type = "app";
-            program = "${pkgs.writeShellScript "update-flake" ''
-              echo "Updating flake inputs..."
-              nix flake update
-              echo "Done!"
-            ''}";
-          };
-          
-          clean = {
-            type = "app";
-            program = "${pkgs.writeShellScript "clean" ''
-              echo "Cleaning old generations..."
-              nix-collect-garbage -d
-              echo "Done!"
-            ''}";
-          };
-        };
-      };
+      # Formatter using treefmt
+      formatters = pkgs: (inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
+      
+      # Checks
+      checks.statix = pkgs: pkgs.runCommand "statix-check" {
+        nativeBuildInputs = [ pkgs.statix ];
+      } ''
+        echo "Running statix checks..."
+        ${pkgs.statix}/bin/statix check --ignore result || true
+        touch $out
+      '';
+      
+      # Legacy packages for easy access
+      legacyPackages = pkgs: pkgs;
 
-      # Development shell additions
-      devShell = {
-        packages = pkgs: with pkgs; [
-          nixpkgs-fmt
-          nil
-          nix-tree
-          nix-diff
-          statix
-        ];
-        
-        env = {
-          FLAKE_ROOT = "$PWD";
-        };
-        
-        shellHook = ''
-          echo "Welcome to rawkOS development shell!"
-          echo "Run 'nix flake show' to see available outputs"
-        '';
-      };
       
       # Home configurations
-      homeConfigurations = {
-        rawkode = import ./home/rawkode.nix inputs;
-      };
+      homeConfigurations.rawkode = import ./home/rawkode.nix inputs;
       
-      # Templates for quick project initialization
+      # Templates for quick project initialization  
       templates = {
         default = {
           path = ./templates/default;
@@ -178,9 +159,7 @@
       };
       
       # Flakelight modules for reuse
-      flakelightModules = {
-        rawkOS = ./flakeModules/rawkOS.nix;
-      };
+      flakelightModules.rawkOS = ./flakeModules/rawkOS.nix;
       
       # Package bundlers
       bundlers = pkgs: {
@@ -192,17 +171,6 @@
             paths = [ pkg ];
           };
         };
-      };
-      
-      # Additional checks beyond formatting
-      checks = pkgs: {
-        statix = pkgs.runCommand "statix-check" {
-          nativeBuildInputs = [ pkgs.statix ];
-        } ''
-          echo "Running statix checks..."
-          ${pkgs.statix}/bin/statix check --ignore result || true
-          touch $out
-        '';
       };
     };
 }

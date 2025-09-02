@@ -7,14 +7,7 @@ let
   cfg = config.rawkOS.user;
 in
 {
-  imports = [ (lib.snowfall.fs.get-file "modules/shared/stylix/default.nix") ];
-
-  home-manager = {
-    useUserPackages = true;
-    backupFileExtension = "backup";
-
-    extraSpecialArgs = { inherit cfg; };
-  };
+  imports = [ ../stylix ];
 
   environment.systemPackages = with pkgs; [
     nix-forecast
