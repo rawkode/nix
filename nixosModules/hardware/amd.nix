@@ -1,0 +1,45 @@
+# AMD hardware configuration
+{ config, lib, pkgs, ... }:
+{
+  # AMD CPU
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  
+  boot = {
+    kernelModules = [
+      "kvm-amd"
+      "amd-pstate" 
+      "zenpower"
+      "msr"
+    ];
+    kernelParams = [ "amd_pstate=active" ];
+  };
+  
+  # AMD GPU support
+  services.xserver.videoDrivers = lib.mkDefault [ "amdgpu" ];
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
+  
+  # AMD-specific packages
+  environment.systemPackages = with pkgs; [
+    ryzenadj
+    zenmonitor
+    radeontop
+    corectrl
+  ];
+  
+  # Enable corectrl for GPU control
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.enable = true;
+  };
+}
