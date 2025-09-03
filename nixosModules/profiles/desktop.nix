@@ -1,5 +1,5 @@
 # Desktop profile - for systems with GUI
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     ./base.nix
@@ -7,11 +7,14 @@
     ../bluetooth
     ../fonts
     ../desktop/common
+    ../desktop/firefox
     ../flatpak
     ../1password
     ../chrome
     ../niri
     ../plymouth
+    ../stylix
+    ../location       # Geolocation services for desktop apps
   ];
 
   # Desktop services
@@ -29,8 +32,12 @@
 
   # Desktop packages
   environment.systemPackages = with pkgs; [
-    firefox
     vlc
     libreoffice
   ];
+
+  # Adopt caches recommended by the firefox-nightly flake if provided via its nixConfig
+  # This will append to any host-specific caches defined elsewhere.
+  nix.settings.substituters = lib.mkAfter (inputs.firefox.nixConfig.substituters or []);
+  nix.settings.trusted-public-keys = lib.mkAfter (inputs.firefox.nixConfig.trusted-public-keys or []);
 }

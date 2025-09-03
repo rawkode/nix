@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.rawkOS.user;
@@ -23,6 +24,7 @@ in
 
   nix = {
     optimise.automatic = true;
+    gc.automatic = false; # Disabled in favor of programs.nh.clean
 
     settings = {
       trusted-users = [ cfg.username ];

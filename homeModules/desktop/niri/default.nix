@@ -10,7 +10,7 @@ let
 in
 {
   imports = [ ../waybar ];
-  
+
   services.swayosd.enable = true;
 
   services.gnome-keyring = {
@@ -69,6 +69,22 @@ in
         '';
         ExecStop = "${pkgs.swww}/bin/swww kill";
         Restart = "on-failure";
+      };
+    };
+
+    swww-wallpaper = {
+      Unit = {
+        Description = "Set wallpaper via swww for Niri";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "swww.service" ];
+        Wants = [ "swww.service" ];
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service = {
+        Type = "oneshot";
+        ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
+        ExecStart = "${pkgs.swww}/bin/swww img ${wallpaper}";
+        RemainAfterExit = true;
       };
     };
 
@@ -141,7 +157,6 @@ in
 
       spawn-at-startup = [
         (makeCommand "blueman-applet")
-        (makeCommand "swww img ${wallpaper}")
       ];
 
       outputs = {

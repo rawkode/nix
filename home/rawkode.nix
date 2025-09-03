@@ -11,7 +11,7 @@ _: {
         inputs.niri.homeModules.niri
         inputs.niri.homeModules.stylix
         inputs.nur.modules.homeManager.default
-        inputs.stylix.homeManagerModules.stylix
+        inputs.stylix.homeModules.stylix
         
         # Import rawkode home modules from auto-discovered modules
         inputs.self.homeModules.ai

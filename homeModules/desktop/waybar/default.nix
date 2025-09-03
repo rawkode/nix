@@ -1,4 +1,8 @@
-{ lib, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 let
   common = {
     layer = "top";
@@ -122,7 +126,7 @@ in
 {
   programs.waybar = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = false; # Disable default systemd integration
 
     # Reuse your existing CSS file contents
     style = builtins.readFile ./style.css;
@@ -132,5 +136,28 @@ in
       primary
       secondary
     ];
+  };
+
+  # Custom Niri-aware systemd service for waybar
+  systemd.user.services.waybar = {
+    Unit = {
+      Description = "Highly customizable Wayland bar for Niri";
+      Documentation = "https://github.com/Alexays/Waybar/wiki";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
+      ExecStart = "${pkgs.waybar}/bin/waybar";
+      ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
+      Restart = "on-failure";
+      RestartSec = "1s";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 }

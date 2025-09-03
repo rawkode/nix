@@ -12,10 +12,13 @@
     # Essential services for all hosts
     ../containers      # Docker & Podman
     ../tailscale      # VPN networking
-    ../power-profiles-daemon  # Power management
     ../below          # System monitoring
     ../kernel/secureboot  # Secure Boot management
     ../tpm2           # TPM support
+    
+    # Security and networking
+    ../u2f            # U2F/YubiKey authentication
+    ../dns            # DNS configuration with DNSSEC
   ];
 
   # Essential packages for all systems
@@ -35,7 +38,7 @@
     };
     
     gc = {
-      automatic = true;
+      automatic = lib.mkDefault true;
       dates = "weekly";
       options = "--delete-older-than 30d";
     };

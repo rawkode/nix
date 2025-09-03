@@ -4,6 +4,8 @@
   imports = [
     # ../containers  # Now in base profile
     ../documentation
+    ../ai             # AI/LLM tools and Qdrant vector database
+    ../android        # Android development tools and ADB
   ];
 
   # Development tools

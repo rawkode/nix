@@ -1,6 +1,4 @@
-# Desktop applications and environments
-{ config, lib, pkgs, ... }:
-
+{ ... }:
 {
   imports = [
     ./1password
@@ -20,7 +18,7 @@
     ./tana
     ./visual-studio-code
     ./vivaldi
-    ./waybar
+    ./warp
     ./wayland
     ./wezterm
     ./zed

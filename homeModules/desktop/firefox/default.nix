@@ -11,7 +11,7 @@
 
       search = {
         force = true;
-        default = "kagi";
+        default = "google";
         privateDefault = "ddg";
         order = [
           "kagi"
@@ -164,19 +164,19 @@
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "firefox.desktop" ];
-    "x-scheme-handler/http" = [ "firefox.desktop" ];
-    "x-scheme-handler/https" = [ "firefox.desktop" ];
-    "x-scheme-handler/ftp" = [ "firefox.desktop" ];
-    "x-scheme-handler/chrome" = [ "firefox.desktop" ];
-    "x-scheme-handler/about" = [ "firefox.desktop" ];
-    "x-scheme-handler/mailto" = [ "firefox.desktop" ];
-    "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-    "application/x-extension-htm" = [ "firefox.desktop" ];
-    "application/x-extension-html" = [ "firefox.desktop" ];
-    "application/x-extension-shtml" = [ "firefox.desktop" ];
-    "application/xhtml+xml" = [ "firefox.desktop" ];
-    "application/x-extension-xhtml" = [ "firefox.desktop" ];
-    "application/x-extension-xht" = [ "firefox.desktop" ];
+    "text/html" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/http" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/https" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/ftp" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/chrome" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/about" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/mailto" = [ "firefox-nightly.desktop" ];
+    "x-scheme-handler/unknown" = [ "firefox-nightly.desktop" ];
+    "application/x-extension-htm" = [ "firefox-nightly.desktop" ];
+    "application/x-extension-html" = [ "firefox-nightly.desktop" ];
+    "application/x-extension-shtml" = [ "firefox-nightly.desktop" ];
+    "application/xhtml+xml" = [ "firefox-nightly.desktop" ];
+    "application/x-extension-xhtml" = [ "firefox-nightly.desktop" ];
+    "application/x-extension-xht" = [ "firefox-nightly.desktop" ];
   };
 }
