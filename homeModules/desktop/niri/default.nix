@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   makeCommand = command: { command = [ command ]; };
@@ -290,15 +291,8 @@ in
 
         center-focused-column = "on-overflow";
 
-        # struts = {
-        #   left = 64;
-        #   right = 64;
-        #   top = 4;
-        #   bottom = 4;
-        # };
-
         default-column-width = {
-          proportion = 0.5;
+          proportion = 1.0;
         };
 
         preset-column-widths = [
@@ -355,7 +349,7 @@ in
           open-maximized = true;
         }
         {
-          matches = [{ app-id = "Zoom Workplace"; }];
+          matches = [ { app-id = "Zoom Workplace"; } ];
           excludes = [
             { title = "Zoom Meeting"; }
             { title = "Meeting"; }
