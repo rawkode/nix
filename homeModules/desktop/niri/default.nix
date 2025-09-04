@@ -478,36 +478,20 @@ in
           action.expel-window-from-column = { };
         };
 
-        "Super+Page_Up" = {
-          action.focus-workspace-up = { };
-        };
-
         "Super+Page_Down" = {
-          action.focus-workspace-down = { };
+          action.focus-monitor-next = { };
         };
 
-        "Super+Shift+Page_Up" = {
-          action.move-column-to-workspace-up = { };
+        "Super+Page_Up" = {
+          action.focus-monitor-previous = { };
         };
 
         "Super+Shift+Page_Down" = {
-          action.move-column-to-workspace-down = { };
+          action.move-column-to-monitor-next = { };
         };
 
-        "Super+Control+Down" = {
-          action.move-column-to-monitor-down = { };
-        };
-
-        "Super+Control+Up" = {
-          action.move-column-to-monitor-up = { };
-        };
-
-        "Super+Control+Left" = {
-          action.move-column-to-monitor-left = { };
-        };
-
-        "Super+Control+Right" = {
-          action.move-column-to-monitor-right = { };
+        "Super+Shift+Page_Up" = {
+          action.move-column-to-monitor-previous = { };
         };
 
         "Super+Up" = {

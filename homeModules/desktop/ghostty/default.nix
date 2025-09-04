@@ -13,8 +13,8 @@ in
     enable = true;
     package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-    enableBashIntegration = true;
-    enableFishIntegration = true;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
 
     clearDefaultKeybinds = true;
 
@@ -57,10 +57,14 @@ in
       font-size = 16;
 
       keybind = [
+        "ctrl+space=toggle_command_palette"
+
         "shift+insert=paste_from_clipboard"
         "ctrl+shift+v=paste_from_clipboard"
 
         "${leader}>r=reload_config"
+
+        "${leader}>i=inspector:toggle"
 
         "${leader}>t=new_tab"
         "${leader}>q=close_tab"
@@ -71,7 +75,6 @@ in
         "ctrl+minus=decrease_font_size:1"
         "ctrl+0=reset_font_size"
 
-        "ctrl+space=toggle_tab_overview"
         "ctrl+shift+p=toggle_command_palette"
 
         "${leader}>z=toggle_split_zoom"
