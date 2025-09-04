@@ -1,4 +1,13 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+let
+  leader = "ctrl+comma";
+in
 {
   programs.ghostty = {
     enable = true;
@@ -7,7 +16,12 @@
     enableBashIntegration = true;
     enableFishIntegration = true;
 
+    clearDefaultKeybinds = true;
+
+    # All options are documented at https://ghostty.org/docs/config/reference
     settings = {
+      auto-update = "off";
+
       shell-integration = "detect";
 
       mouse-hide-while-typing = true;
@@ -20,14 +34,13 @@
 
       confirm-close-surface = false;
 
-      background-opacity = 0.98;
+      background-opacity = 1.0;
 
       focus-follows-mouse = true;
 
-      # This fixes clicking links with control in zellij
-      # I don't know why.
-      mouse-shift-capture = false;
-
+      # Split visibility improvements
+      split-divider-color = lib.mkDefault (with config.lib.stylix.colors.withHashtag; base0D);
+      unfocused-split-fill = lib.mkDefault (with config.lib.stylix.colors.withHashtag; base0D);
       unfocused-split-opacity = 0.5;
 
       # Performance optimizations
@@ -37,15 +50,32 @@
       window-decoration = true;
       window-colorspace = "display-p3";
       window-theme = "auto";
-      window-padding-x = 8;
-      window-padding-y = 8;
+      window-padding-x = 16;
+      window-padding-y = 16;
       window-padding-balance = true;
 
-      # gtk-tabs-location = "hidden";
+      font-size = 16;
 
       keybind = [
+        "shift+insert=paste_from_clipboard"
+        "ctrl+shift+v=paste_from_clipboard"
+
+        "${leader}>r=reload_config"
+
+        "${leader}>t=new_tab"
+        "${leader}>q=close_tab"
+        "ctrl+page_up=previous_tab"
+        "ctrl+page_down=next_tab"
+
+        "ctrl+plus=increase_font_size:1"
+        "ctrl+minus=decrease_font_size:1"
+        "ctrl+0=reset_font_size"
+
         "ctrl+space=toggle_tab_overview"
         "ctrl+shift+p=toggle_command_palette"
+
+        "${leader}>z=toggle_split_zoom"
+        "${leader}>x=close_surface"
 
         "alt+shift+backslash=new_split:right"
         "alt+backslash=new_split:down"

@@ -164,19 +164,19 @@
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/http" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/https" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/ftp" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/chrome" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/about" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/mailto" = [ "firefox-nightly.desktop" ];
-    "x-scheme-handler/unknown" = [ "firefox-nightly.desktop" ];
-    "application/x-extension-htm" = [ "firefox-nightly.desktop" ];
-    "application/x-extension-html" = [ "firefox-nightly.desktop" ];
-    "application/x-extension-shtml" = [ "firefox-nightly.desktop" ];
-    "application/xhtml+xml" = [ "firefox-nightly.desktop" ];
-    "application/x-extension-xhtml" = [ "firefox-nightly.desktop" ];
+    "text/html" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/http" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/https" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/ftp" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/chrome" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/about" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/mailto" = [ "google-chrome-dev.desktop" ];
+    "x-scheme-handler/unknown" = [ "google-chrome-dev.desktop" ];
+    "application/x-extension-htm" = [ "google-chrome-dev.desktop" ];
+    "application/x-extension-html" = [ "google-chrome-dev.desktop" ];
+    "application/x-extension-shtml" = [ "google-chrome-dev.desktop" ];
+    "application/xhtml+xml" = [ "google-chrome-dev.desktop" ];
+    "application/x-extension-xhtml" = [ "google-chrome-dev.desktop" ];
     "application/x-extension-xht" = [ "firefox-nightly.desktop" ];
   };
 }

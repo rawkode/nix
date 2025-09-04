@@ -35,18 +35,18 @@ in
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.zed-mono;
-        name = "Monaspace Argon";
+        package = pkgs.nerd-fonts.monaspace;
+        name = "MonaspaceNeon Nerd Font";
       };
 
       serif = {
-        package = pkgs.nerd-fonts.zed-mono;
-        name = "Roboto Serif";
+        package = pkgs.libre-baskerville;
+        name = "Libre Baskerville";
       };
 
       sansSerif = {
-        package = pkgs.nerd-fonts.zed-mono;
-        name = "Roboto Sans";
+        package = pkgs.quicksand;
+        name = "Quicksand";
       };
 
       emoji = {
