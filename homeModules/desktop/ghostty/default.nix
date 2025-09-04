@@ -33,7 +33,6 @@
       # Performance optimizations
       gtk-single-instance = true;
       gtk-titlebar = true;
-      gtk-renderer = "vulkan"; # Maximum performance with Vulkan
 
       window-decoration = true;
       window-colorspace = "display-p3";
