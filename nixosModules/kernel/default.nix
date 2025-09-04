@@ -27,6 +27,14 @@
     initrd = {
       systemd.enable = true;
       supportedFilesystems = [ "btrfs" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "thunderbolt"
+        "usb_storage"
+        "sd_mod"
+        "mt7921e"  # WiFi support for Framework
+      ];
     };
 
     bootspec = {

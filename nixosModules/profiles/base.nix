@@ -25,7 +25,6 @@
 
     # Common flake modules used across all systems
     inputs.disko.nixosModules.disko # Disk configuration
-    inputs.auto-cpufreq.nixosModules.default
     inputs.flatpaks.nixosModules.nix-flatpak
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.niri.nixosModules.niri

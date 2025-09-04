@@ -6,13 +6,13 @@ let
     niri = {
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome
+        kdePackages.xdg-desktop-portal-kde
         # Note: xdg-desktop-portal-wlr removed to avoid conflicts with niri portal
       ];
       config = {
         common = {
           default = [ "gtk" ];
-          "org.freedesktop.impl.portal.Secret" = [ "kde" ];
+          "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
         };
         niri = {
           # Prioritize niri portal for best performance, fallback to gtk
@@ -24,7 +24,7 @@ let
           "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
           "org.freedesktop.impl.portal.Screenshot" = [ "niri" ];
           "org.freedesktop.impl.portal.ScreenCast" = [ "niri" ];
-          "org.freedesktop.impl.portal.Secret" = [ "kde" ];
+          "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
         };
       };
     };
@@ -37,13 +37,13 @@ let
       ];
       config.niri = {
         default = [
-          "gnome"
+          "kde"
           "gtk"
           "wlr"
         ];
         "org.freedesktop.impl.portal.FileChooser" = "gtk";
         "org.freedesktop.impl.portal.Notification" = "gtk";
-        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+        "org.freedesktop.impl.portal.Secret" = "kwallet";
         "org.freedesktop.impl.portal.ScreenCast" = "wlr";
         "org.freedesktop.impl.portal.Screenshot" = "wlr";
       };

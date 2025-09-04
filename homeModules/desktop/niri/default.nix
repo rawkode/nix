@@ -13,14 +13,7 @@ in
 
   services.swayosd.enable = true;
 
-  services.gnome-keyring = {
-    enable = true;
-    components = [
-      "pkcs11"
-      "secrets"
-      "ssh"
-    ];
-  };
+  # KDE Wallet will be used for secret management via portals
 
   services.cliphist = {
     enable = true;

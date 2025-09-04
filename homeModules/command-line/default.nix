@@ -19,6 +19,7 @@
     ./helix
     ./htop
     ./jj
+    ./jq
     ./just
     ./lazyjournal
     ./misc

@@ -7,6 +7,7 @@
       imports = [
         # Framework profile (includes laptop, desktop, development, AMD hardware)
         ../nixosModules/profiles/framework.nix
+        ../nixosModules/profiles/desktop.nix
       ];
 
       # System identity
@@ -78,8 +79,17 @@
         };
       };
 
-      # Boot configuration
-      boot.loader.systemd-boot.enable = lib.mkDefault true;
+      # Enable secure boot
+      rawkOS.secureboot.enable = true;
+
+      # Hardware configuration
+      hardware.enableRedistributableFirmware = true;
+      hardware.cpu.amd.updateMicrocode = true;
+      hardware.keyboard.qmk.enable = true;
+      hardware.graphics.enable = true;
+
+      # Lanzaboote replaces systemd-boot when secure boot is enabled
+      # boot.loader.systemd-boot.enable is handled by lanzaboote
 
       # Swap
       swapDevices = [{
@@ -88,22 +98,8 @@
       }];
 
       # Framework-specific overrides
-      programs.auto-cpufreq = {
-        enable = true;
-        settings = {
-          charger = {
-            governor = "performance";
-            turbo = "auto";
-          };
-          battery = {
-            governor = "powersave";
-            turbo = "never";
-          };
-        };
-      };
-
-      # Disable power-profiles-daemon as we're using auto-cpufreq
-      services.power-profiles-daemon.enable = lib.mkForce false;
+      # Re-enable power-profiles-daemon (removed auto-cpufreq)
+      services.power-profiles-daemon.enable = lib.mkDefault true;
 
       # Nix settings
       nix.settings = {

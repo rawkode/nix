@@ -5,6 +5,7 @@
     ./laptop.nix
     ./development.nix
     ../hardware/amd.nix # Framework 13 AMD
+    ../kernel # Ensure consistent kernel version (linux_zen)
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
   ];
 
@@ -16,8 +17,8 @@
   # Fingerprint reader support
   services.fprintd.enable = true;
 
-  # Framework keyboard backlight control
-  boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" ];
+  # Framework keyboard backlight control and WiFi support
+  boot.kernelModules = [ "cros_ec" "cros_ec_lpcs" "mt7921e" ];
 
   # High DPI display
   services.xserver.dpi = 200;

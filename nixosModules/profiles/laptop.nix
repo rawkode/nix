@@ -21,10 +21,10 @@
     logind = {
       lidSwitch = "suspend-then-hibernate";
       lidSwitchExternalPower = "lock";
-      extraConfig = ''
-        HandlePowerKey=suspend-then-hibernate
-        HibernateDelaySec=3600
-      '';
+      settings.Login = {
+        HandlePowerKey = "suspend-then-hibernate";
+        HibernateDelaySec = 3600;
+      };
     };
   };
 

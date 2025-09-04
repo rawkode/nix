@@ -4,7 +4,7 @@
   inputs = {
     # Core inputs
     flakelight.url = "github:nix-community/flakelight";
-    nixpkgs.url = "github:NixOS/nixpkgs/pull/436682/head";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Home Manager
     home-manager = {
@@ -16,21 +16,15 @@
     clickup.url = "github:NixOS/nixpkgs/pull/437226/head";
     cue.url = "github:NixOS/nixpkgs/pull/431813/head";
     v4l2.url = "github:NixOS/nixpkgs/pull/436682/head";
-    master.url = "github:nixos/nixpkgs/master";
 
     # Community
     nur.url = "github:nix-community/NUR";
 
     # Tools and applications
-    auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     browser-previews = {
       url = "github:nix-community/browser-previews";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    codex.url = "github:openai/codex/pull/2527/head";
     comma = {
       url = "github:nix-community/comma";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,9 +77,6 @@
       url = "github:yazi-rs/flavors";
       flake = false;
     };
-    zed-editor = {
-      url = "github:zed-industries/zed/v0.202.6";
-    };
   };
 
   outputs = { flakelight, ... }@inputs:
@@ -116,7 +107,6 @@
       # Compose overlays
       withOverlays = [
         inputs.nur.overlays.default
-        inputs.zed-editor.overlays.default
         # Inline overlay for external channel inputs and custom packages
         (final: prev: {
           # External packages from other nixpkgs branches

@@ -5,7 +5,7 @@
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
+      kdePackages.xdg-desktop-portal-kde
       # Remove wlr to avoid conflicts - niri portal handles wlr functionality better
     ];
     config = {
@@ -14,7 +14,7 @@
           "gtk"
         ];
         "org.freedesktop.impl.portal.Secret" = [
-          "gnome-keyring"
+          "kwallet"
         ];
       };
       niri = {
@@ -36,7 +36,7 @@
           "niri" # Niri's native screencast is most efficient
         ];
         "org.freedesktop.impl.portal.Secret" = [
-          "gnome-keyring" # GNOME keyring for consistent secret management
+          "kwallet" # KDE Wallet for consistent secret management
         ];
       };
     };

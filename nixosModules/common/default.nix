@@ -11,7 +11,6 @@
 
   services = {
     fwupd.enable = true;
-    gnome.gnome-keyring.enable = true;
     hardware.bolt.enable = true;
     libinput = {
       enable = true;
@@ -35,7 +34,7 @@
     printing.enable = true;
     pcscd.enable = true;
     smartd.enable = true;
-    udev.packages = with pkgs; [ gnome-settings-daemon ];
+    udev.packages = with pkgs; [ ];
   };
 
   programs = {
@@ -48,9 +47,6 @@
     systemPackages = with pkgs; [
       coreutils-full
       git
-      glib.dev
-      gnome-tweaks
-      pinentry-gnome3
     ];
 
     variables = {
