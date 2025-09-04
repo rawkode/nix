@@ -1,12 +1,12 @@
 { pkgs, ... }:
 {
-  # Enable XDG desktop portals for Wayland/desktop integration
+  # Optimal XDG desktop portals configuration for Niri with maximum performance
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
-      xdg-desktop-portal-wlr
+      # Remove wlr to avoid conflicts - niri portal handles wlr functionality better
     ];
     config = {
       common = {
@@ -18,15 +18,25 @@
         ];
       };
       niri = {
+        # Prioritize niri portal for best performance, fallback to gtk
         default = [
-          "gnome"
+          "niri"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.FileChooser" = [
+          "gtk" # GTK file chooser is most reliable
+        ];
+        "org.freedesktop.impl.portal.Notification" = [
+          "gtk" # GTK notifications work best
+        ];
         "org.freedesktop.impl.portal.Screenshot" = [
-          "niri"
+          "niri" # Niri's native screenshot is fastest
         ];
         "org.freedesktop.impl.portal.ScreenCast" = [
-          "niri"
+          "niri" # Niri's native screencast is most efficient
+        ];
+        "org.freedesktop.impl.portal.Secret" = [
+          "gnome-keyring" # GNOME keyring for consistent secret management
         ];
       };
     };

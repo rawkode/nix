@@ -13,21 +13,6 @@
       }:
       {
         imports = [
-          # Base modules
-          (modulesPath + "/installer/scan/not-detected.nix")
-
-          # Disk configuration
-          inputs.disko.nixosModules.disko
-
-          # Flake modules
-          inputs.auto-cpufreq.nixosModules.default
-          inputs.flatpaks.nixosModules.nix-flatpak
-          inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.niri.nixosModules.niri
-          inputs.nur.modules.nixos.default
-          inputs.stylix.nixosModules.stylix
-          inputs.nix-index-database.nixosModules.nix-index
-
           # Desktop profile (includes base, audio, desktop environment)
           ../nixosModules/profiles/desktop.nix
 
@@ -132,8 +117,6 @@
 
         # Lanzaboote replaces systemd-boot when secure boot is enabled
         # boot.loader.systemd-boot.enable is handled by lanzaboote
-        boot.loader.efi.canTouchEfiVariables = true;
-        boot.loader.efi.efiSysMountPoint = "/boot";
 
         # Networking optimization
         systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
@@ -159,13 +142,6 @@
 
         };
 
-        nix.registry = {
-          nixpkgs.flake = inputs.nixpkgs;
-          rawkode.flake = inputs.self;
-          templates.flake = inputs.self;
-        };
-
-        system.stateVersion = "25.05";
       }
     )
   ];

@@ -138,18 +138,19 @@ in
     ];
   };
 
-  # Custom Niri-aware systemd service for waybar
+  # Niri-optimized systemd service for waybar following best practices
   systemd.user.services.waybar = {
     Unit = {
       Description = "Highly customizable Wayland bar for Niri";
       Documentation = "https://github.com/Alexays/Waybar/wiki";
       PartOf = [ "graphical-session.target" ];
       After = [ "graphical-session-pre.target" ];
+      Requisite = [ "graphical-session.target" ];
+      Wants = [ "xdg-desktop-portal.service" ];
     };
 
     Service = {
       Type = "simple";
-      ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
       ExecStart = "${pkgs.waybar}/bin/waybar";
       ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
       Restart = "on-failure";

@@ -5,21 +5,6 @@
   modules = [
     ({ config, lib, modulesPath, pkgs, ... }: {
       imports = [
-        # Base modules
-        (modulesPath + "/installer/scan/not-detected.nix")
-        
-        # Disk configuration
-        inputs.disko.nixosModules.disko
-        
-        # Flake modules
-        inputs.auto-cpufreq.nixosModules.default
-        inputs.flatpaks.nixosModules.nix-flatpak
-        inputs.lanzaboote.nixosModules.lanzaboote
-        inputs.niri.nixosModules.niri
-        inputs.nur.modules.nixos.default
-        inputs.stylix.nixosModules.stylix
-        inputs.nix-index-database.nixosModules.nix-index
-        
         # Framework profile (includes laptop, desktop, development, AMD hardware)
         ../nixosModules/profiles/framework.nix
       ];
@@ -95,8 +80,6 @@
 
       # Boot configuration
       boot.loader.systemd-boot.enable = lib.mkDefault true;
-      boot.loader.efi.canTouchEfiVariables = true;
-      boot.loader.efi.efiSysMountPoint = "/boot";
 
       # Swap
       swapDevices = [{
@@ -134,13 +117,6 @@
         ];
       };
 
-      nix.registry = {
-        nixpkgs.flake = inputs.nixpkgs;
-        rawkode.flake = inputs.self;
-        templates.flake = inputs.self;
-      };
-
-      system.stateVersion = "25.05";
     })
   ];
 }

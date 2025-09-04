@@ -35,6 +35,10 @@
       url = "github:nix-community/comma";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     cuenv.url = "github:rawkode/cuenv";
     dagger = {
       url = "github:dagger/nix";
@@ -79,6 +83,9 @@
       url = "github:yazi-rs/flavors";
       flake = false;
     };
+    zed-editor = {
+      url = "github:zed-industries/zed/v0.202.6";
+    };
   };
 
   outputs = { flakelight, ... }@inputs:
@@ -109,6 +116,7 @@
       # Compose overlays
       withOverlays = [
         inputs.nur.overlays.default
+        inputs.zed-editor.overlays.default
         # Inline overlay for external channel inputs and custom packages
         (final: prev: {
           # External packages from other nixpkgs branches

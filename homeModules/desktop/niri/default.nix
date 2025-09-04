@@ -33,17 +33,36 @@ in
   };
 
   systemd.user.services = {
+    polkit-gnome = {
+      Unit = {
+        Description = "PolicyKit Authentication Agent for Niri";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session-pre.target" ];
+        Requisite = [ "graphical-session.target" ];
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
     swaync = {
       Unit = {
         Description = "SwayNotificationCenter for niri";
         Documentation = "https://github.com/ErikReider/SwayNotificationCenter";
         PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session-pre.target" ];
+        Requisite = [ "graphical-session.target" ];
       };
 
       Service = {
         Type = "simple";
-        ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
         ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
         Restart = "on-failure";
         RestartSec = "1s";
@@ -58,15 +77,13 @@ in
       Unit = {
         Description = "Efficient animated wallpaper daemon for wayland";
         PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session.target" ];
+        After = [ "graphical-session-pre.target" ];
+        Requisite = [ "graphical-session.target" ];
       };
       Install.WantedBy = [ "graphical-session.target" ];
       Service = {
         Type = "simple";
-        ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
-        ExecStart = ''
-          ${pkgs.swww}/bin/swww-daemon
-        '';
+        ExecStart = "${pkgs.swww}/bin/swww-daemon";
         ExecStop = "${pkgs.swww}/bin/swww kill";
         Restart = "on-failure";
       };
@@ -78,11 +95,11 @@ in
         PartOf = [ "graphical-session.target" ];
         After = [ "swww.service" ];
         Wants = [ "swww.service" ];
+        Requisite = [ "graphical-session.target" ];
       };
       Install.WantedBy = [ "graphical-session.target" ];
       Service = {
         Type = "oneshot";
-        ExecCondition = "${pkgs.bash}/bin/bash -c 'pgrep -x niri'";
         ExecStart = "${pkgs.swww}/bin/swww img ${wallpaper}";
         RemainAfterExit = true;
       };
@@ -153,9 +170,26 @@ in
         QT_QPA_PLATFORM = "wayland";
         XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_TYPE = "wayland";
+        
+        # Graphics performance optimizations
+        GSK_RENDERER = "vulkan"; # Force Vulkan for maximum GTK performance
+        GDK_DEBUG = "gl-no-fractional"; # Skip problematic OpenGL fractional scaling
+        
+        # Fallback safety - if Vulkan fails, use optimized OpenGL
+        GSK_DEBUG = "fallback"; # Enable renderer fallback mechanism
       };
 
       spawn-at-startup = [
+        # Ensure portals are started early for optimal desktop integration
+        {
+          command = [
+            "systemctl"
+            "--user"
+            "start"
+            "xdg-desktop-portal.service"
+            "xdg-desktop-portal-gtk.service"
+          ];
+        }
         (makeCommand "blueman-applet")
       ];
 
