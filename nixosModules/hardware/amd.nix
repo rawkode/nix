@@ -1,9 +1,8 @@
 # AMD hardware configuration
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 {
   # AMD CPU

@@ -101,7 +101,7 @@
           };
         };
       };
-      
+
       # Disable power-profiles-daemon as we're using auto-cpufreq
       services.power-profiles-daemon.enable = lib.mkForce false;
 

@@ -1,2 +1,0 @@
-✅ RESOLVED: The option `programs.corectrl.gpuOverclock.enable' has been updated to `hardware.amdgpu.overdrive.enable' in nixosModules/hardware/amd.nix
-✅ RESOLVED: Disabled nix.gc.automatic in nixosModules/nix/default.nix to avoid conflict with programs.nh.clean.enable

@@ -8,7 +8,7 @@
 
   # Ensure Plymouth starts early in boot process
   boot.initrd.systemd.enable = true;
-  
+
   # Silent boot for cleaner Plymouth experience
   boot.kernelParams = [
     "quiet"

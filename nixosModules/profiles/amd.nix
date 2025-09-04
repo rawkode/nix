@@ -2,7 +2,7 @@
 { ... }:
 {
   imports = [
-    ../amdctl  # AMD CPU control
-    ../lact    # AMD GPU control
+    ../amdctl # AMD CPU control
+    ../lact # AMD GPU control
   ];
 }

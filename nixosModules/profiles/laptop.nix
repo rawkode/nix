@@ -9,7 +9,7 @@
   # Power management
   services = {
     thermald.enable = true;
-    
+
     upower = {
       enable = true;
       percentageLow = 15;
@@ -17,7 +17,7 @@
       percentageAction = 5;
       criticalPowerAction = "Hibernate";
     };
-    
+
     logind = {
       lidSwitch = "suspend-then-hibernate";
       lidSwitchExternalPower = "lock";

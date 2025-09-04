@@ -26,7 +26,7 @@
     bemoji
 
     # Authentication agent
-    polkit_gnome
+    # polkit_gnome
 
     # Screenshot utilities
     grim

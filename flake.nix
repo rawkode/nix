@@ -5,7 +5,7 @@
     # Core inputs
     flakelight.url = "github:nix-community/flakelight";
     nixpkgs.url = "github:NixOS/nixpkgs/pull/436682/head";
-    
+
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -17,10 +17,10 @@
     cue.url = "github:NixOS/nixpkgs/pull/431813/head";
     v4l2.url = "github:NixOS/nixpkgs/pull/436682/head";
     master.url = "github:nixos/nixpkgs/master";
-    
+
     # Community
     nur.url = "github:nix-community/NUR";
-    
+
     # Tools and applications
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";
@@ -91,14 +91,14 @@
   outputs = { flakelight, ... }@inputs:
     flakelight ./. {
       inherit inputs;
-      
+
       # System configurations
       systems = [ "x86_64-linux" ];
-      
+
       # Enable auto-discovery for modules and configurations
       # But we'll manually handle homeModules since they're Home Manager modules
       nixDir = ./.;
-      
+
       # Override nixosConfigurations to handle our specific structure
       # Flakelight will auto-discover nixosModules and homeModules
       nixosConfigurations = {
@@ -106,7 +106,7 @@
         p4x-desktop-nixos = import ./nixos/p4x-desktop-nixos.nix;
         p4x-laptop-nixos = import ./nixos/p4x-laptop-nixos.nix;
       };
-      
+
       # Configure nixpkgs
       nixpkgs.config = {
         allowUnfree = true;
@@ -126,7 +126,7 @@
           }).clickup or null;
           inherit (inputs.cue.legacyPackages.${prev.system}) cue cue-wasm;
           v4l-utils = inputs.v4l2.legacyPackages.${prev.system}.v4l-utils;
-          
+
           # Add rawkOS library extensions
           lib = prev.lib // {
             rawkOS = import ./lib { lib = prev.lib; };
@@ -135,40 +135,41 @@
       ];
 
       # Formatter using treefmt
-      formatters = pkgs: (inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
-      
+      formatter = pkgs: (inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
+
       # Checks
-      checks.statix = pkgs: pkgs.runCommand "statix-check" {
-        nativeBuildInputs = [ pkgs.statix ];
-      } ''
+      checks.statix = pkgs: pkgs.runCommand "statix-check"
+        {
+          nativeBuildInputs = [ pkgs.statix ];
+        } ''
         echo "Running statix checks..."
         ${pkgs.statix}/bin/statix check --ignore result || true
         touch $out
       '';
-      
+
       # Legacy packages for easy access
       legacyPackages = pkgs: pkgs;
 
-      
+
       # Home configurations
       homeConfigurations.rawkode = import ./home/rawkode.nix inputs;
-      
+
       # Templates for quick project initialization  
       templates = {
         default = {
           path = ./templates/default;
           description = "A basic Nix flake template";
         };
-        
+
         rust = {
           path = ./templates/rust;
           description = "Rust development environment";
         };
       };
-      
+
       # Flakelight modules for reuse
       flakelightModules.rawkOS = ./flakeModules/rawkOS.nix;
-      
+
       # Package bundlers
       bundlers = pkgs: {
         toDockerImage = pkg: pkgs.dockerTools.buildImage {

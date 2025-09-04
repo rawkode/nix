@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 let
   makeCommand = command: { command = [ command ]; };
@@ -33,24 +32,6 @@ in
   };
 
   systemd.user.services = {
-    polkit-gnome = {
-      Unit = {
-        Description = "PolicyKit Authentication Agent for Niri";
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session-pre.target" ];
-        Requisite = [ "graphical-session.target" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
 
     swaync = {
       Unit = {
@@ -170,11 +151,11 @@ in
         QT_QPA_PLATFORM = "wayland";
         XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_TYPE = "wayland";
-        
+
         # Graphics performance optimizations
         GSK_RENDERER = "vulkan"; # Force Vulkan for maximum GTK performance
         GDK_DEBUG = "gl-no-fractional"; # Skip problematic OpenGL fractional scaling
-        
+
         # Fallback safety - if Vulkan fails, use optimized OpenGL
         GSK_DEBUG = "fallback"; # Enable renderer fallback mechanism
       };
@@ -374,7 +355,7 @@ in
           open-maximized = true;
         }
         {
-          matches = [ { app-id = "Zoom Workplace"; } ];
+          matches = [{ app-id = "Zoom Workplace"; }];
           excludes = [
             { title = "Zoom Meeting"; }
             { title = "Meeting"; }

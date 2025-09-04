@@ -10,7 +10,7 @@
     ./ghostty
     ./gnome
     ./niri
-    ./portals
+    # ./portals  # Removed: Now handled by shared/portals.nix via NixOS modules
     ./ptyxis
     ./rquickshare
     ./slack

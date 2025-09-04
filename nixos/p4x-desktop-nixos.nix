@@ -4,12 +4,11 @@
   system = "x86_64-linux";
   modules = [
     (
-      {
-        config,
-        lib,
-        modulesPath,
-        pkgs,
-        ...
+      { config
+      , lib
+      , modulesPath
+      , pkgs
+      , ...
       }:
       {
         imports = [

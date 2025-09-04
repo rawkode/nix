@@ -37,7 +37,7 @@ in
         tpm2-tss
       ];
     })
-    
+
     # When secure boot is disabled, use systemd-boot
     (mkIf (!cfg.enable) {
       boot.loader.systemd-boot.enable = true;

@@ -4,8 +4,8 @@
   imports = [
     # ../containers  # Now in base profile
     ../documentation
-    ../ai             # AI/LLM tools and Qdrant vector database
-    ../android        # Android development tools and ADB
+    ../ai # AI/LLM tools and Qdrant vector database
+    ../android # Android development tools and ADB
   ];
 
   # Development tools
@@ -13,27 +13,27 @@
     # Version control
     git
     gh
-    
+
     # Editors
     vim
     neovim
-    
+
     # Build tools
     gnumake
     gcc
     cmake
     pkg-config
-    
+
     # Debugging
     gdb
     strace
     ltrace
-    
+
     # Network tools
     nmap
     tcpdump
     wireshark
-    
+
     # Container tools
     docker-compose
     podman-compose

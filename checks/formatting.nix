@@ -1,5 +1,6 @@
 { pkgs, self, ... }:
-pkgs.runCommand "check-formatting" {
+pkgs.runCommand "check-formatting"
+{
   nativeBuildInputs = with pkgs; [
     nixpkgs-fmt
     biome

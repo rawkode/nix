@@ -8,23 +8,23 @@
     ../user
     ../sudo
     ../systemd
-    
+
     # Essential services for all hosts
-    ../containers      # Docker & Podman
-    ../tailscale      # VPN networking
-    ../below          # System monitoring
-    ../kernel/secureboot  # Secure Boot management
-    ../tpm2           # TPM support
-    
+    ../containers # Docker & Podman
+    ../tailscale # VPN networking
+    ../below # System monitoring
+    ../kernel/secureboot # Secure Boot management
+    ../tpm2 # TPM support
+
     # Desktop services
-    ../desktop/greetd  # Modern login manager with ReGreet
-    
+    ../desktop/greetd # Modern login manager with ReGreet
+
     # Security and networking
-    ../u2f            # U2F/YubiKey authentication
-    ../dns            # DNS configuration with DNSSEC
-    
+    ../u2f # U2F/YubiKey authentication
+    ../dns # DNS configuration with DNSSEC
+
     # Common flake modules used across all systems
-    inputs.disko.nixosModules.disko        # Disk configuration
+    inputs.disko.nixosModules.disko # Disk configuration
     inputs.auto-cpufreq.nixosModules.default
     inputs.flatpaks.nixosModules.nix-flatpak
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -55,13 +55,13 @@
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
-    
+
     gc = {
       automatic = lib.mkDefault true;
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    
+
     # Common registry settings for all systems
     registry = {
       nixpkgs.flake = inputs.nixpkgs;

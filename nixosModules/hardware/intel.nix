@@ -3,7 +3,7 @@
 {
   # Intel CPU
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
+
   boot = {
     kernelModules = [
       "kvm-intel"
@@ -12,7 +12,7 @@
     ];
     kernelParams = [ "intel_pstate=active" ];
   };
-  
+
   # Intel GPU support
   services.xserver.videoDrivers = lib.mkDefault [ "modesetting" ];
   hardware.graphics = {
@@ -25,12 +25,12 @@
       libvdpau-va-gl
     ];
   };
-  
+
   # Intel-specific packages
   environment.systemPackages = with pkgs; [
     intel-gpu-tools
   ];
-  
+
   # Thermal management for Intel
   services.thermald.enable = true;
 }
