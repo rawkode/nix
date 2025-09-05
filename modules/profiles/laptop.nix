@@ -1,7 +1,7 @@
+# Laptop profile relocated
 { inputs, ... }:
 {
   flake.nixosModules.profiles-laptop =
-    # Laptop profile - power management and mobile features
     {
       config,
       lib,
@@ -10,15 +10,10 @@
       ...
     }:
     {
-      imports = [
-        ./desktop.nix
-        # inputs.self.nixosModules.networking/tailscale  # Now in base profile
-      ];
+      imports = [ ./desktop.nix ];
 
-      # Power management
       services = {
         thermald.enable = true;
-
         upower = {
           enable = true;
           percentageLow = 15;
@@ -26,7 +21,6 @@
           percentageAction = 5;
           criticalPowerAction = "Hibernate";
         };
-
         logind = {
           lidSwitch = "suspend-then-hibernate";
           lidSwitchExternalPower = "lock";
@@ -37,20 +31,17 @@
         };
       };
 
-      # Laptop-specific packages
       environment.systemPackages = with pkgs; [
         powertop
         acpi
         brightnessctl
       ];
 
-      # Network power saving
       networking.networkmanager = {
         enable = true;
         wifi.powersave = true;
       };
 
-      # Enable touchpad support
       services.libinput = {
         enable = true;
         touchpad = {

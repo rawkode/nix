@@ -1,7 +1,7 @@
+# Development profile relocated
 { inputs, ... }:
 {
   flake.nixosModules.profiles-development =
-    # Development profile - tools and settings for developers
     {
       config,
       lib,
@@ -10,46 +10,30 @@
     }:
     {
       imports = [
-        # inputs.self.nixosModules.containers  # Now in base profile
         inputs.self.nixosModules.documentation
-        inputs.self.nixosModules.ai # AI/LLM tools and Qdrant vector database
-        inputs.self.nixosModules.android # Android development tools and ADB
+        inputs.self.nixosModules.ai
+        inputs.self.nixosModules.android
       ];
 
-      # Development tools
       environment.systemPackages = with pkgs; [
-        # Version control
         git
         gh
-
-        # Editors
         vim
         neovim
-
-        # Build tools
         gnumake
         gcc
         cmake
         pkg-config
-
-        # Debugging
         gdb
         strace
         ltrace
-
-        # Network tools
         nmap
         tcpdump
         wireshark
-
-        # Container tools
         docker-compose
         podman-compose
       ];
 
-      # Docker and Podman configuration moved to containers module in base profile
-
-      # Development-friendly kernel parameters
       boot.kernel.sysctl = {
         "fs.inotify.max_user_watches" = 524288;
         "fs.inotify.max_user_instances" = 1024;

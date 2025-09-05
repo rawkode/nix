@@ -1,4 +1,4 @@
-# AMD hardware profile - Dendritic pattern flake-parts module
+# AMD profile relocated
 { inputs, ... }:
 {
   flake.nixosModules.profiles-amd =
