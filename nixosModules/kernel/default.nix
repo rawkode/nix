@@ -33,7 +33,7 @@
         "thunderbolt"
         "usb_storage"
         "sd_mod"
-        "mt7921e"  # WiFi support for Framework
+        "mt7921e" # WiFi support for Framework
       ];
     };
 

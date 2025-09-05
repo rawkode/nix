@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 let
   makeCommand = command: { command = [ command ]; };
@@ -342,7 +341,7 @@ in
           open-maximized = true;
         }
         {
-          matches = [ { app-id = "Zoom Workplace"; } ];
+          matches = [{ app-id = "Zoom Workplace"; }];
           excludes = [
             { title = "Zoom Meeting"; }
             { title = "Meeting"; }

@@ -124,8 +124,15 @@
         })
       ];
 
-      # Formatter using treefmt
-      formatter = pkgs: (inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
+      # Formatter using treefmt with --no-cache for sandbox compatibility
+      formatter = pkgs:
+        let
+          treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+        in
+        pkgs.writeShellScriptBin "treefmt" ''
+          export TREEFMT_NO_CACHE=1
+          exec ${treefmtEval.config.build.wrapper}/bin/treefmt --no-cache "$@"
+        '';
 
       # Checks
       checks.statix = pkgs: pkgs.runCommand "statix-check"

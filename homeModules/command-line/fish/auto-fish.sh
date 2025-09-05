@@ -4,7 +4,7 @@ if echo $- | grep -q 'i' && [[ "$(ps -o comm= $PPID)" != "fish" ]] && [[ -z $IN_
   # Try to find fish in common NixOS locations
   if [[ -x /run/current-system/sw/bin/fish ]]; then
     exec /run/current-system/sw/bin/fish -i
-  elif command -v fish &> /dev/null; then
+  elif command -v fish &>/dev/null; then
     exec fish -i
   fi
 fi
