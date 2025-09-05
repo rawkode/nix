@@ -1,14 +1,11 @@
-_: {
+{
   flake.homeModules.desktop-waybar =
-    {
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     let
       common = {
         layer = "top";
         position = "top";
-        output = [ ]; # overridden per-bar
+        output = [ ];
         height = 32;
         mod = "dock";
         exclusive = true;
@@ -127,17 +124,17 @@ _: {
     {
       programs.waybar = {
         enable = true;
-        systemd.enable = false; # Disable default systemd integration
+        systemd.enable = false;
 
-        # Reuse your existing CSS file contents
         style = builtins.readFile ./style.css;
 
-        # Two bar definitions
         settings = [
           primary
           secondary
         ];
       };
+
+      stylix.targets.waybar.enable = false;
 
       # Niri-optimized systemd service for waybar following best practices
       systemd.user.services.waybar = {
