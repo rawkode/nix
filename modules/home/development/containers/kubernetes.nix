@@ -15,7 +15,6 @@ _:
         kubectx
         stern
         kubecolor
-        kubernetes-helm
         kustomize
       ];
 
