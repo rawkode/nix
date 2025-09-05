@@ -130,7 +130,7 @@ _: {
         systemd.enable = false; # Disable default systemd integration
 
         # Reuse your existing CSS file contents
-        style = builtins.readFile ./_waybar/style.css;
+        style = builtins.readFile ./style.css;
 
         # Two bar definitions
         settings = [

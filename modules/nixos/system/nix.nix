@@ -10,8 +10,6 @@ _:
       cfg = config.rawkOS.user;
     in
     {
-      # Stylix configuration is handled by the stylix flake input
-      # imports = [ ../../shared/stylix ];
 
       environment.systemPackages = with pkgs; [
         nix-forecast

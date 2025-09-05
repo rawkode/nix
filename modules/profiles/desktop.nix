@@ -25,24 +25,24 @@
         };
       };
 
-      config = {
-        imports = [
-          inputs.self.nixosModules.onepassword
-          inputs.self.nixosModules.audio
-          inputs.self.nixosModules.bluetooth
-          inputs.self.nixosModules.chrome
-          inputs.self.nixosModules.desktop-common
-          inputs.self.nixosModules.desktop-firefox
-          inputs.self.nixosModules.flatpak
-          inputs.self.nixosModules.fonts
-          inputs.self.nixosModules.location
-          inputs.self.nixosModules.plymouth
-          inputs.self.nixosModules.profiles-base
-        ]
-        ++ lib.optional cfg.niri.enable inputs.self.nixosModules.niri-config
-        ++ lib.optional cfg.niri.enable inputs.self.nixosModules.niri-portal
-        ++ lib.optional cfg.gnome.enable inputs.self.nixosModules.desktop-gnome;
+      imports = [
+        inputs.self.nixosModules.onepassword
+        inputs.self.nixosModules.audio
+        inputs.self.nixosModules.bluetooth
+        inputs.self.nixosModules.chrome
+        inputs.self.nixosModules.desktop-common
+        inputs.self.nixosModules.desktop-firefox
+        inputs.self.nixosModules.flatpak
+        inputs.self.nixosModules.fonts
+        inputs.self.nixosModules.location
+        inputs.self.nixosModules.plymouth
+        inputs.self.nixosModules.profiles-base
+        inputs.self.nixosModules.niri-config
+        inputs.self.nixosModules.niri-portal
+        inputs.self.nixosModules.desktop-gnome
+      ];
 
+      config = {
         services = {
           xserver.enable = true;
           pipewire = {

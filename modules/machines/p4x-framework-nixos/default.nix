@@ -53,7 +53,9 @@
                       content = {
                         type = "luks";
                         name = "encrypted";
+
                         askPassword = true;
+
                         extraFormatArgs = [
                           "--type luks2"
                           "--cipher aes-xts-plain64"
@@ -63,9 +65,11 @@
                           "--pbkdf argon2id"
                           "--use-random"
                         ];
+
                         settings = {
                           allowDiscards = true;
                         };
+
                         content = {
                           type = "btrfs";
                           extraArgs = [ "-f" ];
@@ -77,6 +81,7 @@
                                 "noatime"
                               ];
                             };
+
                             "@persist" = {
                               mountpoint = "/persist";
                               mountOptions = [
@@ -84,6 +89,7 @@
                                 "noatime"
                               ];
                             };
+
                             "@nix" = {
                               mountpoint = "/nix";
                               mountOptions = [

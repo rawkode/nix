@@ -22,13 +22,13 @@ let
         inputs.nix-index-database.homeModules.nix-index
         inputs.nur.modules.homeManager.default
         inputs.stylix.homeModules.stylix
+        inputs.self.homeModules.stylix
 
         inputs.self.homeModules.ai
         inputs.self.homeModules.command-line
         inputs.self.homeModules.desktop
         inputs.self.homeModules.development
         inputs.self.homeModules.nix
-        inputs.self.homeModules.stylix
       ];
     };
 

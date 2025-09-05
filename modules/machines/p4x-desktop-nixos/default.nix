@@ -4,6 +4,13 @@
   flake.nixosConfigurations.p4x-desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = with inputs; [
+      ({
+        nixpkgs.overlays = [
+          (final: prev: {
+            cue = inputs.cue.legacyPackages.${prev.system}.cue;
+          })
+        ];
+      })
       # Hardware modules
       nixos-hardware.nixosModules.common-pc-ssd
       nixos-hardware.nixosModules.common-cpu-amd
@@ -57,40 +64,49 @@
                       content = {
                         type = "luks";
                         name = "encrypted";
-                        extraFormatArgs = [ "--pbkdf pbkdf2" ];
-                        extraOpenArgs = [ "--allow-discards" ];
+
                         askPassword = true;
+
+                        extraFormatArgs = [
+                          "--type luks2"
+                          "--cipher aes-xts-plain64"
+                          "--hash sha512"
+                          "--iter-time 5000"
+                          "--key-size 256"
+                          "--pbkdf argon2id"
+                          "--use-random"
+                        ];
+
+                        settings = {
+                          allowDiscards = true;
+                        };
+
                         content = {
                           type = "btrfs";
                           extraArgs = [ "-f" ];
                           subvolumes = {
-                            "@" = {
+                            "@root" = {
                               mountpoint = "/";
                               mountOptions = [
                                 "compress=zstd"
                                 "noatime"
                               ];
                             };
-                            "@home" = {
-                              mountpoint = "/home";
+
+                            "@persist" = {
+                              mountpoint = "/persist";
                               mountOptions = [
                                 "compress=zstd"
                                 "noatime"
                               ];
                             };
+
                             "@nix" = {
                               mountpoint = "/nix";
                               mountOptions = [
                                 "compress=zstd"
                                 "noatime"
                               ];
-                            };
-                            "@swap" = {
-                              mountpoint = "/swap";
-                              mountOptions = [ "noatime" ];
-                              swap = {
-                                swapfile.size = "16G";
-                              };
                             };
                           };
                         };

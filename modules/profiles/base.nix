@@ -30,6 +30,7 @@ _:
         inputs.niri.nixosModules.niri
         inputs.nur.modules.nixos.default
         inputs.stylix.nixosModules.stylix
+        inputs.self.nixosModules.stylix or { }
         inputs.nix-index-database.nixosModules.nix-index
       ];
 

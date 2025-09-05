@@ -1,8 +1,8 @@
 _:
 {
   flake.nixosModules.niri-config =
-    { pkgs, ... }:
-    {
+    { lib, config, pkgs, ... }:
+    (lib.mkIf config.rawkOS.desktop.niri.enable {
       # Don't set programs.niri.enable here as it's handled by the niri flake input
       # Just provide additional configuration
       programs.niri.enable = true;
@@ -37,5 +37,5 @@ _:
         blueman
         pavucontrol
       ];
-    };
+    });
 }

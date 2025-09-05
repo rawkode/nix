@@ -1,12 +1,8 @@
 _:
 {
   flake.nixosModules.desktop-gnome =
-    {
-      lib,
-      pkgs,
-      ...
-    }:
-    {
+    { lib, config, pkgs, ... }:
+    (lib.mkIf config.rawkOS.desktop.gnome.enable {
       services = {
         displayManager.gdm = {
           enable = lib.mkDefault true;
@@ -50,5 +46,5 @@ _:
         totem
         yelp
       ];
-    };
+    });
 }

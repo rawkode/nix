@@ -18,77 +18,80 @@
       inputs.self.nixosModules.profiles-framework
 
       # Machine-specific configuration
-      (
-        _:
-        {
-          # System identity
-          networking.hostName = "p4x-laptop-nixos";
+      (_: {
+        # System identity
+        networking.hostName = "p4x-laptop-nixos";
 
-          # Disko configuration
-          disko.devices = {
-            disk = {
-              root = {
-                type = "disk";
-                device = "/dev/nvme0n1";
-                content = {
-                  type = "gpt";
-                  partitions = {
-                    ESP = {
-                      priority = 1;
-                      name = "esp";
-                      size = "512M";
-                      type = "EF00";
-                      content = {
-                        type = "filesystem";
-                        format = "vfat";
-                        mountpoint = "/boot";
-                        mountOptions = [ "defaults" ];
-                      };
+        # Disko configuration
+        disko.devices = {
+          disk = {
+            root = {
+              type = "disk";
+              device = "/dev/nvme0n1";
+              content = {
+                type = "gpt";
+                partitions = {
+                  ESP = {
+                    priority = 1;
+                    name = "esp";
+                    size = "512M";
+                    type = "EF00";
+                    content = {
+                      type = "filesystem";
+                      format = "vfat";
+                      mountpoint = "/boot";
+                      mountOptions = [ "defaults" ];
                     };
+                  };
 
-                    luks = {
-                      size = "100%";
+                  luks = {
+                    size = "100%";
+                    content = {
+                      type = "luks";
+                      name = "encrypted";
+
+                      askPassword = true;
+
+                      extraFormatArgs = [
+                        "--type luks2"
+                        "--cipher aes-xts-plain64"
+                        "--hash sha512"
+                        "--iter-time 5000"
+                        "--key-size 256"
+                        "--pbkdf argon2id"
+                        "--use-random"
+                      ];
+
+                      settings = {
+                        allowDiscards = true;
+                      };
+
                       content = {
-                        type = "luks";
-                        name = "encrypted";
-                        askPassword = true;
-                        extraFormatArgs = [
-                          "--type luks2"
-                          "--cipher aes-xts-plain64"
-                          "--hash sha512"
-                          "--iter-time 5000"
-                          "--key-size 256"
-                          "--pbkdf argon2id"
-                          "--use-random"
-                        ];
-                        settings = {
-                          allowDiscards = true;
-                        };
-                        content = {
-                          type = "btrfs";
-                          extraArgs = [ "-f" ];
-                          subvolumes = {
-                            "@root" = {
-                              mountpoint = "/";
-                              mountOptions = [
-                                "compress=zstd"
-                                "noatime"
-                              ];
-                            };
-                            "@persist" = {
-                              mountpoint = "/persist";
-                              mountOptions = [
-                                "compress=zstd"
-                                "noatime"
-                              ];
-                            };
-                            "@nix" = {
-                              mountpoint = "/nix";
-                              mountOptions = [
-                                "compress=zstd"
-                                "noatime"
-                              ];
-                            };
+                        type = "btrfs";
+                        extraArgs = [ "-f" ];
+                        subvolumes = {
+                          "@root" = {
+                            mountpoint = "/";
+                            mountOptions = [
+                              "compress=zstd"
+                              "noatime"
+                            ];
+                          };
+
+                          "@persist" = {
+                            mountpoint = "/persist";
+                            mountOptions = [
+                              "compress=zstd"
+                              "noatime"
+                            ];
+                          };
+
+                          "@nix" = {
+                            mountpoint = "/nix";
+                            mountOptions = [
+                              "compress=zstd"
+                              "noatime"
+                            ];
                           };
                         };
                       };
@@ -98,34 +101,34 @@
               };
             };
           };
+        };
 
-          # Hardware configuration
-          hardware.enableRedistributableFirmware = true;
-          hardware.cpu.amd.updateMicrocode = true;
-          hardware.keyboard.qmk.enable = true;
-          hardware.graphics.enable = true;
+        # Hardware configuration
+        hardware.enableRedistributableFirmware = true;
+        hardware.cpu.amd.updateMicrocode = true;
+        hardware.keyboard.qmk.enable = true;
+        hardware.graphics.enable = true;
 
-          # Swap
-          swapDevices = [
-            {
-              device = "/var/lib/swapfile";
-              size = 48 * 1024;
-            }
+        # Swap
+        swapDevices = [
+          {
+            device = "/var/lib/swapfile";
+            size = 48 * 1024;
+          }
+        ];
+
+        # Nix settings
+        nix.settings = {
+          substituters = [
+            "https://niri.cachix.org"
+            "https://wezterm.cachix.org"
           ];
-
-          # Nix settings
-          nix.settings = {
-            substituters = [
-              "https://niri.cachix.org"
-              "https://wezterm.cachix.org"
-            ];
-            trusted-public-keys = [
-              "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-              "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
-            ];
-          };
-        }
-      )
+          trusted-public-keys = [
+            "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+            "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
+          ];
+        };
+      })
     ];
     specialArgs = {
       inherit inputs;

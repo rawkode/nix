@@ -1,6 +1,7 @@
 # Shared stylix configuration - Dendritic pattern flake-parts module
 _:
 let
+  # Shared stylix configuration used by both NixOS and Home Manager
   stylixConfig =
     { lib, pkgs, ... }:
     let
