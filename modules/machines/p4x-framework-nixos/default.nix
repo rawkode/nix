@@ -14,101 +14,82 @@
       inputs.flatpaks.nixosModules.nix-flatpak
 
       # Import profiles
-      inputs.self.nixosModules.profiles-framework
+      inputs.self.nixosModules.profiles-desktop
+      inputs.self.nixosModules.profiles-development
+      inputs.self.nixosModules.hardware-amd
+      inputs.self.nixosModules.kernel
+      inputs.self.nixosModules.disko-btrfs-encrypted
+      inputs.self.nixosModules.lanzaboote
+      inputs.self.nixosModules.cue-overlay
 
       # Machine-specific configuration
       (
         {
           lib,
+          pkgs,
           ...
         }:
         {
           # System identity
           networking.hostName = "p4x-framework-nixos";
 
-          # Disko configuration
-          disko.devices = {
-            disk = {
-              root = {
-                type = "disk";
-                device = "/dev/nvme0n1";
-                content = {
-                  type = "gpt";
-                  partitions = {
-                    ESP = {
-                      priority = 1;
-                      name = "esp";
-                      size = "512M";
-                      type = "EF00";
-                      content = {
-                        type = "filesystem";
-                        format = "vfat";
-                        mountpoint = "/boot";
-                        mountOptions = [ "defaults" ];
-                      };
-                    };
+          # Disko device override (uses shared configuration from disko-btrfs-encrypted module)
+          rawkOS.disko.device = "/dev/nvme0n1";
 
-                    luks = {
-                      size = "100%";
-                      content = {
-                        type = "luks";
-                        name = "encrypted";
-
-                        askPassword = true;
-
-                        extraFormatArgs = [
-                          "--type luks2"
-                          "--cipher aes-xts-plain64"
-                          "--hash sha512"
-                          "--iter-time 5000"
-                          "--key-size 256"
-                          "--pbkdf argon2id"
-                          "--use-random"
-                        ];
-
-                        settings = {
-                          allowDiscards = true;
-                        };
-
-                        content = {
-                          type = "btrfs";
-                          extraArgs = [ "-f" ];
-                          subvolumes = {
-                            "@root" = {
-                              mountpoint = "/";
-                              mountOptions = [
-                                "compress=zstd"
-                                "noatime"
-                              ];
-                            };
-
-                            "@persist" = {
-                              mountpoint = "/persist";
-                              mountOptions = [
-                                "compress=zstd"
-                                "noatime"
-                              ];
-                            };
-
-                            "@nix" = {
-                              mountpoint = "/nix";
-                              mountOptions = [
-                                "compress=zstd"
-                                "noatime"
-                              ];
-                            };
-                          };
-                        };
-                      };
-                    };
-                  };
-                };
+          # Laptop-specific features (Framework is a laptop)
+          services = {
+            thermald.enable = true;
+            upower = {
+              enable = true;
+              percentageLow = 15;
+              percentageCritical = 7;
+              percentageAction = 5;
+              criticalPowerAction = "Hibernate";
+            };
+            logind = {
+              lidSwitch = "suspend-then-hibernate";
+              lidSwitchExternalPower = "lock";
+              settings.Login = {
+                HandlePowerKey = "suspend-then-hibernate";
+                HibernateDelaySec = 3600;
+              };
+            };
+            libinput = {
+              enable = true;
+              touchpad = {
+                naturalScrolling = true;
+                tapping = true;
+                clickMethod = "clickfinger";
+                disableWhileTyping = true;
               };
             };
           };
 
-          # Enable secure boot
-          rawkOS.secureboot.enable = true;
+          environment.systemPackages = with pkgs; [
+            powertop
+            acpi
+            brightnessctl
+          ];
+
+          networking.networkmanager = {
+            enable = true;
+            wifi.powersave = true;
+          };
+
+          # Framework-specific hardware configuration
+          services.fprintd.enable = true;
+          boot.kernelParams = [ "amdgpu.sg_display=0" ];
+          boot.kernelModules = [
+            "cros_ec"
+            "cros_ec_lpcs"
+            "mt7921e"
+          ];
+          services.xserver.dpi = 200;
+          environment.variables = {
+            GDK_SCALE = "2";
+            GDK_DPI_SCALE = "0.5";
+            QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+          };
 
           # Hardware configuration
           hardware.enableRedistributableFirmware = true;

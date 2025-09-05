@@ -13,94 +13,59 @@
       inputs.nixos-cosmic.nixosModules.default
       inputs.flatpaks.nixosModules.nix-flatpak
 
-      # Import profiles
-      inputs.self.nixosModules.profiles-laptop
-      inputs.self.nixosModules.profiles-framework
+      # Import profiles  
+      inputs.self.nixosModules.profiles-desktop
+      inputs.self.nixosModules.profiles-development
+      inputs.self.nixosModules.disko-btrfs-encrypted
+      inputs.self.nixosModules.lanzaboote
+      inputs.self.nixosModules.cue-overlay
 
       # Machine-specific configuration
-      (_: {
+      ({pkgs, ...}: {
         # System identity
         networking.hostName = "p4x-laptop-nixos";
 
-        # Disko configuration
-        disko.devices = {
-          disk = {
-            root = {
-              type = "disk";
-              device = "/dev/nvme0n1";
-              content = {
-                type = "gpt";
-                partitions = {
-                  ESP = {
-                    priority = 1;
-                    name = "esp";
-                    size = "512M";
-                    type = "EF00";
-                    content = {
-                      type = "filesystem";
-                      format = "vfat";
-                      mountpoint = "/boot";
-                      mountOptions = [ "defaults" ];
-                    };
-                  };
+        # Disko device override (uses shared configuration from disko-btrfs-encrypted module)
+        rawkOS.disko.device = "/dev/nvme0n1";
 
-                  luks = {
-                    size = "100%";
-                    content = {
-                      type = "luks";
-                      name = "encrypted";
-
-                      askPassword = true;
-
-                      extraFormatArgs = [
-                        "--type luks2"
-                        "--cipher aes-xts-plain64"
-                        "--hash sha512"
-                        "--iter-time 5000"
-                        "--key-size 256"
-                        "--pbkdf argon2id"
-                        "--use-random"
-                      ];
-
-                      settings = {
-                        allowDiscards = true;
-                      };
-
-                      content = {
-                        type = "btrfs";
-                        extraArgs = [ "-f" ];
-                        subvolumes = {
-                          "@root" = {
-                            mountpoint = "/";
-                            mountOptions = [
-                              "compress=zstd"
-                              "noatime"
-                            ];
-                          };
-
-                          "@persist" = {
-                            mountpoint = "/persist";
-                            mountOptions = [
-                              "compress=zstd"
-                              "noatime"
-                            ];
-                          };
-
-                          "@nix" = {
-                            mountpoint = "/nix";
-                            mountOptions = [
-                              "compress=zstd"
-                              "noatime"
-                            ];
-                          };
-                        };
-                      };
-                    };
-                  };
-                };
-              };
+        # Laptop-specific features
+        services = {
+          thermald.enable = true;
+          upower = {
+            enable = true;
+            percentageLow = 15;
+            percentageCritical = 7;
+            percentageAction = 5;
+            criticalPowerAction = "Hibernate";
+          };
+          logind = {
+            lidSwitch = "suspend-then-hibernate";
+            lidSwitchExternalPower = "lock";
+            settings.Login = {
+              HandlePowerKey = "suspend-then-hibernate";
+              HibernateDelaySec = 3600;
             };
           };
+          libinput = {
+            enable = true;
+            touchpad = {
+              naturalScrolling = true;
+              tapping = true;
+              clickMethod = "clickfinger";
+              disableWhileTyping = true;
+            };
+          };
+        };
+
+        environment.systemPackages = with pkgs; [
+          powertop
+          acpi
+          brightnessctl
+        ];
+
+        networking.networkmanager = {
+          enable = true;
+          wifi.powersave = true;
         };
 
         # Hardware configuration

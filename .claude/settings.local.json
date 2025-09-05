@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(nh os build:*)"
+      "Bash(nh os build:*)",
+      "Bash(nh os switch:*)"
     ],
     "deny": [],
     "ask": []
