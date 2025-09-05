@@ -1,12 +1,19 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(find:*)",
-      "Bash(ls:*)",
-      "Bash(nix-shell:*)",
-      "Bash(rg:*)",
-      "WebFetch(domain:github.com)"
-    ],
-    "deny": []
-  }
+	"permissions": {
+		"allow": [
+			"Bash(chmod:*)",
+			"Bash(find:*)",
+			"Bash(git:*)",
+			"Bash(ls:*)",
+			"Bash(nix:*)",
+			"Bash(rg:*)",
+			"Bash(sed:*)",
+			"Bash(tree:*)",
+			"WebFetch(domain:github.com)",
+			"WebFetch(domain:nixos.wiki)",
+			"WebSearch",
+			"mcp__context7__get-library-docs"
+		],
+		"deny": []
+	}
 }
