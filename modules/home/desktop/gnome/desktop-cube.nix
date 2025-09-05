@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-gnome-desktop-cube =
     { lib, pkgs, ... }:
     with lib;

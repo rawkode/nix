@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-gnome-blur-my-shell =
     { lib, pkgs, ... }:
     with lib;

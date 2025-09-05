@@ -1,18 +1,15 @@
 { inputs, ... }:
 {
   flake.homeModules.desktop-niri =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { config, pkgs, ... }:
     let
       makeCommand = command: { command = [ command ]; };
       wallpaper = config.stylix.image;
     in
     {
-      imports = [ inputs.self.homeModules.desktop-waybar ];
+      imports = with inputs; [
+        self.homeModules.ironbar
+      ];
 
       services.swayosd.enable = true;
 

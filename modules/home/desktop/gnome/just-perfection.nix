@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-gnome-just-perfection =
     { lib, pkgs, ... }:
     with lib;

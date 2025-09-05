@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.nixosModules.hardware-cpu-amd =
     {
       pkgs,

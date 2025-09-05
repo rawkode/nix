@@ -1,7 +1,11 @@
-_:
-{
+_: {
   flake.nixosModules.desktop-gnome =
-    { lib, config, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     (lib.mkIf config.rawkOS.desktop.gnome.enable {
       services = {
         displayManager.gdm = {

@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.nixosModules.garnix = {
     nix = {
       settings = {

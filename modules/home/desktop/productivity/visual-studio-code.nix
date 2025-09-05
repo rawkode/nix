@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-visual-studio-code =
     { pkgs, ... }:
     {

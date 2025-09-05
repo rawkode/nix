@@ -1,9 +1,7 @@
-_:
-{
+_: {
   flake.nixosModules.plymouth =
     # Plymouth boot splash configuration
-    _:
-    {
+    _: {
       boot.plymouth = {
         enable = true;
         # Theme will be managed by stylix

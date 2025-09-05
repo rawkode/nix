@@ -1,7 +1,6 @@
-_:
-{
+_: {
   flake.nixosModules.hardware-gpu =
-    { config, lib, ... }:
+    { lib, ... }:
     let
       inherit (lib) mkOption types;
     in

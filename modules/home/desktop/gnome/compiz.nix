@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-gnome-compiz =
     { lib, pkgs, ... }:
     with lib;

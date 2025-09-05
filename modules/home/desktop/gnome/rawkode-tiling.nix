@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-gnome-rawkode-tiling =
     { lib, pkgs, ... }:
     with lib;

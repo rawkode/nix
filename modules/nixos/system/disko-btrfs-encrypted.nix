@@ -1,5 +1,5 @@
 # Common disko configuration for encrypted Btrfs setup
-{ lib, ... }:
+_:
 {
   flake.nixosModules.disko-btrfs-encrypted =
     { config, lib, ... }:
@@ -17,7 +17,7 @@
           disk = {
             root = {
               type = "disk";
-              device = config.rawkOS.disko.device;
+              inherit (config.rawkOS.disko) device;
               content = {
                 type = "gpt";
                 partitions = {

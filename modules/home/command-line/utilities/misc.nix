@@ -1,14 +1,12 @@
-_:
-{
+_: {
   flake.homeModules.command-line-misc =
     { pkgs, ... }:
     {
-      home.packages = with pkgs;
-        [
-          tldr
-          unzip
-          vim
-        ];
+      home.packages = with pkgs; [
+        tldr
+        unzip
+        vim
+      ];
 
       programs.fzf.enable = true;
       programs.skim.enable = true;

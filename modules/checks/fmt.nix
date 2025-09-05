@@ -4,9 +4,6 @@ _: {
     {
       treefmt = {
         projectRootFile = "flake.nix";
-        settings.formatter.biome.excludes = [
-          "**/waybar/style.css"
-        ];
 
         programs = {
           nixfmt = {

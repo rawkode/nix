@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.nixosModules.desktop-wayland =
     { config, lib, ... }:
     with lib;

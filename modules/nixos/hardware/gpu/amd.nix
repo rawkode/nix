@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.nixosModules.hardware-gpu-amd =
     {
       lib,

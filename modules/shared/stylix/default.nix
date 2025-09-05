@@ -1,7 +1,8 @@
 { inputs, ... }:
 let
   # Shared stylix configuration used by both NixOS and Home Manager
-  stylixConfig = { lib, pkgs, ... }:
+  stylixConfig =
+    { lib, pkgs, ... }:
     let
       wallpapers = {
         rose-pine = pkgs.fetchurl {
@@ -15,6 +16,13 @@ let
         base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
         enable = true;
         polarity = "dark";
+
+        icons = {
+          enable = true;
+          package = pkgs.rose-pine-icon-theme;
+          light = "rose-pine";
+          dark = "rose-pine";
+        };
 
         image = lib.mkDefault wallpapers.rose-pine;
 
@@ -68,8 +76,8 @@ in
       stylixConfig
     ];
   };
-  
-  # Home Manager module that imports both stylix and our config  
+
+  # Home Manager module that imports both stylix and our config
   flake.homeModules.stylix = {
     imports = [
       inputs.stylix.homeModules.stylix

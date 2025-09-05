@@ -1,6 +1,5 @@
 # Wallpapers package - Dendritic pattern
-_:
-{
+_: {
   # Define wallpapers package per system
   perSystem =
     { pkgs, ... }:

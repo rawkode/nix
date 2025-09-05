@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.command-line-git-fish = {
     programs.fish = {
       shellAbbrs = {

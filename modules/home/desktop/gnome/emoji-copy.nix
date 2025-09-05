@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-gnome-emoji-copy =
     { lib, pkgs, ... }:
     with lib;

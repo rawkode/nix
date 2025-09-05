@@ -8,9 +8,6 @@
       config,
       ...
     }:
-    let
-      cfg = config.rawkOS.desktop;
-    in
     {
       options.rawkOS.desktop = {
         niri.enable = lib.mkOption {

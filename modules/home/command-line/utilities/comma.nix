@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.command-line-comma =
     { pkgs, ... }:
     {

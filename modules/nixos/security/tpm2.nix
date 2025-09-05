@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.nixosModules.tpm2 =
     { config, pkgs, ... }:
     let

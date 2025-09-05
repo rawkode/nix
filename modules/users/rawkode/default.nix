@@ -18,6 +18,7 @@ let
 
       imports = [
         inputs.flatpaks.homeManagerModules.nix-flatpak
+        inputs.ironbar.homeManagerModules.default
         inputs.niri.homeModules.niri
         inputs.niri.homeModules.stylix
         inputs.nix-index-database.homeModules.nix-index

@@ -1,6 +1,5 @@
 # Development shells - Dendritic pattern
-_:
-{
+_: {
   # Define development shells per system
   perSystem =
     { pkgs, ... }:

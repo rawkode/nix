@@ -2,11 +2,11 @@
 { inputs, ... }:
 {
   flake.nixosModules.cue-overlay =
-    { ... }:
+    _:
     {
       nixpkgs.overlays = [
-        (final: prev: {
-          cue = inputs.cue.legacyPackages.${prev.system}.cue;
+        (_final: prev: {
+          inherit (inputs.cue.legacyPackages.${prev.system}) cue;
         })
       ];
     };
