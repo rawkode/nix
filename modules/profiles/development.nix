@@ -3,8 +3,6 @@
 {
   flake.nixosModules.profiles-development =
     {
-      config,
-      lib,
       pkgs,
       ...
     }:

@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.command-line-carapace =
-    { ... }:
+    _:
     {
       programs.carapace = {
         enable = true;

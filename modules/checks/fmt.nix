@@ -1,10 +1,12 @@
-{ ... }:
-{
+_: {
   perSystem =
     { pkgs, ... }:
     {
       treefmt = {
         projectRootFile = "flake.nix";
+        settings.formatter.biome.excludes = [
+          "**/waybar/style.css"
+        ];
 
         programs = {
           nixfmt = {
@@ -18,7 +20,14 @@
           };
           statix.enable = true;
           deadnix.enable = true;
-          biome.enable = true;
+          biome = {
+            enable = true;
+            settings = {
+              formatter = {
+                useEditorconfig = true;
+              };
+            };
+          };
           taplo.enable = true;
         };
       };

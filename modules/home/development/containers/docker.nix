@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.development-docker =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
         docker-client

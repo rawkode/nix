@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.command-line-direnv = {
     programs.direnv = {

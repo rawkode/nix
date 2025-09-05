@@ -1,12 +1,9 @@
 # Laptop profile relocated
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.profiles-laptop =
     {
-      config,
-      lib,
       pkgs,
-      inputs,
       ...
     }:
     {

@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.flatpak =
-    { ... }:
+    _:
     {
       services.flatpak = {
         enable = true;

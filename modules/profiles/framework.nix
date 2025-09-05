@@ -1,11 +1,8 @@
 # Framework profile relocated
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.profiles-framework =
     {
-      config,
-      lib,
-      pkgs,
       inputs,
       ...
     }:

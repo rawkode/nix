@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.tpm2 =
     { config, pkgs, ... }:

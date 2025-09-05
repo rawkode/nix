@@ -1,5 +1,5 @@
 # AMD hardware configuration - Dendritic pattern flake-parts module
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.hardware-amd =
     {

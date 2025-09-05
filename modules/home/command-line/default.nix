@@ -1,12 +1,9 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.command-line =
     # Command-line tools and utilities
     {
       inputs,
-      config,
-      lib,
-      pkgs,
       ...
     }:
 

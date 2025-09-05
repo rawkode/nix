@@ -1,5 +1,5 @@
 # Base profile relocated from nixos/profiles
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.profiles-base =
     {

@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.power-profiles-daemon =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
       services.power-profiles-daemon = {
         enable = true;

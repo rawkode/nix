@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.u2f =
-    { ... }:
+    _:
     {
       security.pam = {
         services = {

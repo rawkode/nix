@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.audio =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         pavucontrol

@@ -1,12 +1,9 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.development =
     # Development tools and environments
     {
       inputs,
-      config,
-      lib,
-      pkgs,
       ...
     }:
 

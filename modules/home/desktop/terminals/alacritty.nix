@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.desktop-alacritty =
-    { ... }:
+    _:
     {
       programs.alacritty = {
         enable = true;

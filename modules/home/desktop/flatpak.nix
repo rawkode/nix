@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.desktop-flatpak =
-    { ... }:
+    _:
     {
       # Flatpak configuration for home-manager
       services.flatpak = {

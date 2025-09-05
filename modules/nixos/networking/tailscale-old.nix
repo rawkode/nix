@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.networking-tailscale =
     {
@@ -15,7 +15,7 @@
 
       services.tailscale = {
         enable = true;
-        port = port;
+        inherit port;
         openFirewall = true;
         extraUpFlags = lib.mkDefault [ "--ssh" ];
       };

@@ -19,10 +19,7 @@
       # Machine-specific configuration
       (
         {
-          config,
           lib,
-          modulesPath,
-          pkgs,
           ...
         }:
         {

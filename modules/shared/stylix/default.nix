@@ -1,5 +1,5 @@
 # Shared stylix configuration - Dendritic pattern flake-parts module
-{ ... }:
+_:
 let
   stylixConfig =
     { lib, pkgs, ... }:

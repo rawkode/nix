@@ -19,13 +19,7 @@
 
       # Machine-specific configuration
       (
-        {
-          config,
-          lib,
-          modulesPath,
-          pkgs,
-          ...
-        }:
+        _:
         {
           # System identity
           networking.hostName = "p4x-laptop-nixos";

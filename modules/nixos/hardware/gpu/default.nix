@@ -1,10 +1,9 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.hardware-gpu =
     { config, lib, ... }:
     let
       inherit (lib) mkOption types;
-      cfg = config.rawkOS.hardware;
     in
     {
       options.rawkOS.hardware.gpu = mkOption {

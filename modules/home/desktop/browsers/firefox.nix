@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.desktop-firefox =
-    { ... }:
+    _:
     {
       stylix.targets.firefox.profileNames = [ "rawkode" ];
 

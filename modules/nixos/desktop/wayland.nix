@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.desktop-wayland =
     { config, lib, ... }:

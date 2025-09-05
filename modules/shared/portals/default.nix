@@ -1,5 +1,5 @@
 # Shared portal configurations - Dendritic pattern flake-parts module
-{ inputs, ... }:
+_:
 let
   # Portal backend configurations
   portalConfigs = {
@@ -58,7 +58,7 @@ in
 {
   # Define portal configuration module for NixOS
   flake.nixosModules.portals =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     let
       # Default to niri config for optimal performance
       selectedConfig = portalConfigs.niri { inherit pkgs; };
@@ -72,7 +72,7 @@ in
 
   # Define portal configuration module for Home Manager
   flake.homeModules.portals =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     let
       # Default to niri config for optimal performance
       selectedConfig = portalConfigs.niri { inherit pkgs; };

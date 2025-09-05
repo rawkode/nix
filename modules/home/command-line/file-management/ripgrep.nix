@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.command-line-ripgrep =
-    { ... }:
+    _:
     {
       programs.ripgrep = {
         enable = true;

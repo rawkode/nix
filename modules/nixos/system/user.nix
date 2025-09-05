@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.user =
     {
@@ -49,7 +49,7 @@
           isNormalUser = true;
           uid = 1000;
           description = cfg.name;
-          shell = cfg.shell;
+          inherit (cfg) shell;
           extraGroups = [
             "${cfg.username}"
             "adbusers"

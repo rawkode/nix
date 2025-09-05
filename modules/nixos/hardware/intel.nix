@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.hardware-intel =
     # Intel hardware configuration

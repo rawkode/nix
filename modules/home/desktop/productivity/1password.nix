@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.desktop-1password =
-    { ... }:
+    _:
     {
       programs.ssh = {
         enable = true;

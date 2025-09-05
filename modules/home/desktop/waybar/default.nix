@@ -1,8 +1,6 @@
-{ inputs, ... }:
-{
+_: {
   flake.homeModules.desktop-waybar =
     {
-      lib,
       pkgs,
       ...
     }:

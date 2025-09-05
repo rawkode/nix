@@ -1,13 +1,8 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.plymouth =
     # Plymouth boot splash configuration
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    _:
     {
       boot.plymouth = {
         enable = true;

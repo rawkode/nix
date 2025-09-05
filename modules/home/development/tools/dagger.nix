@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.development-dagger =
     {
@@ -7,6 +7,6 @@
       ...
     }:
     {
-      home.packages = (with pkgs; [ inputs.dagger.packages.${system}.dagger ]);
+      home.packages = with pkgs; [ inputs.dagger.packages.${system}.dagger ];
     };
 }

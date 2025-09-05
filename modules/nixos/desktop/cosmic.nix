@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.desktop-cosmic =
-    { ... }:
+    _:
     {
       # Enable COSMIC desktop environment
       services.desktopManager.cosmic.enable = true;

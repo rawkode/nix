@@ -1,4 +1,4 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.desktop-gnome-burn-my-windows =
     { lib, pkgs, ... }:

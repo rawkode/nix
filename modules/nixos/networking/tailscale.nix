@@ -1,9 +1,8 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.tailscale =
     {
       config,
-      lib,
       pkgs,
       ...
     }:

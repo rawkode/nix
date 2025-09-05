@@ -1,9 +1,8 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.development-python =
     {
       config,
-      lib,
       pkgs,
       ...
     }:

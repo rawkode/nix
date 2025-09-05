@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.homeModules.command-line-television =
-    { ... }:
+    _:
     {
       programs.television = {
         enable = true;

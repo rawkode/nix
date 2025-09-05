@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.dns =
-    { ... }:
+    _:
     {
       services.resolved = {
         enable = true;

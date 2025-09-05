@@ -1,7 +1,7 @@
-{ inputs, ... }:
+_:
 {
   flake.nixosModules.networking =
-    { ... }:
+    _:
     {
       services.resolved = {
         enable = true;
