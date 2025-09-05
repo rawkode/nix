@@ -1,0 +1,11 @@
+{ inputs, ... }:
+{
+  flake.homeModules.development-nix =
+    { pkgs, ... }:
+    {
+      home.packages = with pkgs; [
+        nil
+        nixfmt-rfc-style
+      ];
+    };
+}
