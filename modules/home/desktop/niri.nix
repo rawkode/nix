@@ -283,8 +283,6 @@
           layout = {
             gaps = 16;
 
-            border.enable = true;
-
             center-focused-column = "on-overflow";
 
             default-column-width = {
@@ -617,7 +615,6 @@
         };
       };
 
-      stylix.targets.waybar.enable = lib.mkForce false;
 
       xdg.configFile."swaync/config.json".text = ''
         {

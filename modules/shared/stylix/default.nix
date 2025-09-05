@@ -1,9 +1,7 @@
-# Shared stylix configuration - Dendritic pattern flake-parts module
-_:
+{ inputs, ... }:
 let
   # Shared stylix configuration used by both NixOS and Home Manager
-  stylixConfig =
-    { lib, pkgs, ... }:
+  stylixConfig = { lib, pkgs, ... }:
     let
       wallpapers = {
         rose-pine = pkgs.fetchurl {
@@ -63,7 +61,19 @@ let
     };
 in
 {
-  # Define both NixOS and Home Manager modules with the same config
-  flake.nixosModules.stylix = stylixConfig;
-  flake.homeModules.stylix = stylixConfig;
+  # NixOS module that imports both stylix and our config
+  flake.nixosModules.stylix = {
+    imports = [
+      inputs.stylix.nixosModules.stylix
+      stylixConfig
+    ];
+  };
+  
+  # Home Manager module that imports both stylix and our config  
+  flake.homeModules.stylix = {
+    imports = [
+      inputs.stylix.homeModules.stylix
+      stylixConfig
+    ];
+  };
 }

@@ -1,10 +1,8 @@
 # Base profile relocated from nixos/profiles
-_:
-{
+_: {
   flake.nixosModules.profiles-base =
     {
       inputs,
-      config,
       lib,
       pkgs,
       ...
@@ -29,8 +27,7 @@ _:
         inputs.flatpaks.nixosModules.nix-flatpak
         inputs.niri.nixosModules.niri
         inputs.nur.modules.nixos.default
-        inputs.stylix.nixosModules.stylix
-        inputs.self.nixosModules.stylix or { }
+        inputs.self.nixosModules.stylix
         inputs.nix-index-database.nixosModules.nix-index
       ];
 

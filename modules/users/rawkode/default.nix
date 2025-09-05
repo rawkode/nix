@@ -4,7 +4,7 @@ let
   machines = builtins.attrNames (builtins.readDir ../../machines);
 
   # Home module configuration
-  flake.homeModules.users-rawkode =
+  homeModule =
     { ... }:
     {
       home.username = "rawkode";
@@ -19,9 +19,9 @@ let
       imports = [
         inputs.flatpaks.homeManagerModules.nix-flatpak
         inputs.niri.homeModules.niri
+        inputs.niri.homeModules.stylix
         inputs.nix-index-database.homeModules.nix-index
         inputs.nur.modules.homeManager.default
-        inputs.stylix.homeModules.stylix
         inputs.self.homeModules.stylix
 
         inputs.self.homeModules.ai
@@ -32,13 +32,16 @@ let
       ];
     };
 
+  # Export the home module
+  flake.homeModules.users-rawkode = homeModule;
+
   # Standalone home configurations - generated from machines list
   flake.homeConfigurations = builtins.listToAttrs (
     map (machine: {
       name = "rawkode@${machine}";
       value = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ inputs.self.homeModules.users-rawkode ];
+        modules = [ homeModule ];
         extraSpecialArgs = { inherit inputs; };
       };
     }) machines
@@ -53,7 +56,7 @@ let
 
   # Home-manager integration for NixOS
   home.home-manager.users.rawkode.imports = [
-    inputs.self.homeModules.users-rawkode
+    homeModule
   ];
 
   # Linux user configuration
