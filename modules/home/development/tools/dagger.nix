@@ -7,6 +7,6 @@ _:
       ...
     }:
     {
-      home.packages = with pkgs; [ inputs.dagger.packages.${system}.dagger ];
+      home.packages = with pkgs; [ inputs.dagger.packages.${pkgs.stdenv.hostPlatform.system}.dagger ];
     };
 }
