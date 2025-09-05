@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.desktop-portals =
     { pkgs, ... }:
     {
@@ -17,7 +16,7 @@ _:
               "gtk"
             ];
             "org.freedesktop.impl.portal.Secret" = [
-              "kwallet"
+              "gnome-keyring"
             ];
           };
           niri = {

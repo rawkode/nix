@@ -16,8 +16,6 @@
 
       services.swayosd.enable = true;
 
-      # KDE Wallet will be used for secret management via portals
-
       services.cliphist = {
         enable = true;
       };
@@ -29,7 +27,24 @@
       };
 
       systemd.user.services = {
-
+        polkit-gnome = {
+          Unit = {
+            Description = "PolicyKit Authentication Agent provided by niri-flake";
+            WantedBy = [ "niri.service" ];
+            After = [ "graphical-session.target" ];
+            PartOf = [ "graphical-session.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+          };
+          Install = {
+            WantedBy = [ "graphical-session.target" ];
+          };
+        };
         swaync = {
           Unit = {
             Description = "SwayNotificationCenter for niri";
@@ -614,7 +629,6 @@
           };
         };
       };
-
 
       xdg.configFile."swaync/config.json".text = ''
         {
