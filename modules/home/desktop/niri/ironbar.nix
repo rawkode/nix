@@ -1,4 +1,34 @@
-_: {
+let
+  main_bar = {
+    anchor_to_edges = true;
+    position = "top";
+    height = 16;
+    start = [
+      {
+        type = "workspaces";
+        sort = "added";
+      }
+    ];
+    center = [
+      {
+        type = "focused";
+        icon_size = 24;
+        show_icon = true;
+        show_title = false;
+      }
+    ];
+    end = [
+      {
+        type = "tray";
+        icon_size = 32;
+      }
+      {
+        type = "battery";
+      }
+    ];
+  };
+in
+{
   flake.homeModules.ironbar =
     { config, ... }:
     {
@@ -10,7 +40,9 @@ _: {
           icon_theme = "rose-pine";
 
           monitors = {
-            eDP-1 = {
+            eDP-1 = main_bar;
+            DP-1 = main_bar;
+            DP-2 = {
               anchor_to_edges = true;
               position = "top";
               height = 16;
@@ -28,15 +60,7 @@ _: {
                   show_title = false;
                 }
               ];
-              end = [
-                {
-                  type = "tray";
-                  icon_size = 32;
-                }
-                {
-                  type = "battery";
-                }
-              ];
+              end = [ ];
             };
           };
         };

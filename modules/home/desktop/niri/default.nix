@@ -11,6 +11,49 @@
         self.homeModules.ironbar
       ];
 
+      # Optimal XDG desktop portals configuration for Niri with maximum performance
+      xdg.portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal
+          xdg-desktop-portal-gnome
+          xdg-desktop-portal-gtk
+        ];
+        config = {
+          common = {
+            default = [
+              "gnome"
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [
+              "gnome-keyring"
+            ];
+          };
+          niri = {
+            default = [
+              "gnome"
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.FileChooser" = [
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Notification" = [
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Screenshot" = [
+              "gnome"
+            ];
+            "org.freedesktop.impl.portal.ScreenCast" = [
+              "gnome"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [
+              "gnome-keyring"
+            ];
+          };
+        };
+      };
+
       services.swayosd.enable = true;
 
       services.cliphist = {
