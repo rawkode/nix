@@ -223,6 +223,8 @@
               ];
             }
             (makeCommand "blueman-applet")
+            (makeCommand "iwgtk-indicator")
+            (makeCommand "pasystray")
           ];
 
           outputs = {

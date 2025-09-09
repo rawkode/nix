@@ -71,10 +71,7 @@
             brightnessctl
           ];
 
-          networking.networkmanager = {
-            enable = true;
-            wifi.powersave = true;
-          };
+# Network configuration is handled by networking module
 
           # Framework-specific hardware configuration
           services.fprintd.enable = true;

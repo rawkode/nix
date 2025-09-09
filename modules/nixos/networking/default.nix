@@ -6,9 +6,18 @@ _: {
     };
 
     networking = {
-      networkmanager = {
+      networkmanager.enable = false;
+      
+      wireless.iwd = {
         enable = true;
-        dns = "systemd-resolved";
+        settings = {
+          IPv4 = {
+            dhcp = "yes";
+          };
+          Settings = {
+            AutoConnect = true;
+          };
+        };
       };
 
       nameservers = [

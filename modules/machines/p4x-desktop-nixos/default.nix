@@ -35,8 +35,7 @@
           # Disko device override (uses shared configuration from disko-btrfs-encrypted module)
           rawkOS.disko.device = "/dev/nvme0n1";
 
-          # Enable NetworkManager
-          networking.networkmanager.enable = true;
+# Network configuration is handled by networking module
 
           # Enable swap
           zramSwap.enable = true;

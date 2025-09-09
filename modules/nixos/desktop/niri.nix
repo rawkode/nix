@@ -37,9 +37,15 @@ _: {
         grim
         slurp
 
+        # Network management
+        iwgtk
+
+        # Audio management
+        pavucontrol
+        pasystray
+
         # Other utilities
         blueman
-        pavucontrol
       ];
     });
 }

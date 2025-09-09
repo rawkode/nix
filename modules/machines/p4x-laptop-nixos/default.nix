@@ -65,10 +65,7 @@
             brightnessctl
           ];
 
-          networking.networkmanager = {
-            enable = true;
-            wifi.powersave = true;
-          };
+# Network configuration is handled by networking module
 
           # Hardware configuration
           hardware.enableRedistributableFirmware = true;
