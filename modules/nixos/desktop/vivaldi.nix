@@ -1,5 +1,4 @@
-_: {
-  flake.nixosModules.desktop-vivaldi =
+{ flake.nixosModules.desktop-vivaldi =
     { pkgs, ... }:
     let
       vivaldi-wayland = pkgs.vivaldi.override {

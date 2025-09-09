@@ -29,6 +29,7 @@
         inputs.self.nixosModules.chrome
         inputs.self.nixosModules.desktop-common
         inputs.self.nixosModules.desktop-firefox
+        inputs.self.nixosModules.desktop-vivaldi
         inputs.self.nixosModules.flatpak
         inputs.self.nixosModules.fonts
         inputs.self.nixosModules.location
@@ -49,11 +50,6 @@
           };
           printing.enable = true;
         };
-
-        environment.systemPackages = with pkgs; [
-          vlc
-          libreoffice
-        ];
 
         nix.settings.substituters = lib.mkAfter (inputs.firefox.nixConfig.substituters or [ ]);
         nix.settings.trusted-public-keys = lib.mkAfter (

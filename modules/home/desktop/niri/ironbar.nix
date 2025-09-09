@@ -92,7 +92,7 @@ in
           }
 
           .workspaces .item.focused {
-            border-bottom: 2px solid ${config.lib.stylix.colors.withHashtag.base0D};
+            box-shadow: inset 0 -2px 0 ${config.lib.stylix.colors.withHashtag.base0D};
           }
 
           .battery  {

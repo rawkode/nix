@@ -206,7 +206,6 @@
 
             # Graphics performance optimizations
             GSK_RENDERER = "vulkan"; # Force Vulkan for maximum GTK performance
-            GDK_DEBUG = "gl-no-fractional"; # Skip problematic OpenGL fractional scaling
 
             # Fallback safety - if Vulkan fails, use optimized OpenGL
             GSK_DEBUG = "fallback"; # Enable renderer fallback mechanism
@@ -280,18 +279,15 @@
           # so we use 01/02/etc to force the order of workspaces; which Niri
           # relies on to determine the order of workspaces.
           workspaces = {
-            "01" = {
-              name = "Web";
+            "1" = {
               open-on-output = "DP-1";
             };
 
-            "02" = {
-              name = "Code";
+            "2" = {
               open-on-output = "DP-2";
             };
 
-            "03" = {
-              name = "Chat";
+            "3" = {
               open-on-output = "DP-1";
             };
           };
