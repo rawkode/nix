@@ -56,16 +56,6 @@
 
       services.swayosd.enable = true;
 
-      services.cliphist = {
-        enable = true;
-      };
-      systemd.user.services.cliphist = {
-        User.ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
-      };
-      systemd.user.services.cliphist-images = {
-        User.ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
-      };
-
       systemd.user.services = {
         polkit-gnome = {
           Unit = {
@@ -140,17 +130,6 @@
 
       };
 
-      programs.fuzzel = {
-        enable = true;
-        settings = {
-          main = {
-            show-actions = true;
-            width = 64;
-            tabs = 4;
-          };
-        };
-      };
-
       services.hypridle = {
         enable = true;
         settings = {
@@ -196,7 +175,6 @@
       };
 
       programs.niri = {
-
         settings = {
           environment = {
             DISPLAY = ":0";
@@ -468,26 +446,35 @@
             };
             "Super+Space" = {
               action = {
-                spawn = [ "fuzzel" ];
+                spawn = [ "vicinae" ];
+              };
+            };
+            "Super+Shift+Space" = {
+              action = {
+                spawn = [
+                  "vicinae"
+                  "vicinae://extensions/vicinae/wm/switch-windows"
+                ];
+              };
+            };
+            "Super+e" = {
+              action = {
+                spawn = [
+                  "vicinae"
+                  "vicinae://extensions/vicinae/vicinae/search-emojis"
+                ];
               };
             };
             "Super+C" = {
               action = {
                 spawn = [
-                  "bash"
-                  "-c"
-                  "cliphist list | fuzzel --dmenu --prompt='Copy to Clipboard:' | cliphist decode | wl-copy"
+                  "vicinae"
+                  "vicinae://extensions/vicinae/clipboard/history"
                 ];
               };
             };
             "Super+T" = {
               action.toggle-column-tabbed-display = { };
-            };
-
-            "Super+E" = {
-              action = {
-                spawn = [ "bemoji" ];
-              };
             };
 
             "Ctrl+Down" = {

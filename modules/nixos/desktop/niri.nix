@@ -10,6 +10,7 @@ _: {
       # Don't set programs.niri.enable here as it's handled by the niri flake input
       # Just provide additional configuration
       programs.niri.enable = true;
+      systemd.user.services.niri-flake-polkit.enable = false;
 
       environment.systemPackages = with pkgs; [
         # Clipboard management
@@ -26,16 +27,8 @@ _: {
         # Wallpaper
         swww
 
-        # App launcher
-        fuzzel
-        bemoji
-
         # Authentication agent
-        # polkit_gnome
-
-        # Screenshot utilities
-        grim
-        slurp
+        polkit_gnome
 
         # Network management
         iwgtk
