@@ -11,10 +11,9 @@ let
     ];
     center = [
       {
-        type = "focused";
-        icon_size = 24;
-        show_icon = true;
-        show_title = false;
+        type = "clock";
+        format = "%H:%M";
+        justify = "center";
       }
     ];
     end = [
@@ -42,24 +41,8 @@ in
           monitors = {
             eDP-1 = main_bar;
             DP-1 = main_bar;
-            DP-2 = {
-              anchor_to_edges = true;
-              position = "top";
-              height = 16;
-              start = [
-                {
-                  type = "workspaces";
-                  sort = "added";
-                }
-              ];
-              center = [
-                {
-                  type = "focused";
-                  icon_size = 24;
-                  show_icon = true;
-                  show_title = false;
-                }
-              ];
+            DP-2 = main_bar // {
+              # Hide end / tray on second monitor
               end = [ ];
             };
           };

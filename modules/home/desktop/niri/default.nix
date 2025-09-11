@@ -11,7 +11,6 @@
         self.homeModules.ironbar
       ];
 
-      # Optimal XDG desktop portals configuration for Niri with maximum performance
       xdg.portal = {
         enable = true;
         xdgOpenUsePortal = true;
@@ -252,23 +251,6 @@
             # Monitor for my laptop at home
             "Samsung Electric Company LS32A70 HK2WB00305" = {
               scale = 1.75;
-            };
-          };
-
-          # Nix attribute sets are ordered alphabetically when evaludated,
-          # so we use 01/02/etc to force the order of workspaces; which Niri
-          # relies on to determine the order of workspaces.
-          workspaces = {
-            "1" = {
-              open-on-output = "DP-1";
-            };
-
-            "2" = {
-              open-on-output = "DP-2";
-            };
-
-            "3" = {
-              open-on-output = "DP-1";
             };
           };
 
