@@ -31,6 +31,7 @@ let
         inputs.self.homeModules.desktop-vicinae
         inputs.self.homeModules.development
         inputs.self.homeModules.nix
+        inputs.self.homeModules.portals
         inputs.self.homeModules.stylix
       ];
     };

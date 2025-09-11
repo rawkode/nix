@@ -23,6 +23,7 @@
       };
 
       imports = [
+        inputs.self.nixosModules.polkit
         inputs.self.nixosModules.onepassword
         inputs.self.nixosModules.audio
         inputs.self.nixosModules.bluetooth
@@ -34,9 +35,9 @@
         inputs.self.nixosModules.fonts
         inputs.self.nixosModules.location
         inputs.self.nixosModules.plymouth
+        inputs.self.nixosModules.portals
         inputs.self.nixosModules.profiles-base
         inputs.self.nixosModules.niri-config
-        inputs.self.nixosModules.niri-portal
         inputs.self.nixosModules.desktop-gnome
       ];
 
