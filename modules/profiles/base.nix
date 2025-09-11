@@ -21,7 +21,6 @@ _: {
         inputs.self.nixosModules.lanzaboote or { }
         inputs.self.nixosModules.tpm2 or { }
         inputs.self.nixosModules.desktop-greetd or { }
-        inputs.self.nixosModules.u2f or { }
         inputs.self.nixosModules.dns or { }
         inputs.disko.nixosModules.disko
         inputs.flatpaks.nixosModules.nix-flatpak

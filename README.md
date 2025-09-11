@@ -37,7 +37,7 @@ This repository contains a modular NixOS configuration that supports:
 - **Desktop**: Niri (Wayland compositor) with GNOME fallback
 - **Audio**: PipeWire with ALSA/PulseAudio compatibility
 - **Fonts**: Comprehensive font stack with Stylix theming
-- **Security**: TPM2, U2F, encrypted storage
+- **Security**: TPM2, encrypted storage
 
 ## Quick Start
 
@@ -109,7 +109,7 @@ The development profile includes:
 
 - **Secure Boot**: Lanzaboote integration with TPM attestation
 - **Disk Encryption**: LUKS2 with BTRFS subvolumes
-- **Authentication**: U2F hardware tokens, fingerprint readers
+- **Authentication**: Fingerprint readers
 - **Network Security**: Tailscale mesh networking, DNS-over-HTTPS
 - **Application Security**: Flatpak sandboxing for desktop applications
 

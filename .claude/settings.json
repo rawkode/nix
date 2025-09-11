@@ -5,6 +5,7 @@
 			"Bash(find:*)",
 			"Bash(git:*)",
 			"Bash(ls:*)",
+			"Bash(nh:*)",
 			"Bash(nix:*)",
 			"Bash(rg:*)",
 			"Bash(sed:*)",
