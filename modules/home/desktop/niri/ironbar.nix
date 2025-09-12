@@ -18,6 +18,19 @@ let
     ];
     end = [
       {
+        type = "volume";
+        format = "{icon} {percentage}%";
+        max_volume = 100;
+        icons = {
+          volume_high = "󰕾";
+          volume_medium = "󰖀";
+          volume_low = "󰕿";
+          muted = "󰝟";
+        };
+        on_click_left = "pavucontrol";
+        disable_popup = true;
+      }
+      {
         type = "tray";
         icon_size = 32;
       }
@@ -78,6 +91,42 @@ in
             box-shadow: inset 0 -2px 0 ${config.lib.stylix.colors.withHashtag.base0D};
           }
 
+          .volume {
+            padding-left: 1em;
+            padding-right: 1em;
+            color: ${config.lib.stylix.colors.withHashtag.base0C};
+          }
+
+          .volume:hover {
+            color: ${config.lib.stylix.colors.withHashtag.base0D};
+            background: alpha(${config.lib.stylix.colors.withHashtag.base02}, 0.3);
+            border-radius: 4px;
+          }
+
+          /* Volume popup */
+          .popup-volume {
+            padding: 1em;
+            background: alpha(${config.lib.stylix.colors.withHashtag.base00}, 0.95);
+            border: 1px solid ${config.lib.stylix.colors.withHashtag.base02};
+          }
+
+          .popup-volume scale trough {
+            min-height: 6px;
+            background-color: ${config.lib.stylix.colors.withHashtag.base02};
+            border-radius: 3px;
+          }
+
+          .popup-volume scale slider {
+            min-width: 12px;
+            min-height: 12px;
+            background-color: ${config.lib.stylix.colors.withHashtag.base0C};
+            border-radius: 50%;
+          }
+
+          .popup-volume scale slider:hover {
+            background-color: ${config.lib.stylix.colors.withHashtag.base0D};
+          }
+
           .battery  {
             padding-right: 1em;
           }
@@ -92,6 +141,18 @@ in
             padding-right: 1em;
           }
         '';
+      };
+
+      # Override the systemd service to ensure it starts after niri is ready
+      systemd.user.services.ironbar = {
+        Unit = {
+          After = [ "graphical-session.target" "niri.service" ];
+          Wants = [ "niri.service" ];
+        };
+        Service = {
+          # Add a small delay to ensure niri is fully initialized
+          ExecStartPre = "/run/current-system/sw/bin/sleep 2";
+        };
       };
     };
 }
