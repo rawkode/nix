@@ -16,6 +16,9 @@ _: {
         "9.9.9.9"
       ];
       dnsovertls = "opportunistic";
+      extraConfig = ''
+        MulticastDNS=no
+      '';
     };
 
     networking.networkmanager.dns = "systemd-resolved";
