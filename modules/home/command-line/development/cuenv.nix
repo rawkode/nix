@@ -6,7 +6,7 @@ _: {
       ...
     }:
     {
-      home.packages = with pkgs; [ inputs.cuenv.packages.${system}.cuenv ];
+      home.packages = [ inputs.cuenv.packages.${pkgs.stdenv.hostPlatform.system}.default ];
       programs.fish.interactiveShellInit = "cuenv shell init fish | source";
     };
 }

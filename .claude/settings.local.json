@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/rawkode/Code/src/github.com/rawkode/cuenv/**)",
+      "Read(//home/rawkode/Code/src/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

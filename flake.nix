@@ -38,7 +38,7 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cuenv.url = "github:rawkode/cuenv";
+    cuenv.url = "github:cuenv/cuenv";
     dagger = {
       url = "github:dagger/nix";
       inputs.nixpkgs.follows = "nixpkgs";
