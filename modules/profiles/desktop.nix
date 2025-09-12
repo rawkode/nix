@@ -29,7 +29,6 @@
         inputs.self.nixosModules.bluetooth
         inputs.self.nixosModules.chrome
         inputs.self.nixosModules.desktop-common
-        inputs.self.nixosModules.desktop-firefox
         inputs.self.nixosModules.desktop-vivaldi
         inputs.self.nixosModules.flatpak
         inputs.self.nixosModules.fonts
@@ -52,10 +51,6 @@
           printing.enable = true;
         };
 
-        nix.settings.substituters = lib.mkAfter (inputs.firefox.nixConfig.substituters or [ ]);
-        nix.settings.trusted-public-keys = lib.mkAfter (
-          inputs.firefox.nixConfig.trusted-public-keys or [ ]
-        );
       };
     };
 }

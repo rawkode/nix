@@ -12,6 +12,14 @@ _: {
       };
 
       services = {
+        chrony = {
+          enable = true;
+          servers = [
+            "time.cloudflare.com"
+            "time.google.com"
+          ];
+          enableNTS = true;
+        };
         fwupd.enable = true;
         hardware.bolt.enable = true;
         libinput = {

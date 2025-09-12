@@ -7,7 +7,6 @@ _: {
         desktop-alacritty
         desktop-clickup
         desktop-dconf-editor
-        desktop-firefox
         desktop-flatpak
         desktop-ghostty
         desktop-gnome
