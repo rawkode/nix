@@ -35,7 +35,6 @@ _: {
 
         # Audio management
         pavucontrol
-        pasystray
 
         # Other utilities
         blueman
