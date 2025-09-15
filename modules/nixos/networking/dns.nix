@@ -2,7 +2,7 @@ _: {
   flake.nixosModules.dns = _: {
     services.resolved = {
       enable = true;
-      dnssec = "true";
+      dnssec = "false";
       domains = [ "~." ];
       fallbackDns = [
         "1.1.1.1"

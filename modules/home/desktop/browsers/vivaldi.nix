@@ -23,5 +23,11 @@
         inherit defaultApplications;
         associations.added = defaultApplications;
       };
+
+    # Set the BROWSER environment variable to ensure Vivaldi is used
+    home.sessionVariables = {
+      BROWSER = "vivaldi";
+      DEFAULT_BROWSER = "vivaldi.desktop";
+    };
   };
 }
