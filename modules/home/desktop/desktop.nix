@@ -11,7 +11,6 @@ _: {
         desktop-ghostty
         desktop-gnome
         desktop-niri
-        # desktop-portals  # Removed: Now handled by shared/portals.nix via NixOS modules
         desktop-ptyxis
         desktop-rquickshare
         desktop-slack

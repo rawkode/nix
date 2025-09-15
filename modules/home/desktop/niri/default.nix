@@ -11,6 +11,10 @@
         self.homeModules.ironbar
       ];
 
+      home.packages = with pkgs; [
+        nautilus
+      ];
+
       xdg.portal = {
         enable = true;
         xdgOpenUsePortal = true;

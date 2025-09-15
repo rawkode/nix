@@ -1,10 +1,5 @@
 _: {
   flake.nixosModules.networking = _: {
-    services.resolved = {
-      enable = true;
-      # dnsovertls = "opportunistic";
-    };
-
     networking = {
       networkmanager.enable = false;
       

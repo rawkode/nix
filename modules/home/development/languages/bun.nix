@@ -4,7 +4,7 @@ _: {
     {
       home.packages = with pkgs; [ bun ];
       home.sessionPath = [
-        "/home/rawkode/.bun/bin"
+        "/home/rawkode/.cache/.bun/bin"
       ];
     };
 }
