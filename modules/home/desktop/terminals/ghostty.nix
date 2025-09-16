@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-ghostty =
+{
+  flake.homeModules.ghostty =
     {
       inputs,
       pkgs,

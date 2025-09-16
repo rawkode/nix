@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.homeModules.desktop-niri =
+  flake.homeModules.niri =
     { config, pkgs, ... }:
     let
       makeCommand = command: { command = [ command ]; };

@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-cuenv =
+{
+  flake.homeModules.cuenv =
     {
       inputs,
       pkgs,

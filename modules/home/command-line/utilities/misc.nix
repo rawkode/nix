@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-misc =
+{
+  flake.homeModules.misc =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

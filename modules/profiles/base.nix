@@ -1,5 +1,4 @@
-# Base profile relocated from nixos/profiles
-_: {
+{
   flake.nixosModules.profiles-base =
     {
       inputs,
@@ -8,33 +7,34 @@ _: {
       ...
     }:
     {
-      imports = [
-        inputs.self.nixosModules.common or { }
-        inputs.self.nixosModules.nix or { }
-        inputs.self.nixosModules.networking or { }
-        inputs.self.nixosModules.user or { }
-        inputs.self.nixosModules.sudo or { }
-        inputs.self.nixosModules.systemd or { }
-        inputs.self.nixosModules.containers or { }
-        inputs.self.nixosModules.tailscale or { }
-        inputs.self.nixosModules.below or { }
-        inputs.self.nixosModules.lanzaboote or { }
-        inputs.self.nixosModules.tpm2 or { }
-        inputs.self.nixosModules.desktop-greetd or { }
-        inputs.self.nixosModules.dns or { }
-        inputs.disko.nixosModules.disko
-        inputs.flatpaks.nixosModules.nix-flatpak
-        inputs.niri.nixosModules.niri
-        inputs.nur.modules.nixos.default
-        inputs.self.nixosModules.stylix
-        inputs.nix-index-database.nixosModules.nix-index
+      imports = with inputs; [
+        disko.nixosModules.disko
+        flatpaks.nixosModules.nix-flatpak
+        niri.nixosModules.niri
+        nix-index-database.nixosModules.nix-index
+        nur.modules.nixos.default
+
+        self.nixosModules.below
+        self.nixosModules.common
+        self.nixosModules.containers
+        self.nixosModules.dns
+        self.nixosModules.gnome
+        self.nixosModules.lanzaboote
+        self.nixosModules.networking
+        self.nixosModules.nix
+        self.nixosModules.stylix
+        self.nixosModules.sudo
+        self.nixosModules.systemd
+        self.nixosModules.tailscale
+        self.nixosModules.tpm2
+        self.nixosModules.user
       ];
 
       environment.systemPackages = with pkgs; [
-        vim
+        curl
         git
         htop
-        curl
+        vim
         wget
       ];
 

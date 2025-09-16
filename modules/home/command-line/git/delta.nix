@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-git-delta = {
+{
+  flake.homeModules.git-delta = {
     programs.git.delta = {
       enable = true;
 

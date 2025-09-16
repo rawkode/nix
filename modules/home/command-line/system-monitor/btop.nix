@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-btop = _: {
+{
+  flake.homeModules.btop = {
     programs.btop = {
       enable = true;
     };

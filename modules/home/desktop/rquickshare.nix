@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-rquickshare =
+{
+  flake.homeModules.rquickshare =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-slack = _: {
+{
+  flake.homeModules.slack = {
     services.flatpak.packages = [
       "com.slack.Slack"
     ];

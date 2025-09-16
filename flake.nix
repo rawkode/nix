@@ -10,8 +10,8 @@
     };
 
   inputs = {
-    # Core inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
@@ -20,43 +20,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Overrides (keeping your existing ones)
-    clickup.url = "github:NixOS/nixpkgs/pull/437226/head";
-    cue.url = "github:NixOS/nixpkgs/pull/431813/head";
-    v4l2.url = "github:NixOS/nixpkgs/pull/436682/head";
-
-    # Everything Else (keeping your existing inputs)
-    browser-previews = {
-      url = "github:nix-community/browser-previews";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    comma = {
-      url = "github:nix-community/comma";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    browser-previews.url = "github:nix-community/browser-previews";
+    comma.url = "github:nix-community/comma";
     cuenv.url = "github:cuenv/cuenv";
-    dagger = {
-      url = "github:dagger/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dagger.url = "github:dagger/nix";
+    disko.url = "github:nix-community/disko";
     firefox.url = "github:nix-community/flake-firefox-nightly";
     flatpaks.url = "github:gmodena/nix-flatpak";
+
+    # Follows unstable because of a mesa mismatch
+    # Revert follows after 25.11
     ghostty = {
-      url = "github:ghostty-org/ghostty";
+      url = "github:ghostty-org/ghostty/v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    ironbar.url = "github:JakeStanger/ironbar";
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";

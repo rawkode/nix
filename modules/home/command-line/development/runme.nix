@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-runme =
+{
+  flake.homeModules.runme =
     { lib, pkgs, ... }:
     let
       fileAsSeparatedString =

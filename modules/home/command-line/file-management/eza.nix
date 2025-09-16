@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-eza =
+{
+  flake.homeModules.eza =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-cue =
+{
+  flake.homeModules.cue =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

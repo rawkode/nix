@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-github =
+{
+  flake.homeModules.github =
     { pkgs, ... }:
     {
       programs.gh = {

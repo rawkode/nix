@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-visual-studio-code =
+{
+  flake.homeModules.visual-studio-code =
     { pkgs, ... }:
     {
       programs.vscode = {

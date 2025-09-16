@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-bat =
+{
+  flake.homeModules.bat =
     { lib, pkgs, ... }:
     {
       programs.bat = {

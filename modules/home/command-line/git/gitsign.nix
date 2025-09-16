@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-git-gitsign =
+{
+  flake.homeModules.git-gitsign =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ gitsign ];

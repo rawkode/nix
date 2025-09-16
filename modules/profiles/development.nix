@@ -1,35 +1,31 @@
-# Development profile relocated
 { inputs, ... }:
 {
   flake.nixosModules.profiles-development =
+    { pkgs, ... }:
     {
-      pkgs,
-      ...
-    }:
-    {
-      imports = [
-        inputs.self.nixosModules.documentation
-        inputs.self.nixosModules.ai
-        inputs.self.nixosModules.android
+      imports = with inputs; [
+        self.nixosModules.ai
+        self.nixosModules.android
+        self.nixosModules.documentation
       ];
 
       environment.systemPackages = with pkgs; [
-        git
-        gh
-        vim
-        neovim
-        gnumake
-        gcc
         cmake
-        pkg-config
-        gdb
-        strace
-        ltrace
-        nmap
-        tcpdump
-        wireshark
         docker-compose
+        gcc
+        gdb
+        gh
+        git
+        gnumake
+        ltrace
+        neovim
+        nmap
+        pkg-config
         podman-compose
+        strace
+        tcpdump
+        vim
+        wireshark
       ];
 
       boot.kernel.sysctl = {

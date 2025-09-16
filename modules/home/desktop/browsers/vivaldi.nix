@@ -4,7 +4,7 @@
   ...
 }:
 {
-  flake.homeModules.desktop-vivaldi = {
+  flake.homeModules.vivaldi = {
     xdg.mimeApps =
       let
         defaultApplications = {

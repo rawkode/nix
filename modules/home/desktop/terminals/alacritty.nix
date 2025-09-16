@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-alacritty = _: {
+{
+  flake.homeModules.alacritty = {
     programs.alacritty = {
       enable = true;
       settings = {

@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-1password = _: {
+{
+  flake.homeModules.onepassword = {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;

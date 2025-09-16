@@ -1,5 +1,5 @@
-_: {
-  flake.nixosModules.desktop-firefox =
+{
+  flake.nixosModules.firefox =
     { inputs, pkgs, ... }:
     {
       programs.firefox = {

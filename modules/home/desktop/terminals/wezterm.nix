@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-wezterm =
+{
+  flake.homeModules.wezterm =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

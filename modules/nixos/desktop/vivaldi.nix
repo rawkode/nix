@@ -1,13 +1,17 @@
 {
-  flake.nixosModules.desktop-vivaldi =
+  flake.nixosModules.vivaldi =
     { pkgs, ... }:
     let
       vivaldi-wayland = pkgs.vivaldi.override {
         commandLineArgs = [
-          "--enable-features=UseOzonePlatform" # Better Wayland support
-          "--ozone-platform=wayland" # Native Wayland support
-          "--enable-features=VaapiVideoDecoder" # Hardware video acceleration
-          "--disable-features=UseChromeOSDirectVideoDecoder" # Prevents conflicts with VAAPI
+          # Better Wayland support
+          "--enable-features=UseOzonePlatform"
+          # Native Wayland support
+          "--ozone-platform=wayland"
+          # Hardware video acceleration
+          "--enable-features=VaapiVideoDecoder"
+          # Prevents conflicts with VAAPI
+          "--disable-features=UseChromeOSDirectVideoDecoder"
         ];
       };
     in

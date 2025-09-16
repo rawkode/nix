@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-spotify =
+{
+  flake.homeModules.spotify =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

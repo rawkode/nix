@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-wayland =
+{
+  flake.homeModules.wayland =
     {
       pkgs,
       ...

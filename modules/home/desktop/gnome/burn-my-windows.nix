@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-gnome-burn-my-windows =
+{
+  flake.homeModules.gnome-burn-my-windows =
     { lib, pkgs, ... }:
     with lib;
     let

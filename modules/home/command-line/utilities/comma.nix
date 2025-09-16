@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-comma =
+{
+  flake.homeModules.comma =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ comma ];

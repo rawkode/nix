@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-zoom =
+{
+  flake.homeModules.zoom =
     { pkgs, ... }:
     {
       home.packages = [ pkgs.zoom-us ];

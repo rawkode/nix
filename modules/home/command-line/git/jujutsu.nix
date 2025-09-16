@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-git-jujutsu =
+{
+  flake.homeModules.git-jujutsu =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ jujutsu ];

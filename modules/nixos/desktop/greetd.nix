@@ -1,8 +1,7 @@
-_: {
-  flake.nixosModules.desktop-greetd =
+{
+  flake.nixosModules.greetd =
     { pkgs, ... }:
     {
-      # Modern greetd setup with tuigreet - better for multi-monitor setups
       services.greetd = {
         enable = true;
         settings = {
@@ -13,7 +12,6 @@ _: {
         };
       };
 
-      # Create the greeter user if it doesn't exist
       users.users.greeter = {
         isSystemUser = true;
         group = "greeter";

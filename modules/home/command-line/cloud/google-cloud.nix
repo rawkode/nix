@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-google-cloud =
+{
+  flake.homeModules.google-cloud =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

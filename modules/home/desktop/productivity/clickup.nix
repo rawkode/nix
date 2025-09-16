@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-clickup =
+{
+  flake.homeModules.clickup =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

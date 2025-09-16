@@ -10,7 +10,6 @@
       # Flake inputs
       inputs.disko.nixosModules.disko
       inputs.lanzaboote.nixosModules.lanzaboote
-      inputs.nixos-cosmic.nixosModules.default
       inputs.flatpaks.nixosModules.nix-flatpak
 
       # Import profiles
@@ -18,7 +17,6 @@
       inputs.self.nixosModules.profiles-development
       inputs.self.nixosModules.disko-btrfs-encrypted
       inputs.self.nixosModules.lanzaboote
-      inputs.self.nixosModules.cue-overlay
 
       # Machine-specific configuration
       (
@@ -65,7 +63,7 @@
             brightnessctl
           ];
 
-# Network configuration is handled by networking module
+          # Network configuration is handled by networking module
 
           # Hardware configuration
           hardware.enableRedistributableFirmware = true;

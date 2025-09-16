@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-dconf-editor =
+{
+  flake.homeModules.dconf-editor =
     { pkgs, ... }:
     {
       home.packages = [ pkgs.dconf-editor ];

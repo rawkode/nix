@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-htop =
+{
+  flake.homeModules.htop =
     { pkgs, ... }:
     {
       programs.htop = {

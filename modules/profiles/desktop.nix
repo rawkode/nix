@@ -1,43 +1,24 @@
-# Desktop profile relocated and updated with GNOME/Niri toggles
 { inputs, ... }:
 {
   flake.nixosModules.profiles-desktop =
+    { ... }:
     {
-      lib,
-      pkgs,
-      config,
-      ...
-    }:
-    {
-      options.rawkOS.desktop = {
-        niri.enable = lib.mkOption {
-          type = lib.types.bool;
-          default = true;
-          description = "Enable the Niri Wayland compositor and related supporting packages.";
-        };
-        gnome.enable = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Enable the GNOME desktop environment (GDM + GNOME Shell).";
-        };
-      };
-
-      imports = [
-        inputs.self.nixosModules.polkit
-        inputs.self.nixosModules.onepassword
-        inputs.self.nixosModules.audio
-        inputs.self.nixosModules.bluetooth
-        inputs.self.nixosModules.chrome
-        inputs.self.nixosModules.desktop-common
-        inputs.self.nixosModules.desktop-vivaldi
-        inputs.self.nixosModules.flatpak
-        inputs.self.nixosModules.fonts
-        inputs.self.nixosModules.location
-        inputs.self.nixosModules.plymouth
-        inputs.self.nixosModules.portals
-        inputs.self.nixosModules.profiles-base
-        inputs.self.nixosModules.niri-config
-        inputs.self.nixosModules.desktop-gnome
+      imports = with inputs; [
+        self.nixosModules.audio
+        self.nixosModules.bluetooth
+        self.nixosModules.chrome
+        self.nixosModules.common
+        self.nixosModules.vivaldi
+        self.nixosModules.flatpak
+        self.nixosModules.fonts
+        self.nixosModules.gnome
+        self.nixosModules.location
+        self.nixosModules.niri
+        self.nixosModules.onepassword
+        self.nixosModules.plymouth
+        self.nixosModules.polkit
+        self.nixosModules.portals
+        self.nixosModules.profiles-base
       ];
 
       config = {
@@ -50,7 +31,6 @@
           };
           printing.enable = true;
         };
-
       };
     };
 }

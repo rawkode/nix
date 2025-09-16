@@ -1,4 +1,4 @@
-_: {
+{
   flake.homeModules.development =
     # Development tools and environments
     {

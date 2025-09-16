@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-fish =
+{
+  flake.homeModules.fish =
     { lib, pkgs, ... }:
     let
       fileAsSeparatedString =

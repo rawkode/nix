@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-lazyjournal =
+{
+  flake.homeModules.lazyjournal =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

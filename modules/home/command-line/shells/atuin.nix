@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.command-line-atuin = {
+  flake.homeModules.atuin = {
     programs.atuin = {
       enable = true;
 

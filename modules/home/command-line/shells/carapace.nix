@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-carapace = _: {
+{
+  flake.homeModules.carapace = {
     programs.carapace = {
       enable = true;
 

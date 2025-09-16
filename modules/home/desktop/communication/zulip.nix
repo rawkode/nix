@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-zulip = _: {
+{
+  flake.homeModules.zulip = {
     services.flatpak.packages = [
       "org.zulip.Zulip"
     ];

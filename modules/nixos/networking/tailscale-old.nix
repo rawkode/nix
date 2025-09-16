@@ -1,4 +1,4 @@
-_: {
+{
   flake.nixosModules.networking-tailscale =
     {
       config,

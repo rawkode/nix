@@ -1,4 +1,3 @@
-# AMD profile relocated
 { inputs, ... }:
 {
   flake.nixosModules.profiles-amd =

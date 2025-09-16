@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-gnome-fullscreen-notifications =
+{
+  flake.homeModules.gnome-fullscreen-notifications =
     { lib, pkgs, ... }:
     with lib;
     {

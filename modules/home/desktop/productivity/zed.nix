@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-zed =
+{
+  flake.homeModules.zed =
     { pkgs, ... }:
     {
       home.packages = [ pkgs.zed-editor ];

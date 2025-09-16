@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-direnv = {
+{
+  flake.homeModules.direnv = {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;

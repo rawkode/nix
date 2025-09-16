@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-nushell = {
+{
+  flake.homeModules.nushell = {
     programs.nushell = {
       enable = true;
 

@@ -1,5 +1,5 @@
-_: {
-  flake.nixosModules.ai = _: {
+{
+  flake.nixosModules.ai = {
     # Codebase Indexing for AI Agents
     services.qdrant.enable = true;
   };

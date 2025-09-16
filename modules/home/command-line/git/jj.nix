@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-jj = _: {
+{
+  flake.homeModules.jj = {
     programs.jujutsu = {
       enable = true;
     };

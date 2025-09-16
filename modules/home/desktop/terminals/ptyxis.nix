@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-ptyxis =
+{
+  flake.homeModules.ptyxis =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

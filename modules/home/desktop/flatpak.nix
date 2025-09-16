@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-flatpak = _: {
+{
+  flake.homeModules.flatpak = {
     # Flatpak configuration for home-manager
     services.flatpak = {
       enable = true;

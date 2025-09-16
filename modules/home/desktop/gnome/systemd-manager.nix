@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-gnome-systemd-manager =
+{
+  flake.homeModules.gnome-systemd-manager =
     { lib, pkgs, ... }:
     with lib;
 

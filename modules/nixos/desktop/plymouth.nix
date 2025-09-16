@@ -1,17 +1,11 @@
-_: {
-  flake.nixosModules.plymouth =
-    # Plymouth boot splash configuration
-    _: {
-      boot.plymouth = {
+{
+  flake.nixosModules.plymouth = {
+    boot = {
+      plymouth = {
         enable = true;
-        # Theme will be managed by stylix
       };
-
-      # Ensure Plymouth starts early in boot process
-      boot.initrd.systemd.enable = true;
-
-      # Silent boot for cleaner Plymouth experience
-      boot.kernelParams = [
+      initrd.systemd.enable = true;
+      kernelParams = [
         "quiet"
         "splash"
         "boot.shell_on_fail"
@@ -20,9 +14,8 @@ _: {
         "rd.udev.log_level=3"
         "udev.log_priority=3"
       ];
-
-      # Hide systemd messages during boot
-      boot.initrd.verbose = false;
-      boot.consoleLogLevel = 0;
+      initrd.verbose = false;
+      consoleLogLevel = 0;
     };
+  };
 }

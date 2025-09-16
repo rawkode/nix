@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-starship =
+{
+  flake.homeModules.starship =
     { lib, ... }:
     {
       programs.starship = {

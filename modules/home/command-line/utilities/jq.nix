@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-jq =
+{
+  flake.homeModules.jq =
     # jq - Command-line JSON processor
     {
       pkgs,

@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-gnome =
+{
+  flake.homeModules.gnome =
     { lib, pkgs, ... }:
     let
       file-chooser = {

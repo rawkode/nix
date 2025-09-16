@@ -1,8 +1,8 @@
-_: {
-  flake.nixosModules.networking = _: {
+{
+  flake.nixosModules.networking = {
     networking = {
       networkmanager.enable = false;
-      
+
       wireless.iwd = {
         enable = true;
         settings = {

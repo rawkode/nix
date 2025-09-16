@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-helix =
+{
+  flake.homeModules.helix =
     { pkgs, ... }:
     {
       programs.helix = with pkgs; {

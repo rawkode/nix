@@ -1,5 +1,5 @@
-_: {
-  flake.nixosModules.below = _: {
+{
+  flake.nixosModules.below = {
     services.below.enable = true;
   };
 }

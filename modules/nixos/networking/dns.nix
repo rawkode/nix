@@ -1,5 +1,5 @@
-_: {
-  flake.nixosModules.dns = _: {
+{
+  flake.nixosModules.dns = {
     services.resolved = {
       enable = true;
       dnssec = "false";

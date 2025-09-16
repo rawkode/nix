@@ -1,9 +1,6 @@
 { inputs, ... }:
 let
-  # Dynamically get machines from the filesystem
   machines = builtins.attrNames (builtins.readDir ../../machines);
-
-  # Home module configuration
   homeModule =
     { ... }:
     {
@@ -13,33 +10,30 @@ let
 
       programs.home-manager.enable = true;
 
-      # Allow all unfree packages
       nixpkgs.config.allowUnfree = true;
 
-      imports = [
-        inputs.flatpaks.homeManagerModules.nix-flatpak
-        inputs.ironbar.homeManagerModules.default
-        inputs.niri.homeModules.niri
-        inputs.niri.homeModules.stylix
-        inputs.nix-index-database.homeModules.nix-index
-        inputs.nur.modules.homeManager.default
-        inputs.vicinae.homeManagerModules.default
+      imports = with inputs; [
+        flatpaks.homeManagerModules.nix-flatpak
+        ironbar.homeManagerModules.default
+        niri.homeModules.niri
+        niri.homeModules.stylix
+        nix-index-database.homeModules.nix-index
+        nur.modules.homeManager.default
+        vicinae.homeManagerModules.default
 
-        inputs.self.homeModules.ai
-        inputs.self.homeModules.command-line
-        inputs.self.homeModules.desktop
-        inputs.self.homeModules.desktop-vicinae
-        inputs.self.homeModules.development
-        inputs.self.homeModules.nix
-        inputs.self.homeModules.portals
-        inputs.self.homeModules.stylix
+        self.homeModules.ai
+        self.homeModules.command-line
+        self.homeModules.desktop
+        self.homeModules.development
+        self.homeModules.nix
+        self.homeModules.portals
+        self.homeModules.stylix
+        self.homeModules.vicinae
       ];
     };
 
-  # Export the home module
   flake.homeModules.users-rawkode = homeModule;
 
-  # Standalone home configurations - generated from machines list
   flake.homeConfigurations = builtins.listToAttrs (
     map (machine: {
       name = "rawkode@${machine}";
@@ -51,35 +45,31 @@ let
     }) machines
   );
 
-  # NixOS module imports
   flake.nixosModules.users-rawkode.imports = [
-    user
-    linux
     home
+    linux
+    user
   ];
 
-  # Home-manager integration for NixOS
   home.home-manager.users.rawkode.imports = [
     homeModule
   ];
 
-  # Linux user configuration
   linux = {
     users.users.rawkode = {
       isNormalUser = true;
       extraGroups = [
-        "networkmanager"
-        "wheel"
-        "video"
         "audio"
-        "input"
         "docker"
+        "input"
         "libvirtd"
+        "networkmanager"
+        "video"
+        "wheel"
       ];
     };
   };
 
-  # Common user configuration
   user =
     { pkgs, ... }:
     {

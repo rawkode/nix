@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.command-line-just =
+{
+  flake.homeModules.just =
     {
       pkgs,
       ...

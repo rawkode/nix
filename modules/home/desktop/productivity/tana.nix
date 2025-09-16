@@ -1,5 +1,5 @@
-_: {
-  flake.homeModules.desktop-tana =
+{
+  flake.homeModules.tana =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ tana ];

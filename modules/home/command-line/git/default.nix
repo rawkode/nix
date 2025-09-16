@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.homeModules.command-line-git =
+  flake.homeModules.git =
     { pkgs, ... }:
 
     let
@@ -9,9 +9,9 @@
     in
     {
       imports = with inputs.self.homeModules; [
-        command-line-git-delta
-        command-line-git-fish
-        command-line-git-jujutsu
+        git-delta
+        git-fish
+        git-jujutsu
       ];
 
       programs.git = {

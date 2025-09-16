@@ -1,4 +1,4 @@
-_: {
+{
   flake.nixosModules.nix =
     {
       config,
@@ -38,14 +38,12 @@ _: {
           keep-outputs = true;
 
           substituters = [
-            "https://cosmic.cachix.org/"
             "https://nix-community.cachix.org"
             "https://ghostty.cachix.org/"
             "https://vicinae.cachix.org/"
             "https://cache.nixos.org/"
           ];
           trusted-public-keys = [
-            "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
             "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="

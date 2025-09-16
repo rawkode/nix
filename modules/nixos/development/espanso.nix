@@ -1,4 +1,4 @@
-_: {
+{
   flake.nixosModules.wip-espanso =
     { lib, pkgs, ... }:
     {

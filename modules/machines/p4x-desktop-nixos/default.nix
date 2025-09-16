@@ -1,4 +1,3 @@
-# p4x-desktop-nixos machine configuration - Dendritic pattern
 { inputs, ... }:
 {
   flake.nixosConfigurations.p4x-desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
@@ -13,7 +12,6 @@
       # Flake inputs
       disko.nixosModules.disko
       lanzaboote.nixosModules.lanzaboote
-      nixos-cosmic.nixosModules.default
       flatpaks.nixosModules.nix-flatpak
 
       # Import profiles
@@ -23,7 +21,6 @@
       self.nixosModules.profiles-desktop
       self.nixosModules.profiles-amd
       self.nixosModules.disko-btrfs-encrypted
-      self.nixosModules.cue-overlay
 
       # Machine-specific configuration
       (
@@ -35,7 +32,7 @@
           # Disko device override (uses shared configuration from disko-btrfs-encrypted module)
           rawkOS.disko.device = "/dev/nvme0n1";
 
-# Network configuration is handled by networking module
+          # Network configuration is handled by networking module
 
           # Enable swap
           zramSwap.enable = true;

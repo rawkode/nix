@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktop-vicinae =
+  flake.homeModules.vicinae =
     { pkgs, ... }:
     {
       services.vicinae = {
