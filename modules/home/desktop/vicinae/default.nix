@@ -1,25 +1,26 @@
 {
   flake.homeModules.vicinae =
-    { pkgs, ... }:
+    { ... }:
     {
       services.vicinae = {
         enable = true;
         settings = {
           faviconService = "google";
           font = {
-            size = 10;
+            normal = "Monaspace Argon";
+            size = 12;
           };
-          popToRootOnClose = false;
+          popToRootOnClose = true;
           rootSearch = {
-            searchFiles = true;
+            searchFiles = false;
           };
           theme = {
-            name = "vicinae-dark";
+            name = "rosepine-dawn";
           };
           window = {
             csd = true;
             opacity = 0.95;
-            rounding = 10;
+            rounding = 16;
           };
         };
       };
