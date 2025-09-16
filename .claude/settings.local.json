@@ -2,7 +2,17 @@
   "permissions": {
     "allow": [
       "Read(//home/rawkode/Code/src/github.com/rawkode/cuenv/**)",
-      "Read(//home/rawkode/Code/src/**)"
+      "Read(//home/rawkode/Code/src/**)",
+      "Bash(journalctl:*)",
+      "Bash(grep:*)",
+      "Bash(gsettings:*)",
+      "Bash(gsettings get:*)",
+      "Bash(dbus-send:*)",
+      "Bash(fish -ic:*)",
+      "Read(//home/rawkode/.config/fish/**)",
+      "Bash(xargs nix-store:*)",
+      "Read(//nix/store/**)",
+      "Bash(xargs readlink:*)"
     ],
     "deny": [],
     "ask": []

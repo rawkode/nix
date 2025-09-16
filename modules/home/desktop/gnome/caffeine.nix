@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.desktop-gnome-caffeine =
+  flake.homeModules.gnome-caffeine =
     { lib, pkgs, ... }:
     with lib;
     {

@@ -21,6 +21,7 @@
         cheese
         gnome-extension-manager
         nautilus-open-any-terminal
+        xwayland
       ];
 
       environment.gnome.excludePackages = with pkgs; [
@@ -43,7 +44,6 @@
         gnome-text-editor
         gnome-tour
         gnome-user-docs
-        orca
         simple-scan
         snapshot
         totem

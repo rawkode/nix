@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.desktop-gnome-clipboard-indicator =
+  flake.homeModules.gnome-clipboard-indicator =
     { lib, pkgs, ... }:
     with lib;
     {

@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.desktop-gnome-rclone =
+  flake.homeModules.gnome-rclone =
     { lib, pkgs, ... }:
     with lib;
     {

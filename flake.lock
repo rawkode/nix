@@ -1443,15 +1443,16 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1757956156,
-        "narHash": "sha256-f0W7qbsCqpi6swQ5w8H+0YrAbNwsHgCFDkNRMTJjqrE=",
-        "owner": "danth",
+        "lastModified": 1758036692,
+        "narHash": "sha256-A5cyXx28U1sGix/+SdY3bTEY+ldIjCAq2+8ay5qHqGs=",
+        "owner": "rawkode",
         "repo": "stylix",
-        "rev": "0ce0103b498bb22f899ed8862d8d7f9503ed9cdb",
+        "rev": "44361f051909faf5f54ee310a7e974ef8745d375",
         "type": "github"
       },
       "original": {
-        "owner": "danth",
+        "owner": "rawkode",
+        "ref": "feat/polarity-switching",
         "repo": "stylix",
         "type": "github"
       }

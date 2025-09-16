@@ -7,7 +7,7 @@
       ];
 
       xdg.configFile."wezterm" = {
-        source = ./wezterm/config;
+        source = ./config;
         recursive = true;
       };
     };

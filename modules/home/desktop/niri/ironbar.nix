@@ -42,7 +42,7 @@ let
 in
 {
   flake.homeModules.ironbar =
-    { config, ... }:
+    { config, lib, ... }:
     {
       programs.ironbar = {
         enable = true;
@@ -146,6 +146,11 @@ in
       # Override the systemd service to ensure it starts after niri is ready
       systemd.user.services.ironbar = {
         Unit = {
+          # Only start when running niri
+          ConditionEnvironment = lib.mkForce [
+            "WAYLAND_DISPLAY"  # Keep the original condition
+            "XDG_CURRENT_DESKTOP=niri"
+          ];
           After = [ "graphical-session.target" "niri.service" ];
           Wants = [ "niri.service" ];
         };

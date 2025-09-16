@@ -16,7 +16,6 @@ let
         flatpaks.homeManagerModules.nix-flatpak
         ironbar.homeManagerModules.default
         niri.homeModules.niri
-        niri.homeModules.stylix
         nix-index-database.homeModules.nix-index
         nur.modules.homeManager.default
         vicinae.homeManagerModules.default
@@ -74,8 +73,6 @@ let
     { pkgs, ... }:
     {
       home-manager.backupFileExtension = "backup";
-
-      programs.fish.enable = true;
 
       users.users.rawkode = {
         description = "David Flanagan";

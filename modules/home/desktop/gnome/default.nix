@@ -1,6 +1,11 @@
 {
   flake.homeModules.gnome =
-    { lib, pkgs, ... }:
+    {
+      inputs,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       file-chooser = {
         date-format = "regular";
@@ -17,6 +22,22 @@
       };
     in
     {
+      imports = [
+        inputs.self.homeModules.gnome-blur-my-shell
+        inputs.self.homeModules.gnome-burn-my-windows
+        inputs.self.homeModules.gnome-caffeine
+        inputs.self.homeModules.gnome-clipboard-indicator
+        inputs.self.homeModules.gnome-compiz
+        inputs.self.homeModules.gnome-desktop-cube
+        inputs.self.homeModules.gnome-emoji-copy
+        inputs.self.homeModules.gnome-fullscreen-notifications
+        inputs.self.homeModules.gnome-just-perfection
+        inputs.self.homeModules.gnome-rawkode-tiling
+        inputs.self.homeModules.gnome-rclone
+        inputs.self.homeModules.gnome-status-area-spacing
+        inputs.self.homeModules.gnome-systemd-manager
+        inputs.self.homeModules.gnome-transparent-window-moving
+      ];
 
       gtk = {
         enable = true;

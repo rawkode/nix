@@ -1,18 +1,25 @@
 { inputs, ... }:
 {
   flake.homeModules.niri =
-    { config, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       makeCommand = command: { command = [ command ]; };
       wallpaper = config.stylix.image;
     in
     {
       imports = with inputs; [
+        self.homeModules.darkman
         self.homeModules.ironbar
       ];
 
       home.packages = with pkgs; [
-        nautilus
+        cosmic-files
+        cosmic-panel
       ];
 
       xdg.portal = {
@@ -60,10 +67,29 @@
       services.swayosd.enable = true;
 
       systemd.user.services = {
+        # Override swayosd to only run in niri
+        swayosd = {
+          Unit = {
+            ConditionEnvironment = lib.mkForce [
+              "WAYLAND_DISPLAY" # Keep the original condition
+              "XDG_CURRENT_DESKTOP=niri"
+            ];
+          };
+        };
+        # Override hypridle to only run in niri
+        hypridle = {
+          Unit = {
+            ConditionEnvironment = lib.mkForce [
+              "WAYLAND_DISPLAY" # Keep the original condition
+              "XDG_CURRENT_DESKTOP=niri"
+            ];
+          };
+        };
         polkit-gnome = {
           Unit = {
-            Description = "PolicyKit Authentication Agent provided by niri-flake";
-            WantedBy = [ "niri.service" ];
+            Description = "PolicyKit Authentication Agent for niri";
+            # Only start when running niri
+            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
             After = [ "graphical-session.target" ];
             PartOf = [ "graphical-session.target" ];
           };
@@ -82,6 +108,8 @@
           Unit = {
             Description = "SwayNotificationCenter for niri";
             Documentation = "https://github.com/ErikReider/SwayNotificationCenter";
+            # Only start when running niri
+            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
             PartOf = [ "graphical-session.target" ];
             After = [ "graphical-session-pre.target" ];
             Requisite = [ "graphical-session.target" ];
@@ -102,6 +130,8 @@
         swww = {
           Unit = {
             Description = "Efficient animated wallpaper daemon for wayland";
+            # Only start when running niri
+            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
             PartOf = [ "graphical-session.target" ];
             After = [ "graphical-session-pre.target" ];
             Requisite = [ "graphical-session.target" ];
@@ -118,6 +148,8 @@
         swww-wallpaper = {
           Unit = {
             Description = "Set wallpaper via swww for Niri";
+            # Only start when running niri
+            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
             PartOf = [ "graphical-session.target" ];
             After = [ "swww.service" ];
             Wants = [ "swww.service" ];

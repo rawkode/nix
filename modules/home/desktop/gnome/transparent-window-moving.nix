@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.desktop-gnome-transparent-window-moving =
+  flake.homeModules.gnome-transparent-window-moving =
     { lib, pkgs, ... }:
     with lib;
     {

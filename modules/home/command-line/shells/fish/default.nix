@@ -6,7 +6,12 @@
         path: lib.strings.concatStringsSep "\n" (lib.strings.splitString "\n" (builtins.readFile path));
     in
     {
-      home.file.".bashrc".source = ./fish/auto-fish.sh;
+      # We style our terminals, we don't need
+      # to style our shells. Fish doesn't understand
+      # portals and preferred color schemes; Ghostty and Wezterm do.
+      stylix.targets.fish.enable = lib.mkForce false;
+
+      home.file.".bashrc".source = ./auto-fish.sh;
 
       programs.fish = {
         enable = true;
@@ -31,17 +36,17 @@
           "ctrl-\\[".command = "builtin cd ..; commandline -f repaint";
         };
 
-        interactiveShellInit = fileAsSeparatedString ./fish/interactiveInit.fish;
+        interactiveShellInit = fileAsSeparatedString ./interactiveInit.fish;
 
         functions = {
           magic-enter = {
             description = "Magic Enter";
-            body = fileAsSeparatedString ./fish/magic-enter.fish;
+            body = fileAsSeparatedString ./magic-enter.fish;
           };
 
           magic-enter-command = {
             description = "Magic Enter AutoCommands";
-            body = fileAsSeparatedString ./fish/magic-enter-command.fish;
+            body = fileAsSeparatedString ./magic-enter-command.fish;
           };
         };
       };

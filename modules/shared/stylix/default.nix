@@ -5,37 +5,58 @@ let
     { lib, pkgs, ... }:
     let
       wallpapers = {
-        rose-pine = pkgs.fetchurl {
+        dark = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/ng-hai/hyper-rose-pine-next/refs/heads/main/wallpaper/dark/wallpaper-block-wave/themer-wallpaper-block-wave-dark-5120x2880.png";
           sha256 = "sha256-Q5ZtrIDtPZKOYohNt9NjPF6suV3rcw1HK8mx7+Ll4Ts=";
         };
+        light = wallpapers.dark;
       };
     in
     {
       stylix = {
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
         enable = true;
-        polarity = "dark";
 
-        icons = {
-          enable = true;
-          package = pkgs.rose-pine-icon-theme;
-          light = "rose-pine";
-          dark = "rose-pine";
+        # Configure both light and dark themes
+        theme = {
+          light = {
+            wallpaper = wallpapers.light;
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml";
+
+            # Light mode icons - the existing module will use these
+            icons = {
+              package = pkgs.rose-pine-icon-theme;
+              name = "rose-pine-dawn"; # Adjust if the theme has different variant names
+            };
+
+            cursor = {
+              package = pkgs.rose-pine-cursor;
+              name = "BreezeX-RosePineDawn-Linux"; # Adjust if cursor has light variant
+              size = 32;
+            };
+          };
+
+          dark = {
+            wallpaper = wallpapers.dark;
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+
+            # Dark mode icons
+            icons = {
+              package = pkgs.rose-pine-icon-theme;
+              name = "rose-pine-moon"; # Adjust if the theme has different variant names
+            };
+
+            cursor = {
+              package = pkgs.rose-pine-cursor;
+              name = "BreezeX-RosePine-Linux";
+              size = 32;
+            };
+          };
         };
-
-        image = lib.mkDefault wallpapers.rose-pine;
 
         opacity.terminal = 0.9;
         opacity.popups = 0.9;
 
         targets.qt.platform = lib.mkForce "qtct";
-
-        cursor = {
-          package = pkgs.rose-pine-cursor;
-          name = "BreezeX-RosePine-Linux";
-          size = 32;
-        };
 
         fonts = {
           sizes = {

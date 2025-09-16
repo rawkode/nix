@@ -11,7 +11,8 @@
         self.nixosModules.vivaldi
         self.nixosModules.flatpak
         self.nixosModules.fonts
-        self.nixosModules.gnome
+        # self.nixosModules.gnome
+        # self.nixosModules.kde
         self.nixosModules.location
         self.nixosModules.niri
         self.nixosModules.onepassword
@@ -23,7 +24,6 @@
 
       config = {
         services = {
-          xserver.enable = true;
           pipewire = {
             enable = true;
             alsa.enable = true;

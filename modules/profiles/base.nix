@@ -18,6 +18,7 @@
         self.nixosModules.common
         self.nixosModules.containers
         self.nixosModules.dns
+        self.nixosModules.fish
         self.nixosModules.gnome
         self.nixosModules.lanzaboote
         self.nixosModules.networking

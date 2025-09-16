@@ -1,6 +1,5 @@
 {
   flake.nixosModules.common = {
-    services.xserver.enable = true;
     services.xserver.xkb.layout = "us";
 
     xdg = {

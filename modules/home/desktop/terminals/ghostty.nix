@@ -11,6 +11,7 @@
       leader = "ctrl+comma";
     in
     {
+      stylix.targets.ghostty.enable = false;
       programs.ghostty = {
         enable = true;
         package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -20,8 +21,11 @@
 
         clearDefaultKeybinds = true;
 
-        # All options are documented at https://ghostty.org/docs/config/reference
+        # All options are documented at
+        # https://ghostty.org/docs/config/reference
         settings = {
+          theme = "dark:Rose Pine Moon,light:Rose Pine Dawn";
+
           auto-update = "off";
 
           shell-integration = "detect";
@@ -36,8 +40,6 @@
 
           confirm-close-surface = false;
 
-          background-opacity = 1.0;
-
           focus-follows-mouse = true;
 
           # Split visibility improvements
@@ -51,12 +53,9 @@
 
           window-decoration = true;
           window-colorspace = "display-p3";
-          window-theme = "auto";
           window-padding-x = 16;
           window-padding-y = 16;
           window-padding-balance = true;
-
-          font-size = 16;
 
           keybind = [
             "ctrl+space=toggle_command_palette"

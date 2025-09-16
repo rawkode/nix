@@ -52,7 +52,7 @@
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
     nur.url = "github:nix-community/NUR";
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:rawkode/stylix/feat/polarity-switching";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     systems = {

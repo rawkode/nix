@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.desktop-gnome-status-area-spacing =
+  flake.homeModules.gnome-status-area-spacing =
     { lib, pkgs, ... }:
     with lib;
     {
