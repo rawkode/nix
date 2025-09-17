@@ -2,6 +2,14 @@
   flake.nixosModules.niri =
     { pkgs, ... }:
     {
+      programs.wayfire = {
+        enable = true;
+        plugins = with pkgs.wayfirePlugins; [
+          wcm
+          wf-shell
+          wayfire-plugins-extra
+        ];
+      };
       programs.niri.enable = true;
       systemd.user.services.niri-flake-polkit.enable = false;
 

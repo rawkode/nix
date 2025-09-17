@@ -19,7 +19,7 @@
         self.nixosModules.containers
         self.nixosModules.dns
         self.nixosModules.fish
-        self.nixosModules.gnome
+        self.nixosModules.greetd
         self.nixosModules.lanzaboote
         self.nixosModules.networking
         self.nixosModules.nix

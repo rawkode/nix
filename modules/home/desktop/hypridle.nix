@@ -7,38 +7,18 @@
         settings = {
           general = {
             # Avoid starting multiple instances of hyprlock.
-            # Use a script that works with both Niri and Hyprland
+            # Avoid starting multiple instances of hyprlock
             lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
             before_sleep_cmd = "loginctl lock-session; sleep 1;";
-            # After waking up, handle monitors based on current desktop
-            after_sleep_cmd = ''
-              sleep 0.5;
-              if [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
-                niri msg action power-on-monitors
-              elif [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-                hyprctl dispatch dpms on
-              fi
-            '';
+            after_sleep_cmd = ''sleep 0.5; niri msg action power-on-monitors'';
           };
 
           listener = [
             # Monitor power save
             {
               timeout = 720; # 12 min
-              on-timeout = ''
-                if [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
-                  niri msg action power-off-monitors
-                elif [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-                  hyprctl dispatch dpms off
-                fi
-              '';
-              on-resume = ''
-                if [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
-                  niri msg action power-on-monitors
-                elif [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-                  hyprctl dispatch dpms on
-                fi
-              '';
+              on-timeout = "niri msg action power-off-monitors";
+              on-resume = "niri msg action power-on-monitors";
             }
 
             # Dim screen
@@ -63,13 +43,13 @@
         };
       };
 
-      # Make hypridle work with either Niri or Hyprland
+      # Make hypridle work with Niri
       systemd.user.services.hypridle = {
         Unit = {
           ConditionEnvironment = lib.mkForce [
             "WAYLAND_DISPLAY"
           ];
-          # Start with either desktop environment
+          # Start with Niri
           After = [ "graphical-session.target" ];
           PartOf = [ "graphical-session.target" ];
         };

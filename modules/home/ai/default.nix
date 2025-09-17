@@ -6,6 +6,7 @@
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.codex
+        nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.cursor-agent
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.gemini-cli
       ];
 

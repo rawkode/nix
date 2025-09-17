@@ -11,11 +11,8 @@
         self.nixosModules.vivaldi
         self.nixosModules.flatpak
         self.nixosModules.fonts
-        # self.nixosModules.gnome
-        # self.nixosModules.kde
         self.nixosModules.location
         self.nixosModules.niri
-        self.nixosModules.hyprland
         self.nixosModules.onepassword
         self.nixosModules.plymouth
         self.nixosModules.polkit

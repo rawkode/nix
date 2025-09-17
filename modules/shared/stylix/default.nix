@@ -20,34 +20,32 @@ let
         theme = {
           light = {
             wallpaper = wallpapers.light;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml";
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/nord-light.yaml";
 
-            # Light mode icons - the existing module will use these
             icons = {
-              package = pkgs.rose-pine-icon-theme;
-              name = "rose-pine-dawn"; # Adjust if the theme has different variant names
+              package = pkgs.tela-icon-theme;
+              name = "Tela-dracula";
             };
 
             cursor = {
-              package = pkgs.rose-pine-cursor;
-              name = "BreezeX-RosePineDawn-Linux"; # Adjust if cursor has light variant
+              package = pkgs.phinger-cursors;
+              name = "phinger-cursors-light";
               size = 32;
             };
           };
 
           dark = {
             wallpaper = wallpapers.dark;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
 
-            # Dark mode icons
             icons = {
-              package = pkgs.rose-pine-icon-theme;
-              name = "rose-pine-moon"; # Adjust if the theme has different variant names
+              package = pkgs.tela-icon-theme;
+              name = "Tela-dracula-dark";
             };
 
             cursor = {
-              package = pkgs.rose-pine-cursor;
-              name = "BreezeX-RosePine-Linux";
+              package = pkgs.phinger-cursors;
+              name = "phinger-cursors-dark";
               size = 32;
             };
           };
@@ -72,13 +70,13 @@ let
           };
 
           serif = {
-            package = pkgs.libre-baskerville;
-            name = "Libre Baskerville";
+            package = pkgs.lora;
+            name = "Lora";
           };
 
           sansSerif = {
-            package = pkgs.quicksand;
-            name = "Quicksand";
+            package = pkgs.inter;
+            name = "Inter";
           };
 
           emoji = {

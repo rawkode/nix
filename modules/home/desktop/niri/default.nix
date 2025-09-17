@@ -516,21 +516,15 @@
               action.screenshot = { };
             };
             "XF86MonBrightnessUp" = {
+              allow-when-locked = true;
               action = {
-                spawn = [
-                  "brightnessctl"
-                  "s"
-                  "10%+"
-                ];
+                spawn-sh = "swayosd-client --brightness raise";
               };
             };
             "XF86MonBrightnessDown" = {
+              allow-when-locked = true;
               action = {
-                spawn = [
-                  "brightnessctl"
-                  "s"
-                  "10%-"
-                ];
+                spawn-sh = "swayosd-client --brightness lower";
               };
             };
             "Super+L" = {
@@ -541,6 +535,42 @@
             };
             "Super+Shift+L" = {
               action.power-off-monitors = { };
+            };
+            "XF86AudioLowerVolume" = {
+              allow-when-locked = true;
+              action = {
+                spawn-sh = "swayosd-client --output-volume lower";
+              };
+            };
+            "XF86AudioMute" = {
+              allow-when-locked = true;
+              action = {
+                spawn-sh = "swayosd-client --output-volume mute-toggle";
+              };
+            };
+            "XF86AudioRaiseVolume" = {
+              allow-when-locked = true;
+              action = {
+                spawn-sh = "swayosd-client --output-volume raise";
+              };
+            };
+            "XF86AudioNext" = {
+              allow-when-locked = true;
+              action = {
+                spawn-sh = "swayosd-client --playerctl next";
+              };
+            };
+            "XF86AudioPrev" = {
+              allow-when-locked = true;
+              action = {
+                spawn-sh = "swayosd-client --playerctl prev";
+              };
+            };
+            "XF86AudioPlay" = {
+              allow-when-locked = true;
+              action = {
+                spawn-sh = "swayosd-client --playerctl play-pause";
+              };
             };
           };
         };

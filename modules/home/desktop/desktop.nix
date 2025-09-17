@@ -9,7 +9,6 @@
         dconf-editor
         flatpak
         ghostty
-        gnome
         niri
         ptyxis
         rquickshare

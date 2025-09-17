@@ -6,7 +6,7 @@
         enable = true;
         settings = {
           default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --asterisks";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --asterisks --cmd niri-session";
             user = "greeter";
           };
         };
@@ -18,5 +18,10 @@
       };
 
       users.groups.greeter = { };
+
+      environment.etc."greetd/environments".text = ''
+        niri-session
+        fish
+      '';
     };
 }

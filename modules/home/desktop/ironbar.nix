@@ -36,6 +36,7 @@ let
       }
       {
         type = "battery";
+        icon_size = 32;
       }
     ];
   };
