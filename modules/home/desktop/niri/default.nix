@@ -9,12 +9,14 @@
     }:
     let
       makeCommand = command: { command = [ command ]; };
-      wallpaper = config.stylix.image;
     in
     {
       imports = with inputs; [
         self.homeModules.darkman
+        self.homeModules.hypridle
         self.homeModules.ironbar
+        self.homeModules.swaync
+        self.homeModules.swww
       ];
 
       home.packages = with pkgs; [
@@ -23,23 +25,10 @@
       ];
 
       xdg.portal = {
-        enable = true;
-        xdgOpenUsePortal = true;
         extraPortals = with pkgs; [
-          xdg-desktop-portal
           xdg-desktop-portal-gnome
-          xdg-desktop-portal-gtk
         ];
         config = {
-          common = {
-            default = [
-              "gnome"
-              "gtk"
-            ];
-            "org.freedesktop.impl.portal.Secret" = [
-              "gnome-keyring"
-            ];
-          };
           niri = {
             default = [
               "gnome"
@@ -76,15 +65,6 @@
             ];
           };
         };
-        # Override hypridle to only run in niri
-        hypridle = {
-          Unit = {
-            ConditionEnvironment = lib.mkForce [
-              "WAYLAND_DISPLAY" # Keep the original condition
-              "XDG_CURRENT_DESKTOP=niri"
-            ];
-          };
-        };
         polkit-gnome = {
           Unit = {
             Description = "PolicyKit Authentication Agent for niri";
@@ -104,112 +84,11 @@
             WantedBy = [ "graphical-session.target" ];
           };
         };
-        swaync = {
-          Unit = {
-            Description = "SwayNotificationCenter for niri";
-            Documentation = "https://github.com/ErikReider/SwayNotificationCenter";
-            # Only start when running niri
-            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
-            PartOf = [ "graphical-session.target" ];
-            After = [ "graphical-session-pre.target" ];
-            Requisite = [ "graphical-session.target" ];
-          };
 
-          Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
-            Restart = "on-failure";
-            RestartSec = "1s";
-          };
-
-          Install = {
-            WantedBy = [ "graphical-session.target" ];
-          };
-        };
-
-        swww = {
-          Unit = {
-            Description = "Efficient animated wallpaper daemon for wayland";
-            # Only start when running niri
-            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
-            PartOf = [ "graphical-session.target" ];
-            After = [ "graphical-session-pre.target" ];
-            Requisite = [ "graphical-session.target" ];
-          };
-          Install.WantedBy = [ "graphical-session.target" ];
-          Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.swww}/bin/swww-daemon";
-            ExecStop = "${pkgs.swww}/bin/swww kill";
-            Restart = "on-failure";
-          };
-        };
-
-        swww-wallpaper = {
-          Unit = {
-            Description = "Set wallpaper via swww for Niri";
-            # Only start when running niri
-            ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
-            PartOf = [ "graphical-session.target" ];
-            After = [ "swww.service" ];
-            Wants = [ "swww.service" ];
-            Requisite = [ "graphical-session.target" ];
-          };
-          Install.WantedBy = [ "graphical-session.target" ];
-          Service = {
-            Type = "oneshot";
-            ExecStart = "${pkgs.swww}/bin/swww img ${wallpaper}";
-            RemainAfterExit = true;
-          };
-        };
-
-      };
-
-      services.hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            # Avoid starting multiple instances of hyprlock.
-            # Then show the startup reminder after the lock has
-            # ended.
-            lock_cmd = "(pidof hyprlock || ${pkgs.hyprlock}); startup-reminder";
-
-            before_sleep_cmd = "loginctl lock-session; sleep 1;";
-            # After waking up, sometimes the timeout listener for shutting off the
-            # screens will shut them off again. Wait for that to settle…
-            after_sleep_cmd = "sleep 0.5; niri msg action power-on-monitors";
-          };
-
-          listener = [
-            # Monitor power save
-            {
-              timeout = 720; # 12 min
-              on-timeout = "niri msg action power-off-monitors";
-              on-resume = "niri msg action power-on-monitors";
-            }
-
-            # Dim screen
-            {
-              timeout = 300; # 5 min
-              on-timeout = "${pkgs.brightnessctl} -s set 10";
-              on-resume = "${pkgs.brightnessctl} -r";
-            }
-            # Dim keyboard
-            {
-              timeout = 300; # 5 min
-              on-timeout = "${pkgs.brightnessctl} -sd rgb:kbd_backlight set 0";
-              on-resume = "${pkgs.brightnessctl} -rd rgb:kbd_backlight";
-            }
-
-            {
-              timeout = 600; # 10 min
-              on-timeout = "loginctl lock-session";
-            }
-          ];
-        };
       };
 
       programs.niri = {
+        enable = true;
         settings = {
           environment = {
             DISPLAY = ":0";
@@ -672,107 +551,5 @@
         };
       };
 
-      xdg.configFile."swaync/config.json".text = ''
-        {
-          "positionX": "right",
-          "positionY": "top",
-          "layer": "overlay",
-          "control-center-margin-top": 0,
-          "control-center-margin-bottom": 0,
-          "control-center-margin-right": 0,
-          "control-center-margin-left": 0,
-          "notification-2fa-action": true,
-          "notification-inline-replies": false,
-          "notification-icon-size": 64,
-          "notification-body-image-height": 100,
-          "notification-body-image-width": 200,
-          "timeout": 10,
-          "timeout-low": 5,
-          "timeout-critical": 0,
-          "fit-to-screen": true,
-          "control-center-width": 500,
-          "control-center-height": 600,
-          "notification-window-width": 500,
-          "keyboard-shortcuts": true,
-          "image-visibility": "when-available",
-          "transition-time": 200,
-          "hide-on-clear": false,
-          "hide-on-action": true,
-          "script-fail-notify": true,
-          "scripts": {
-            "example-script": {
-              "exec": "echo 'Do something...'",
-              "urgency": "Normal"
-            }
-          },
-          "notification-visibility": {
-            "example-name": {
-              "state": "muted",
-              "urgency": "Low",
-              "app-name": "Spotify"
-            }
-          },
-          "widgets": [
-            "title",
-            "buttons-grid",
-            "mpris",
-            "volume",
-            "backlight",
-            "dnd",
-            "notifications"
-          ],
-          "widget-config": {
-            "title": {
-              "text": "Notification Center",
-              "clear-all-button": true,
-              "button-text": "Clear All"
-            },
-            "dnd": {
-              "text": "Do Not Disturb"
-            },
-            "label": {
-              "max-lines": 5,
-              "text": "Label Text"
-            },
-            "mpris": {
-              "image-size": 96,
-              "image-radius": 12
-            },
-            "volume": {
-              "expand-button-label": "⏷",
-              "collapse-button-label": "⏶",
-              "show-per-app": true
-            },
-            "backlight": {
-              "device": "intel_backlight",
-              "subsystem": "backlight"
-            },
-            "buttons-grid": {
-              "actions": [
-                {
-                  "label": "⚡",
-                  "command": "systemctl poweroff"
-                },
-                {
-                  "label": "🔃",
-                  "command": "systemctl reboot"
-                },
-                {
-                  "label": "🔒",
-                  "command": "swaylock"
-                },
-                {
-                  "label": "🚪",
-                  "command": "niri msg logout"
-                },
-                {
-                  "label": "⏸️",
-                  "command": "systemctl suspend"
-                }
-              ]
-            }
-          }
-        }
-      '';
     };
 }

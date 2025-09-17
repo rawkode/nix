@@ -2,7 +2,6 @@
   flake.nixosModules.onepassword =
     {
       config,
-      pkgs,
       ...
     }:
     let

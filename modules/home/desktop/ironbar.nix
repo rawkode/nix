@@ -143,19 +143,15 @@ in
         '';
       };
 
-      # Override the systemd service to ensure it starts after niri is ready
+      # Override the systemd service to ensure it starts after compositor is ready
       systemd.user.services.ironbar = {
         Unit = {
-          # Only start when running niri
-          ConditionEnvironment = lib.mkForce [
-            "WAYLAND_DISPLAY"  # Keep the original condition
-            "XDG_CURRENT_DESKTOP=niri"
-          ];
-          After = [ "graphical-session.target" "niri.service" ];
-          Wants = [ "niri.service" ];
+          # Start for any Wayland display
+          ConditionEnvironment = lib.mkForce [ "WAYLAND_DISPLAY" ];
+          After = [ "graphical-session.target" ];
         };
         Service = {
-          # Add a small delay to ensure niri is fully initialized
+          # Add a small delay to ensure compositor is fully initialized
           ExecStartPre = "/run/current-system/sw/bin/sleep 2";
         };
       };

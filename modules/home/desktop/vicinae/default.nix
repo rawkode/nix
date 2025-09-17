@@ -1,6 +1,6 @@
 {
   flake.homeModules.vicinae =
-    { ... }:
+    _:
     {
       services.vicinae = {
         enable = true;

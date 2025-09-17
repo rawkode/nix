@@ -1,6 +1,5 @@
 # Common disko configuration for encrypted Btrfs setup
-_:
-{
+_: {
   flake.nixosModules.disko-btrfs-encrypted =
     { config, lib, ... }:
     {

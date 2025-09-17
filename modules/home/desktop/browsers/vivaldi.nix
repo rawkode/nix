@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+_:
 {
   flake.homeModules.vivaldi = {
     xdg.mimeApps =

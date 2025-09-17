@@ -4,44 +4,37 @@
     {
       xdg.portal = {
         enable = true;
-        config.niri = {
+        config.common = {
           default = [
-            "gnome"
             "gtk"
           ];
-          "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-          "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
-          "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-          "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          "org.freedesktop.impl.portal.Secret" = [
+            "gnome-keyring"
+          ];
         };
         extraPortals = with pkgs; [
           gnome-keyring
           xdg-desktop-portal-gtk
-          xdg-desktop-portal-gnome
         ];
       };
     };
   flake.homeModules.portals =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       xdg.portal = {
         enable = true;
-        config.niri = {
-          default = [
-            "gnome"
+        xdgOpenUsePortal = true;
+        config.common = {
+          default = lib.mkDefault [
             "gtk"
           ];
-          "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-          "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
-          "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-          "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          "org.freedesktop.impl.portal.Secret" = [
+            "gnome-keyring"
+          ];
         };
         extraPortals = with pkgs; [
-          gnome-keyring
+          xdg-desktop-portal
           xdg-desktop-portal-gtk
-          xdg-desktop-portal-gnome
         ];
       };
     };
