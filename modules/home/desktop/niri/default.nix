@@ -14,7 +14,6 @@
       imports = with inputs; [
         self.homeModules.darkman
         self.homeModules.hypridle
-        self.homeModules.ironbar
         self.homeModules.swaync
         self.homeModules.swww
       ];

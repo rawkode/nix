@@ -2,7 +2,6 @@
 {
   flake.homeModules.hyprland =
     {
-      config,
       lib,
       pkgs,
       ...
@@ -11,8 +10,6 @@
       imports = with inputs; [
         self.homeModules.darkman
         self.homeModules.hypridle
-        self.homeModules.ironbar
-        # self.homeModules.quickshell-bar
         self.homeModules.swaync
         self.homeModules.swww
       ];

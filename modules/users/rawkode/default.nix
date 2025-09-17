@@ -25,6 +25,7 @@ let
         self.homeModules.desktop
         self.homeModules.development
         self.homeModules.hyprland
+        self.homeModules.ironbar
         self.homeModules.nix
         self.homeModules.portals
         self.homeModules.stylix
