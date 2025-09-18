@@ -11,7 +11,6 @@
       leader = "ctrl+comma";
     in
     {
-      stylix.targets.ghostty.enable = false;
       programs.ghostty = {
         enable = true;
         package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -24,8 +23,6 @@
         # All options are documented at
         # https://ghostty.org/docs/config/reference
         settings = {
-          theme = "dark:Rose Pine Moon,light:Rose Pine Dawn";
-
           auto-update = "off";
 
           shell-integration = "detect";

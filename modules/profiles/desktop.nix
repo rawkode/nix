@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.nixosModules.profiles-desktop =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = with inputs; [
         self.nixosModules.audio
