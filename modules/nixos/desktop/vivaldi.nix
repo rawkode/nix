@@ -1,23 +1,29 @@
+{ inputs, ... }:
 {
-  flake.nixosModules.vivaldi =
-    { pkgs, ... }:
-    let
-      vivaldi-wayland = pkgs.vivaldi.override {
+  flake.overlays.vivaldi = _final: prev: {
+    vivaldi =
+      (prev.vivaldi.override {
         commandLineArgs = [
-          # Better Wayland support
           "--enable-features=UseOzonePlatform"
-          # Native Wayland support
           "--ozone-platform=wayland"
-          # Hardware video acceleration
           "--enable-features=VaapiVideoDecoder"
-          # Prevents conflicts with VAAPI
           "--disable-features=UseChromeOSDirectVideoDecoder"
         ];
-      };
-    in
+      }).overrideAttrs
+        (_oldAttrs: rec {
+          version = "7.6.3797.52";
+
+          src = prev.fetchurl {
+            url = "https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-1_amd64.deb";
+            hash = "sha256-cDYn6Vj+S/pft5jF2ItSUKIILCGHF++ZhH794BLNxQQ=";
+          };
+        });
+  };
+
+  flake.nixosModules.vivaldi =
+    { pkgs, ... }:
     {
-      environment.systemPackages = [
-        vivaldi-wayland
-      ];
+      nixpkgs.overlays = [ inputs.self.overlays.vivaldi ];
+      environment.systemPackages = [ pkgs.vivaldi ];
     };
 }
