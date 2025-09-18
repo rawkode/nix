@@ -9,6 +9,16 @@
 
       stylix.targets.vscode.enable = false;
 
+      programs.niri.settings.window-rules = [
+        {
+          matches = [
+            { app-id = "code"; }
+          ];
+          open-focused = true;
+          opacity = 0.95;
+        }
+      ];
+
       home.file.".vscode/argv.json".text = builtins.toJSON {
         password-store = "gnome-libsecret";
         ozone-platform-hint = "auto";
