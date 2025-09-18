@@ -1,19 +1,7 @@
 {
   flake.nixosModules.networking = {
     networking = {
-      networkmanager.enable = false;
-
-      wireless.iwd = {
-        enable = true;
-        settings = {
-          IPv4 = {
-            dhcp = "yes";
-          };
-          Settings = {
-            AutoConnect = true;
-          };
-        };
-      };
+      networkmanager.enable = true;
 
       nameservers = [
         "9.9.9.9"

@@ -8,7 +8,7 @@
 
     services.resolved = {
       enable = true;
-      dnssec = "false"; # Disabled due to iwd/resolved crashes
+      dnssec = "true";
       domains = [ "~." ];
       # Fallback DNS servers - Cloudflare as secondary
       fallbackDns = [
