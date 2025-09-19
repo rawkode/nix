@@ -58,7 +58,6 @@
             "input"
             "kvm"
             "lxd"
-            "networkmanager"
             "osboxes"
             "plugdev"
             "sound"

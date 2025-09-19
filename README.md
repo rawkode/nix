@@ -89,7 +89,7 @@ Home manager configurations are integrated via flake inputs. User-specific confi
 - **Display**: HiDPI (200 DPI) with proper scaling
 - **Input**: Touchpad with natural scrolling and tap-to-click
 - **Security**: Fingerprint reader support
-- **Connectivity**: WiFi power saving, NetworkManager
+- **Connectivity**: WiFi power saving via systemd-networkd and iwd
 
 ### Desktop Systems
 - **Graphics**: Hardware acceleration enabled

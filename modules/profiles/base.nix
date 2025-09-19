@@ -17,7 +17,6 @@
         self.nixosModules.below
         self.nixosModules.common
         self.nixosModules.containers
-        self.nixosModules.dns
         self.nixosModules.fish
         self.nixosModules.greetd
         self.nixosModules.lanzaboote

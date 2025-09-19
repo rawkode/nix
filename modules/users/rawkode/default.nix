@@ -63,7 +63,6 @@ let
         "docker"
         "input"
         "libvirtd"
-        "networkmanager"
         "video"
         "wheel"
       ];

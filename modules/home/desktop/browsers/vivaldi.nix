@@ -1,5 +1,4 @@
-_:
-{
+_: {
   flake.homeModules.vivaldi = {
     xdg.mimeApps =
       let

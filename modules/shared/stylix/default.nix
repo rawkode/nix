@@ -20,7 +20,7 @@ let
         theme = {
           light = {
             wallpaper = wallpapers.light;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/nord-light.yaml";
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml";
 
             icons = {
               package = pkgs.tela-icon-theme;
@@ -36,7 +36,7 @@ let
 
           dark = {
             wallpaper = wallpapers.dark;
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+            base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
 
             icons = {
               package = pkgs.tela-icon-theme;
