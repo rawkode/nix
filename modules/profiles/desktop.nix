@@ -4,11 +4,14 @@
     { ... }:
     {
       imports = with inputs; [
+        self.nixosModules.profiles-base
+
+        self.nixosModules.vivaldi
         self.nixosModules.audio
         self.nixosModules.bluetooth
         self.nixosModules.chrome
         self.nixosModules.common
-        self.nixosModules.vivaldi
+        self.nixosModules.firefox
         self.nixosModules.flatpak
         self.nixosModules.fonts
         self.nixosModules.location
@@ -17,7 +20,6 @@
         self.nixosModules.plymouth
         self.nixosModules.polkit
         self.nixosModules.portals
-        self.nixosModules.profiles-base
       ];
 
       config = {

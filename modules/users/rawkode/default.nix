@@ -24,6 +24,7 @@ let
         self.homeModules.command-line
         self.homeModules.desktop
         self.homeModules.development
+        self.homeModules.flatpak
         self.homeModules.ironbar
         self.homeModules.nix
         self.homeModules.portals
