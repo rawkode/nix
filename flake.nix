@@ -12,6 +12,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # COSMIC Desktop PR
+    nixpkgs-cosmic.url = "github:NixOS/nixpkgs/pull/440950/head";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
@@ -47,10 +50,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
