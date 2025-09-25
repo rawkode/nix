@@ -8,6 +8,7 @@
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.codex
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.cursor-agent
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.gemini-cli
+        nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.qwen-code
       ];
 
       home.file.".claude/CLAUDE.md".source = ./CLAUDE.md;

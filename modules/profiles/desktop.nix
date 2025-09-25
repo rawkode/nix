@@ -9,11 +9,11 @@
         self.nixosModules.vivaldi
         self.nixosModules.audio
         self.nixosModules.bluetooth
-        self.nixosModules.chrome
         self.nixosModules.common
         self.nixosModules.firefox
         self.nixosModules.flatpak
         self.nixosModules.fonts
+        self.nixosModules.google-chrome
         self.nixosModules.location
         self.nixosModules.niri
         self.nixosModules.onepassword

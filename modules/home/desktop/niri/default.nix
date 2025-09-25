@@ -153,7 +153,7 @@
                 height = 1080;
                 refresh = 60.0;
               };
-              transform.rotation = 180;
+              transform.rotation = 0;
               position = {
                 x = 0;
                 y = 0;
