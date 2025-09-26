@@ -56,7 +56,8 @@ in
             eDP-1 = main_bar;
             DP-1 = main_bar;
             DP-2 = main_bar // {
-              # Hide end / tray on second monitor
+              # Hide clock and tray on second monitor
+              center = [ ];
               end = [ ];
             };
           };
