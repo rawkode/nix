@@ -12,9 +12,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # COSMIC Desktop PR
-    nixpkgs-cosmic.url = "github:NixOS/nixpkgs/pull/440950/head";
-
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 

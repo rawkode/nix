@@ -15,7 +15,6 @@
       flatpaks.nixosModules.nix-flatpak
 
       # Import profiles
-      self.nixosModules.cosmic-desktop
       self.nixosModules.kernel
       self.nixosModules.lanzaboote
       self.nixosModules.plymouth
@@ -32,9 +31,6 @@
 
           # Disko device override (uses shared configuration from disko-btrfs-encrypted module)
           rawkOS.disko.device = "/dev/nvme0n1";
-
-          # Desktops
-          programs.cosmic-desktop.enable = true;
 
           # Enable swap
           zramSwap.enable = true;

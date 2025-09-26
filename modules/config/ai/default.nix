@@ -3,6 +3,7 @@
     { inputs, pkgs, ... }:
     {
       home.packages = with inputs; [
+        nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.amp
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
         nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.codex
