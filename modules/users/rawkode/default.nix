@@ -25,6 +25,7 @@ let
         self.homeModules.desktop
         self.homeModules.development
         self.homeModules.flatpak
+        self.homeModules.gnome
         self.homeModules.ironbar
         self.homeModules.nix
         self.homeModules.portals

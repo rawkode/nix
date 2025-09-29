@@ -13,6 +13,7 @@
         self.nixosModules.firefox
         self.nixosModules.flatpak
         self.nixosModules.fonts
+        self.nixosModules.gnome
         self.nixosModules.google-chrome
         self.nixosModules.location
         self.nixosModules.niri
