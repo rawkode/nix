@@ -34,6 +34,7 @@
         curl
         git
         htop
+        nodejs
         vim
         wget
       ];
