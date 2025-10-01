@@ -29,6 +29,11 @@
       };
 
       programs.fish.shellAbbrs = {
+        codex = {
+          position = "command";
+          setCursor = true;
+          expansion = "codex --search --full-auto";
+        };
         cc = {
           position = "command";
           setCursor = true;
