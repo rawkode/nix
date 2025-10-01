@@ -1,9 +1,7 @@
 {
-  flake.nixosModules.gnome =
-    { ... }:
-    {
-      services.desktopManager.gnome.enable = true;
-    };
+  flake.nixosModules.gnome = _: {
+    services.desktopManager.gnome.enable = true;
+  };
 
   flake.homeModules.gnome =
     {

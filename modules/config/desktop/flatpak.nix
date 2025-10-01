@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.flatpak = {
+  flake.nixosModules.flatpak = _: {
     services.flatpak = {
       enable = true;
       packages = [
@@ -13,6 +13,23 @@
         "org.gnome.Showtime"
         "org.gnome.Snapshot"
         "org.localsend.localsend_app"
+      ];
+    };
+  };
+
+  flake.homeModules.flatpak = _: {
+    services.flatpak = {
+      enable = true;
+
+      remotes = [
+        {
+          name = "flathub";
+          location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+        }
+      ];
+
+      packages = [
+        "org.pipewire.Helvum"
       ];
     };
   };

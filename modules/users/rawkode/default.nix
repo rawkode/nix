@@ -27,7 +27,7 @@ let
         self.homeModules.flatpak
         self.homeModules.gnome
         self.homeModules.ironbar
-        self.homeModules.nix
+        self.homeModules.nix-home
         self.homeModules.portals
         self.homeModules.stylix
         self.homeModules.vicinae
