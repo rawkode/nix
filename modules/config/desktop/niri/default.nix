@@ -559,7 +559,7 @@
               action = {
                 spawn = [ "hyprlock" ];
               };
-              allow-inhibiting = false;
+              allow-when-locked = true;
             };
             "Super+Shift+L" = {
               action.power-off-monitors = { };

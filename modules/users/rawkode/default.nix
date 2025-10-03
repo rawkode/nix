@@ -4,13 +4,17 @@ let
   homeModule =
     { ... }:
     {
-      home.username = "rawkode";
-      home.homeDirectory = "/home/rawkode";
-      home.stateVersion = "25.11";
+      home = {
+        username = "rawkode";
+        homeDirectory = "/home/rawkode";
+        stateVersion = "25.11";
+      };
 
       programs.home-manager.enable = true;
 
       nixpkgs.config.allowUnfree = true;
+
+      rawkOS.desktop.darkman.enable = false;
 
       imports = with inputs; [
         flatpaks.homeManagerModules.nix-flatpak

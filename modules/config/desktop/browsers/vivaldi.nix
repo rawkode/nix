@@ -1,28 +1,27 @@
-_: {
-  flake.homeModules.vivaldi = {
-    xdg.mimeApps =
-      let
-        defaultApplications = {
-          "default-web-browser" = [ "vivaldi.desktop" ];
-          "text/html" = [ "vivaldi.desktop" ];
-          "x-scheme-handler/http" = [ "vivaldi.desktop" ];
-          "x-scheme-handler/https" = [ "vivaldi.desktop" ];
-          "x-scheme-handler/about" = [ "vivaldi.desktop" ];
-          "x-scheme-handler/unknown" = [ "vivaldi.desktop" ];
-          "application/xhtml+xml" = [ "vivaldi.desktop" ];
-          "text/xml" = [ "vivaldi.desktop" ];
-        };
-      in
-      {
-        enable = true;
-        inherit defaultApplications;
-        associations.added = defaultApplications;
-      };
+{ inputs, pkgs, ... }:
+{
+  flake.overlays.vivaldi = _final: prev: {
+    vivaldi =
+      (prev.vivaldi.override {
+        commandLineArgs = [
+          "--enable-features=UseOzonePlatform"
+          "--ozone-platform=wayland"
+          "--enable-features=VaapiVideoDecoder"
+          "--disable-features=UseChromeOSDirectVideoDecoder"
+        ];
+      }).overrideAttrs
+        (_oldAttrs: rec {
+          version = "7.6.3797.52";
 
-    # Set the BROWSER environment variable to ensure Vivaldi is used
-    home.sessionVariables = {
-      BROWSER = "vivaldi";
-      DEFAULT_BROWSER = "vivaldi.desktop";
-    };
+          src = prev.fetchurl {
+            url = "https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-1_amd64.deb";
+            hash = "sha256-cDYn6Vj+S/pft5jF2ItSUKIILCGHF++ZhH794BLNxQQ=";
+          };
+        });
+  };
+
+  flake.nixosModules.vivaldi = {
+    nixpkgs.overlays = [ inputs.self.overlays.vivaldi ];
+    environment.systemPackages = [ pkgs.vivaldi ];
   };
 }

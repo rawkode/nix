@@ -3,20 +3,19 @@
     { inputs, ... }:
     {
       imports = with inputs.self.homeModules; [
-        onepassword
         alacritty
         clickup
         dconf-editor
         flatpak
         ghostty
         niri
+        onepassword
         ptyxis
         rquickshare
         slack
         spotify
         tana
         visual-studio-code
-        vivaldi
         wayland
         wezterm
         zed
