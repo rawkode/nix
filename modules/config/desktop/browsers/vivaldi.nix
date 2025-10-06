@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   flake.overlays.vivaldi = _final: prev: {
     vivaldi =
@@ -20,8 +20,10 @@
         });
   };
 
-  flake.nixosModules.vivaldi = {
-    nixpkgs.overlays = [ inputs.self.overlays.vivaldi ];
-    environment.systemPackages = [ pkgs.vivaldi ];
-  };
+  flake.nixosModules.vivaldi =
+    { pkgs, ... }:
+    {
+      nixpkgs.overlays = [ inputs.self.overlays.vivaldi ];
+      environment.systemPackages = [ pkgs.vivaldi ];
+    };
 }

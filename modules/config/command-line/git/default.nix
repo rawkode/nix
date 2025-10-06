@@ -11,7 +11,6 @@
       imports = with inputs.self.homeModules; [
         git-delta
         git-fish
-        git-jujutsu
       ];
 
       programs.git = {

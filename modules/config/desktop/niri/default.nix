@@ -3,14 +3,6 @@
   flake.nixosModules.niri =
     { pkgs, ... }:
     {
-      programs.wayfire = {
-        enable = true;
-        plugins = with pkgs.wayfirePlugins; [
-          wcm
-          wf-shell
-          wayfire-plugins-extra
-        ];
-      };
       programs.niri.enable = true;
       systemd.user.services.niri-flake-polkit.enable = false;
 
@@ -363,35 +355,7 @@
             "Super+Shift+Q" = {
               action.quit = { };
             };
-            "Super+Space" = {
-              action = {
-                spawn = [ "vicinae" ];
-              };
-            };
-            "Super+Shift+Space" = {
-              action = {
-                spawn = [
-                  "vicinae"
-                  "vicinae://extensions/vicinae/wm/switch-windows"
-                ];
-              };
-            };
-            "Super+e" = {
-              action = {
-                spawn = [
-                  "vicinae"
-                  "vicinae://extensions/vicinae/vicinae/search-emojis"
-                ];
-              };
-            };
-            "Super+C" = {
-              action = {
-                spawn = [
-                  "vicinae"
-                  "vicinae://extensions/vicinae/clipboard/history"
-                ];
-              };
-            };
+
             "Super+T" = {
               action.toggle-column-tabbed-display = { };
             };

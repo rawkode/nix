@@ -16,6 +16,8 @@ let
       stylix = {
         enable = true;
 
+        polarity = "dark";
+
         # Configure both light and dark themes
         theme = {
           light = {

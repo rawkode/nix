@@ -15,14 +15,6 @@ _: {
 
       hardware = {
         amdgpu = {
-          amdvlk = {
-            # Prefer mesa
-            enable = false;
-            support32Bit = {
-              enable = true;
-            };
-            supportExperimental.enable = true;
-          };
           initrd.enable = true;
           opencl.enable = true;
         };

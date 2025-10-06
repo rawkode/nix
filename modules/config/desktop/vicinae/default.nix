@@ -22,5 +22,40 @@
         };
       };
     };
+
+    programs.niri.settings.binds = {
+      "Super+Space" = {
+        action = {
+          spawn = [
+            "vicinae"
+            "toggle"
+          ];
+        };
+      };
+      "Super+Shift+Space" = {
+        action = {
+          spawn = [
+            "vicinae"
+            "vicinae://extensions/vicinae/wm/switch-windows"
+          ];
+        };
+      };
+      "Super+e" = {
+        action = {
+          spawn = [
+            "vicinae"
+            "vicinae://extensions/vicinae/vicinae/search-emojis"
+          ];
+        };
+      };
+      "Super+C" = {
+        action = {
+          spawn = [
+            "vicinae"
+            "vicinae://extensions/vicinae/clipboard/history"
+          ];
+        };
+      };
+    };
   };
 }
