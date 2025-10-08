@@ -59,6 +59,6 @@
       url = "github:nix-systems/default";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae.url = "github:vicinaehq/vicinae/db4c91c6638d191609e9e7e92d4ecddc8d54b1bb";
   };
 }

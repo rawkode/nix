@@ -28,7 +28,7 @@
         action = {
           spawn = [
             "vicinae"
-            "toggle"
+            #"toggle"
           ];
         };
       };
