@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     browser-previews.url = "github:nix-community/browser-previews";
     comma.url = "github:nix-community/comma";
     cuenv.url = "github:cuenv/cuenv";

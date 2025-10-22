@@ -900,6 +900,27 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760338583,
+        "narHash": "sha256-IGwy02SH5K2hzIFrKMRsCmyvwOwWxrcquiv4DbKL1S4=",
+        "owner": "nix-darwin",
+        "repo": "nix-darwin",
+        "rev": "9a9ab01072f78823ca627ae5e895e40d493c3ecf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-darwin",
+        "ref": "master",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -1335,6 +1356,7 @@
         "lanzaboote": "lanzaboote",
         "niri": "niri",
         "nix-ai-tools": "nix-ai-tools",
+        "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixos-hardware": "nixos-hardware",

@@ -2,32 +2,28 @@
 let
   machines = builtins.attrNames (builtins.readDir ../../machines);
   homeModule =
-    { ... }:
     {
-      home = {
-        username = "rawkode";
-        homeDirectory = "/home/rawkode";
-        stateVersion = "25.11";
-      };
+      lib,
+      system ? if builtins.hasAttr "currentSystem" builtins then builtins.currentSystem else "unknown",
+      ...
+    }:
+    let
+      isDarwin = lib.hasSuffix "darwin" system;
+      homeDirectory = if isDarwin then "/Users/rawkode" else "/home/rawkode";
 
-      programs.home-manager.enable = true;
-
-      nixpkgs.config.allowUnfree = true;
-
-      rawkOS.desktop.darkman.enable = false;
-
-      imports = with inputs; [
+      linuxImports = with inputs; [
+        nix-index-database.homeModules.nix-index
+        nur.modules.homeManager.default
         flatpaks.homeManagerModules.nix-flatpak
         ironbar.homeManagerModules.default
         niri.homeModules.niri
-        nix-index-database.homeModules.nix-index
-        nur.modules.homeManager.default
         vicinae.homeManagerModules.default
 
         self.homeModules.ai
         self.homeModules.command-line
         self.homeModules.desktop
         self.homeModules.development
+        self.homeModules.fish
         self.homeModules.flatpak
         self.homeModules.gnome
         self.homeModules.ironbar
@@ -36,19 +32,84 @@ let
         self.homeModules.stylix
         self.homeModules.vicinae
       ];
+
+      darwinImports = with inputs; [
+        self.homeModules.atuin
+        self.homeModules.carapace
+        self.homeModules.comma
+        self.homeModules.fish
+        self.homeModules.ghostty
+        self.homeModules.git
+        self.homeModules.starship
+        self.homeModules.stylix
+        self.homeModules.zoxide
+      ];
+    in
+    {
+      home = {
+        username = "rawkode";
+        inherit homeDirectory;
+        stateVersion = "25.11";
+      };
+
+      programs.home-manager.enable = true;
+
+      nixpkgs.config.allowUnfree = true;
+
+      imports = if isDarwin then darwinImports else linuxImports;
+    }
+    // lib.optionalAttrs (!isDarwin) {
+      rawkOS.desktop.darkman.enable = false;
     };
 
   flake.homeModules.users-rawkode = homeModule;
 
   flake.homeConfigurations = builtins.listToAttrs (
-    map (machine: {
-      name = "rawkode@${machine}";
-      value = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ homeModule ];
-        extraSpecialArgs = { inherit inputs; };
-      };
-    }) machines
+    map (
+      machine:
+      let
+        # Look up the machine's system from the existing flake configuration so we
+        # build the matching home-manager packages instead of defaulting to Linux.
+        configForMachine =
+          if
+            inputs.self ? darwinConfigurations && builtins.hasAttr machine inputs.self.darwinConfigurations
+          then
+            inputs.self.darwinConfigurations.${machine}
+          else if
+            inputs.self ? nixosConfigurations && builtins.hasAttr machine inputs.self.nixosConfigurations
+          then
+            inputs.self.nixosConfigurations.${machine}
+          else
+            throw "No darwin or nixos configuration found for ${machine}";
+
+        system =
+          if
+            configForMachine ? pkgs && configForMachine.pkgs ? stdenv && configForMachine.pkgs.stdenv ? system
+          then
+            configForMachine.pkgs.stdenv.system
+          else if
+            configForMachine ? config
+            && configForMachine.config ? nixpkgs
+            && configForMachine.config.nixpkgs ? hostPlatform
+            && configForMachine.config.nixpkgs.hostPlatform ? system
+          then
+            configForMachine.config.nixpkgs.hostPlatform.system
+          else
+            throw "Unable to detect system for ${machine}";
+
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+      in
+      {
+        name = "rawkode@${machine}";
+        value = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ homeModule ];
+          extraSpecialArgs = {
+            inherit inputs system;
+          };
+        };
+      }
+    ) machines
   );
 
   flake.nixosModules.users-rawkode.imports = [
