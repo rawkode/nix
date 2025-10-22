@@ -144,7 +144,10 @@
 
           gpg = {
             format = "ssh";
-            ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+            ssh.program = if pkgs.stdenv.isDarwin then
+              "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+            else
+              "${pkgs._1password-gui}/bin/op-ssh-sign";
           };
         };
       };
