@@ -34,15 +34,27 @@ let
       ];
 
       darwinImports = with inputs; [
+        # Core terminal UX
+        self.homeModules.fish
+        self.homeModules.starship
+        self.homeModules.zoxide
         self.homeModules.atuin
         self.homeModules.carapace
         self.homeModules.comma
-        self.homeModules.fish
+
+        # Editor and CLI toolkit
+        self.homeModules.command-line
+
+        # Nix CLI config for HM (required by modules that set nix.settings)
+        self.homeModules.nix-home
+
+        # Developer tooling (Docker client, Podman, language toolchains, etc.)
+        self.homeModules.development
+
+        # Apps and theming
         self.homeModules.ghostty
         self.homeModules.git
-        self.homeModules.starship
         self.homeModules.stylix
-        self.homeModules.zoxide
       ];
     in
     {

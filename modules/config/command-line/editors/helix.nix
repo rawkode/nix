@@ -1,6 +1,6 @@
 {
   flake.homeModules.helix =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       programs.helix = with pkgs; {
         enable = true;
@@ -17,7 +17,6 @@
           gopls
           gotools
           helix-gpt
-          marksman
           nodePackages.typescript-language-server
           sql-formatter
           ruff
@@ -36,7 +35,9 @@
           typescript
           vscode-langservers-extracted
           yaml-language-server
-        ];
+        ]
+        # Marksman pulls in dotnet; avoid on Darwin to prevent huge builds.
+        ++ lib.optionals pkgs.stdenv.isLinux [ marksman ];
 
         settings = {
           editor = {

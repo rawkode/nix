@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.development-docker =
+  flake.nixosModules.development-docker =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
@@ -13,5 +13,14 @@ _: {
           "credsStore": "secretservice"
         }
       '';
+    };
+
+  flake.darwinModules.docker =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "docker-desktop" ];
+      };
     };
 }

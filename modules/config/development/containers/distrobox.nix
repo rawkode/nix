@@ -1,11 +1,14 @@
 _: {
   flake.homeModules.development-distrobox =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
+    let
+      linuxOnly = pkgs.stdenv.isLinux;
+    in
     {
-      home.packages = with pkgs; [
+      home.packages = lib.optionals linuxOnly (with pkgs; [
         boxbuddy
         distrobox
         toolbox
-      ];
+      ]);
     };
 }

@@ -3,7 +3,7 @@
     programs.zoxide = {
       enable = true;
       enableFishIntegration = true;
-      enableNushellIntegration = true;
+      enableNushellIntegration = false;
       options = [
         "--cmd cd"
       ];
