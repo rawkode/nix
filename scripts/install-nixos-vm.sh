@@ -38,40 +38,16 @@ if [[ ! -b "$DISK_DEVICE" ]]; then
     exit 1
 fi
 
-# Find the shared folder mount point
-SHARED_FOLDER=""
-for path in /media/psf/nix-config /mnt/nix-config /run/media/*/nix-config; do
-    if [[ -d "$path" ]] && [[ -f "$path/flake.nix" ]]; then
-        SHARED_FOLDER="$path"
-        break
-    fi
-done
+# Clone or update the nix config repo
+FLAKE_PATH="${FLAKE_PATH:-/tmp/nix}"
 
-if [[ -z "$SHARED_FOLDER" ]]; then
-    log_warn "Shared folder not found. Attempting to mount Parallels shared folders..."
-
-    # Try to load prl_fs module and mount
-    modprobe prl_fs 2>/dev/null || true
-    mkdir -p /mnt/nix-config
-
-    # Try mounting the shared folder
-    if mount -t prl_fs nix-config /mnt/nix-config 2>/dev/null; then
-        SHARED_FOLDER="/mnt/nix-config"
-        log_info "Mounted shared folder at $SHARED_FOLDER"
-    else
-        log_error "Could not mount shared folder."
-        log_info "Please ensure the VM has a shared folder named 'nix-config'"
-        log_info "pointing to your nix configuration directory."
-        echo ""
-        log_info "Alternatively, you can clone the repo:"
-        log_info "  nix-shell -p git --run 'git clone https://github.com/rawkode/nix /tmp/nix'"
-        log_info "Then re-run this script with: FLAKE_PATH=/tmp/nix $0"
-        exit 1
-    fi
+if [[ -d "$FLAKE_PATH/.git" ]]; then
+    log_info "Updating existing repo at $FLAKE_PATH..."
+    git -C "$FLAKE_PATH" pull
+else
+    log_info "Cloning nix config repo..."
+    nix-shell -p git --run "git clone https://github.com/rawkode/nix $FLAKE_PATH"
 fi
-
-# Allow override via environment variable
-FLAKE_PATH="${FLAKE_PATH:-$SHARED_FOLDER}"
 
 log_info "Using flake at: $FLAKE_PATH"
 log_info "Target disk: $DISK_DEVICE"
@@ -122,5 +98,6 @@ echo "  2. Eject the ISO in Parallels"
 echo "  3. Start the VM"
 echo ""
 log_info "After first boot, rebuild with:"
-echo "  sudo nixos-rebuild switch --flake /media/psf/nix-config#$FLAKE_CONFIG"
+echo "  cd $FLAKE_PATH && git pull"
+echo "  sudo nixos-rebuild switch --flake $FLAKE_PATH#$FLAKE_CONFIG"
 echo ""

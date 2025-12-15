@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Detect architecture
+if [[ "$(uname -m)" == "arm64" ]]; then
+    ARCH="aarch64"
+else
+    ARCH="x86_64"
+fi
+
 # Configuration
-VM_NAME="${VM_NAME:-NixOS-Dev}"
-ISO_URL="${ISO_URL:-https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso}"
-ISO_PATH="${ISO_PATH:-$HOME/VMs/nixos-minimal.iso}"
+VM_NAME="${VM_NAME:-nixos}"
+ISO_URL="${ISO_URL:-https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-${ARCH}-linux.iso}"
+ISO_PATH="${ISO_PATH:-$HOME/VMs/nixos-minimal-${ARCH}.iso}"
 RAM_MB="${RAM_MB:-16384}"       # 16GB
 CPUS="${CPUS:-8}"
 DISK_MB="${DISK_MB:-200000}"    # 200GB
 VRAM_MB="${VRAM_MB:-256}"
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NIX_CONFIG_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Colors for output
 RED='\033[0;31m'
@@ -74,9 +78,8 @@ log_info "Attaching NixOS ISO..."
 prlctl set "$VM_NAME" --device-set cdrom0 --image "$ISO_PATH"
 prlctl set "$VM_NAME" --device-set cdrom0 --connect
 
-# Setup shared folder for nix config
-log_info "Setting up shared folder for nix configuration..."
-prlctl set "$VM_NAME" --shf-host-add nix-config --path "$NIX_CONFIG_DIR"
+# Set boot order to CD first for installation
+prlctl set "$VM_NAME" --device-bootorder "cdrom0 hdd0"
 
 # Enable clipboard sharing
 prlctl set "$VM_NAME" --shared-clipboard on
@@ -91,15 +94,11 @@ echo "Next steps:"
 echo "  1. Start the VM:"
 echo "     prlctl start \"$VM_NAME\""
 echo ""
-echo "  2. In the VM console, run the automated installer:"
-echo "     sudo bash /media/psf/nix-config/scripts/install-nixos-vm.sh"
-echo ""
-echo "     (If shared folder isn't mounted yet, run manually:)"
+echo "  2. In the VM console, run the installer:"
 echo "     curl -sL https://raw.githubusercontent.com/rawkode/nix/main/scripts/install-nixos-vm.sh | sudo bash"
 echo ""
 echo "  3. After install completes, eject ISO and reboot"
 echo ""
 echo "  4. Future rebuilds:"
-echo "     sudo nixos-rebuild switch --flake /media/psf/nix-config#p4x-parallels-nixos"
-echo ""
-echo "Shared folder will be mounted at: /media/psf/nix-config"
+echo "     cd /tmp/nix && git pull"
+echo "     sudo nixos-rebuild switch --flake /tmp/nix#p4x-parallels-nixos"
