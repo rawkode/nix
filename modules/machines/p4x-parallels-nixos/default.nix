@@ -41,8 +41,6 @@
             lanzaboote.enable = lib.mkForce false;
 
             loader = {
-              # Re-enable systemd-boot (lanzaboote disables it)
-              systemd-boot.enable = lib.mkForce true;
               efi.canTouchEfiVariables = true;
               timeout = 3;
             };
