@@ -13,7 +13,6 @@
         development-deno
         development-devenv
         development-distrobox
-        development-docker
         development-flox
         development-go
         development-kubernetes
