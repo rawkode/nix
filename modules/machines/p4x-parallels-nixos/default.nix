@@ -6,6 +6,7 @@
     modules = [
       # Flake inputs (lanzaboote needed for option definitions even if disabled)
       inputs.lanzaboote.nixosModules.lanzaboote
+      inputs.disko.nixosModules.disko
       inputs.flatpaks.nixosModules.nix-flatpak
       inputs.home-manager.nixosModules.home-manager
 
@@ -13,6 +14,9 @@
       inputs.self.nixosModules.profiles-desktop
       inputs.self.nixosModules.profiles-development
       inputs.self.nixosModules.kernel
+
+      # Disko for declarative disk partitioning
+      inputs.self.nixosModules.disko-vm-simple
 
       # User configuration
       inputs.self.nixosModules.users-rawkode
@@ -57,19 +61,8 @@
             kernelModules = [ "kvm-intel" "kvm-amd" ];
           };
 
-          # Filesystem configuration
-          # NOTE: Update these device paths after running nixos-generate-config
-          # The paths below use labels for portability
-          fileSystems."/" = {
-            device = "/dev/disk/by-label/nixos";
-            fsType = "ext4";
-          };
-
-          fileSystems."/boot" = {
-            device = "/dev/disk/by-label/boot";
-            fsType = "vfat";
-            options = [ "fmask=0022" "dmask=0022" ];
-          };
+          # Disko handles disk partitioning - set device path
+          rawkOS.disko.device = "/dev/sda";
 
           # Platform
           nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
