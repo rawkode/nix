@@ -2,7 +2,7 @@
 { inputs, ... }:
 {
   flake.nixosConfigurations.p4x-parallels-nixos = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+    system = "aarch64-linux";
     modules = [
       # Flake inputs (lanzaboote needed for option definitions even if disabled)
       inputs.lanzaboote.nixosModules.lanzaboote
@@ -56,14 +56,14 @@
               "sd_mod"
             ];
 
-            kernelModules = [ "kvm-intel" "kvm-amd" ];
+            kernelModules = [ ];
           };
 
           # Disko handles disk partitioning - set device path
           rawkOS.disko.device = "/dev/sda";
 
           # Platform
-          nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+          nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
           # ─────────────────────────────────────────────────────────────────
           # Parallels Guest Support
