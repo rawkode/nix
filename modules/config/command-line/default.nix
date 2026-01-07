@@ -25,7 +25,6 @@
         misc
         nushell
         ripgrep
-        runme
         starship
         television
         zellij

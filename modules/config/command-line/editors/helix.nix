@@ -11,7 +11,7 @@
           bash-language-server
           biome
           docker-compose-language-service
-          dockerfile-language-server-nodejs
+          dockerfile-language-server
           golangci-lint
           golangci-lint-langserver
           gopls

@@ -133,7 +133,8 @@ let
   flake.darwinModules.users-rawkode =
     { pkgs, ... }:
     {
-      home-manager.backupFileExtension = "backup";
+      home-manager.backupFileExtension = "hm-backup";
+      home-manager.overwriteBackup = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = {
         inherit inputs;

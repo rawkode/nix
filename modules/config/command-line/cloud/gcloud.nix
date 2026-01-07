@@ -4,7 +4,7 @@
     {
       homebrew = {
         enable = lib.mkDefault true;
-        casks = [ "google-cloud-sdk" ];
+        casks = [ "gcloud-cli" ];
       };
     };
 }
