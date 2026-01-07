@@ -28,4 +28,13 @@
         enable-crash-reporter = false;
       };
     };
+
+  flake.darwinModules.visual-studio-code =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "visual-studio-code" ];
+      };
+    };
 }

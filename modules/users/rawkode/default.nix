@@ -130,6 +130,18 @@ let
     user
   ];
 
+  flake.darwinModules.users-rawkode =
+    { pkgs, ... }:
+    {
+      home-manager.backupFileExtension = "backup";
+      home-manager.useUserPackages = true;
+      home-manager.extraSpecialArgs = {
+        inherit inputs;
+        system = "aarch64-darwin";
+      };
+      home-manager.users.rawkode = homeModule;
+    };
+
   home.home-manager.users.rawkode.imports = [
     homeModule
   ];

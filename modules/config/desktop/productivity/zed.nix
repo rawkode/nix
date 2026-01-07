@@ -63,4 +63,16 @@
       #   }
       # '';
     };
+
+  flake.darwinModules.zed =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [
+          "zed"
+          "zed@preview"
+        ];
+      };
+    };
 }

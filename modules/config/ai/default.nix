@@ -45,4 +45,18 @@
         };
       };
     };
+
+  # Darwin-specific AI tools (Homebrew casks)
+  flake.darwinModules.ai =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [
+          "chatgpt"
+          "claude-code"
+          "codex"
+        ];
+      };
+    };
 }

@@ -163,4 +163,13 @@ _: {
       MOZ_ENABLE_WAYLAND = "1";
     };
   };
+
+  flake.darwinModules.firefox =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "firefox@nightly" ];
+      };
+    };
 }

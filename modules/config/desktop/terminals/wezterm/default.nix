@@ -11,4 +11,13 @@
         recursive = true;
       };
     };
+
+  flake.darwinModules.wezterm =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "wezterm" ];
+      };
+    };
 }

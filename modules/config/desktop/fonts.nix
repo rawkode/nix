@@ -44,12 +44,4 @@
       };
     };
 
-  flake.darwinModules.fonts =
-    { lib, ... }:
-    {
-      homebrew = {
-        enable = lib.mkDefault true;
-        casks = [ "font-monaspace" ];
-      };
-    };
 }

@@ -28,4 +28,16 @@
       };
     };
   };
+
+  flake.darwinModules.onepassword =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [
+          "1password"
+          "1password-cli"
+        ];
+      };
+    };
 }

@@ -15,4 +15,13 @@
       };
     };
   };
+
+  flake.darwinModules.slack =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "slack" ];
+      };
+    };
 }

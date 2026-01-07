@@ -11,4 +11,13 @@
         inputs.browser-previews.packages.${pkgs.stdenv.hostPlatform.system}.google-chrome-dev
       ];
     };
+
+  flake.darwinModules.google-chrome =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "google-chrome" ];
+      };
+    };
 }

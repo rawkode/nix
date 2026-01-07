@@ -4,12 +4,15 @@
     system = "aarch64-darwin";
     modules = [
       inputs.home-manager.darwinModules.home-manager
-      inputs.self.darwinModules.fonts
       inputs.self.darwinModules.ghostty
       inputs.self.darwinModules.alt-tab
       inputs.self.darwinModules.fantastical
       inputs.self.darwinModules.fish
       inputs.self.darwinModules.user
+      inputs.self.darwinModules.system-defaults
+      inputs.self.darwinModules.firewall
+      inputs.self.darwinModules.power
+      inputs.self.darwinModules.fonts
       (
         { pkgs, ... }:
         {
@@ -26,28 +29,78 @@
           ];
 
           security.pam.services.sudo_local.touchIdAuth = true;
-          system = {
-            defaults = {
+
+          rawkOS.darwin = {
+            systemDefaults = {
+              enable = true;
               dock = {
-                appswitcher-all-displays = false;
                 autohide = true;
-                autohide-delay = 0.0;
-                autohide-time-modifier = 0.15;
+                autohideDelay = 0.0;
+                autohideTimeModifier = 0.15;
                 orientation = "right";
                 tilesize = 44;
                 launchanim = false;
-                minimize-to-application = true;
-                show-process-indicators = true;
-                show-recents = false;
-                persistent-apps = [ ];
-                expose-animation-duration = 0.2;
-                expose-group-apps = true;
-                wvous-bl-corner = 1;
-                wvous-br-corner = 4;
-                wvous-tl-corner = 1;
-                wvous-tr-corner = 12;
-                mru-spaces = false;
+                minimizeToApplication = true;
+                showProcessIndicators = true;
+                showRecents = false;
+                persistentApps = [ ];
+                exposeAnimationDuration = 0.2;
+                exposeGroupApps = true;
+                mruSpaces = false;
+                appswitcherAllDisplays = false;
+                hotCornerTopLeft = 1;
+                hotCornerTopRight = 12;
+                hotCornerBottomLeft = 1;
+                hotCornerBottomRight = 4;
               };
+              finder = {
+                showExtensions = true;
+                showHiddenFiles = true;
+                showPathBar = true;
+                showStatusBar = true;
+                defaultView = "Nlsv";
+              };
+              trackpad = {
+                tapToClick = true;
+                naturalScrolling = true;
+                threeFingerDrag = true;
+              };
+              keyboard = {
+                keyRepeat = 2;
+                initialKeyRepeat = 15;
+                disablePressAndHold = true;
+              };
+              screencapture = {
+                format = "png";
+                location = "~/Screenshots";
+                disableShadow = true;
+              };
+              global = {
+                darkMode = true;
+              };
+            };
+
+            firewall = {
+              enable = true;
+              stealthMode = true;
+              allowSigned = true;
+              allowSignedApp = true;
+            };
+
+            power = {
+              enable = true;
+              displaySleep = 15;
+              computerSleep = "never";
+              harddiskSleep = "never";
+            };
+
+            fonts = {
+              enable = true;
+              packages = with pkgs; [
+                monaspace
+                nerd-fonts.monaspace
+                nerd-fonts.symbols-only
+              ];
             };
           };
 

@@ -26,4 +26,13 @@
       nixpkgs.overlays = [ inputs.self.overlays.vivaldi ];
       environment.systemPackages = [ pkgs.vivaldi ];
     };
+
+  flake.darwinModules.vivaldi =
+    { lib, ... }:
+    {
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [ "vivaldi@snapshot" ];
+      };
+    };
 }
