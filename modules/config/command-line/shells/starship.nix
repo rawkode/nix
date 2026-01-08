@@ -2,9 +2,17 @@
   flake.homeModules.starship =
     { lib, ... }:
     {
+      # Conditional starship init - prevents errors in nix develop shells
+      # where starship isn't in PATH during fish initialization
+      programs.fish.interactiveShellInit = ''
+        if command -q starship
+          starship init fish | source
+        end
+      '';
+
       programs.starship = {
         enable = true;
-        enableFishIntegration = true;
+        enableFishIntegration = false; # Using custom conditional init above
         enableNushellIntegration = true;
 
         settings = {
