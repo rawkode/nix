@@ -14,6 +14,7 @@
       inputs.self.darwinModules.firewall
       inputs.self.darwinModules.power
       inputs.self.darwinModules.fonts
+      inputs.self.darwinModules.deskflow
       (
         { pkgs, ... }:
         {
@@ -38,7 +39,7 @@
                 autohide = true;
                 autohideDelay = 0.0;
                 autohideTimeModifier = 0.15;
-                orientation = "right";
+                orientation = "bottom";
                 tilesize = 44;
                 launchanim = false;
                 minimizeToApplication = true;

@@ -53,6 +53,7 @@
       inputs.self.darwinModules.docker
       inputs.self.darwinModules.k6-studio
       inputs.self.darwinModules.gcloud
+      inputs.self.darwinModules.deskflow
       (
         { pkgs, ... }:
         {

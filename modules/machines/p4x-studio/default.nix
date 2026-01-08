@@ -13,6 +13,7 @@
       inputs.self.darwinModules.fantastical
       inputs.self.darwinModules.fish
       inputs.self.darwinModules.user
+      inputs.self.darwinModules.deskflow
       (
         { pkgs, ... }:
         {
@@ -32,12 +33,15 @@
           security.pam.services.sudo_local.touchIdAuth = true;
           system = {
             defaults = {
+              NSGlobalDomain = {
+                AppleInterfaceStyle = "Dark";
+              };
               dock = {
                 appswitcher-all-displays = false;
                 autohide = true;
                 autohide-delay = 0.0;
                 autohide-time-modifier = 0.15;
-                orientation = "right";
+                orientation = "bottom";
                 tilesize = 44;
                 launchanim = false;
                 minimize-to-application = true;
