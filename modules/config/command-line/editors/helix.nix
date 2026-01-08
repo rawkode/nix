@@ -9,7 +9,6 @@
 
         extraPackages = [
           bash-language-server
-          biome
           docker-compose-language-service
           dockerfile-language-server
           golangci-lint

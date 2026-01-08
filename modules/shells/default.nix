@@ -6,7 +6,6 @@
     {
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
-          biome
           cue
           nh
           nixfmt

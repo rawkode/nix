@@ -9,7 +9,6 @@
         carapace
         comma
         cue
-        cuenv
         direnv
         eza
         fish

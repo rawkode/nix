@@ -26,7 +26,6 @@
             "$git_branch"
             "$git_state"
             "$git_status"
-            "\${custom.cuenv_hooks}"
             "$cmd_duration"
             "$line_break"
             "$python"
@@ -67,14 +66,6 @@
           cmd_duration = lib.mkForce {
             format = "[$duration]($style) ";
             style = "yellow";
-          };
-
-          custom.cuenv_hooks = {
-            command = "cuenv env status --hooks --format=starship";
-            format = "$output";
-            when = "true";
-            disabled = false;
-            description = "cuenv hooks status";
           };
         };
       };
