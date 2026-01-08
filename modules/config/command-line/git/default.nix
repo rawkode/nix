@@ -17,28 +17,9 @@
         enable = true;
         lfs.enable = true;
 
-        userName = name;
-        userEmail = email;
-
-        aliases = {
-          cane = "commit --amend --no-edit";
-          logp = "log --pretty=shortlog";
-          logs = "log --show-signatures";
-          prune = "fetch --prune";
-          root = "rev-parse --show-toplevel";
-        };
-
         signing = {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAXwFFDFPDUbAql+V8xMmFxuZe6aUUxDD2cY0Dr0X1g9";
           signByDefault = true;
-        };
-
-        delta = {
-          enable = true;
-          options = {
-            side-by-side = true;
-            line-numbers = true;
-          };
         };
 
         ignores = [
@@ -48,7 +29,19 @@
           ".DS_Store"
         ];
 
-        extraConfig = {
+        settings = {
+          user = {
+            inherit name email;
+          };
+
+          alias = {
+            cane = "commit --amend --no-edit";
+            logp = "log --pretty=shortlog";
+            logs = "log --show-signatures";
+            prune = "fetch --prune";
+            root = "rev-parse --show-toplevel";
+          };
+
           init.defaultBranch = "main";
 
           credential.helper = [

@@ -1,7 +1,8 @@
 {
   flake.homeModules.git-delta = {
-    programs.git.delta = {
+    programs.delta = {
       enable = true;
+      enableGitIntegration = true;
 
       options = {
         navigate = true;

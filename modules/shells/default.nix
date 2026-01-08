@@ -9,7 +9,7 @@
           biome
           cue
           nh
-          nixfmt-rfc-style
+          nixfmt
           nixpkgs-fmt
           nil
           nix-tree

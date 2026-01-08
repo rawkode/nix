@@ -37,7 +37,7 @@ let
         # Core terminal UX
         self.homeModules.fish
         self.homeModules.starship
-        self.homeModules.zoxide
+        # zoxide is imported via command-line module
         self.homeModules.atuin
         self.homeModules.carapace
         self.homeModules.comma

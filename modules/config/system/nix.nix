@@ -13,7 +13,7 @@
       environment.systemPackages = with pkgs; [
         nix-forecast
         nixd
-        nixfmt-rfc-style
+        nixfmt
       ];
 
       programs.nh = {
