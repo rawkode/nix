@@ -4,6 +4,7 @@
     system = "aarch64-darwin";
     modules = [
       inputs.home-manager.darwinModules.home-manager
+      inputs.self.darwinModules.nix
       inputs.self.darwinModules.users-rawkode
 
       # System configuration

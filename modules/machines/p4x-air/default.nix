@@ -4,6 +4,7 @@
     system = "aarch64-darwin";
     modules = [
       inputs.home-manager.darwinModules.home-manager
+      inputs.self.darwinModules.nix
       inputs.self.darwinModules.ghostty
       inputs.self.darwinModules.alt-tab
       inputs.self.darwinModules.fantastical
