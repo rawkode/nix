@@ -44,6 +44,14 @@ let
 
       nixpkgs.config.allowUnfree = true;
 
+      # Use work email for CoreWeave repositories
+      programs.git.includes = [
+        {
+          condition = "gitdir:~/Code/src/github.com/coreweave/";
+          contents.user.email = "dflanagan@coreweave.com";
+        }
+      ];
+
       imports = if isDarwin then darwinImports else [ ];
     };
 
