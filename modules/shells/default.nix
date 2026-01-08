@@ -14,6 +14,7 @@
           nil
           nix-tree
           nix-diff
+          starship
           statix
         ];
 
