@@ -60,9 +60,9 @@
         ];
 
         variables = {
-          EDITOR = "code --wait";
-          SYSTEMD_EDITOR = "code --wait";
-          VISUAL = "code";
+          EDITOR = "hx";
+          SYSTEMD_EDITOR = "hx";
+          VISUAL = "hx";
         };
       };
     };

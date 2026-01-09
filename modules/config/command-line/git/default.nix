@@ -30,6 +30,8 @@
         ];
 
         settings = {
+          core.editor = "${pkgs.helix}/bin/hx";
+
           user = {
             inherit name email;
           };
