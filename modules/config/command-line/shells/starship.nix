@@ -64,8 +64,8 @@
           custom.cuenv_hooks = {
             command = "cuenv env status --hooks --format=starship";
             format = "$output";
-            # Only run when cuenv config files exist (avoid running on every prompt)
-            when = "test -f cuenv.cue -o -f .cuenv.cue";
+            # Only run when cuenv config file exists (avoid running on every prompt)
+            when = "test -f env.cue";
             disabled = false;
             description = "cuenv hooks status";
           };
