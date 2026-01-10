@@ -2,17 +2,9 @@
   flake.homeModules.starship =
     { lib, ... }:
     {
-      # Conditional starship init - prevents errors in nix develop shells
-      # where starship isn't in PATH during fish initialization
-      programs.fish.interactiveShellInit = ''
-        if command -q starship
-          starship init fish | source
-        end
-      '';
-
       programs.starship = {
         enable = true;
-        enableFishIntegration = false; # Using custom conditional init above
+        enableFishIntegration = true;
         enableNushellIntegration = true;
 
         settings = {
@@ -26,6 +18,7 @@
             "$git_branch"
             "$git_state"
             "$git_status"
+            "\${custom.cuenv_hooks}"
             "$cmd_duration"
             "$line_break"
             "$python"
@@ -66,6 +59,15 @@
           cmd_duration = lib.mkForce {
             format = "[$duration]($style) ";
             style = "yellow";
+          };
+
+          custom.cuenv_hooks = {
+            command = "cuenv env status --hooks --format=starship";
+            format = "$output";
+            # Only run when cuenv config files exist (avoid running on every prompt)
+            when = "test -f cuenv.cue -o -f .cuenv.cue";
+            disabled = false;
+            description = "cuenv hooks status";
           };
         };
       };

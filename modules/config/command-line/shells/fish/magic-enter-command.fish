@@ -1,7 +1,7 @@
 set -l cmd ls
-set -l is_git_repository (fish -c "git rev-parse --is-inside-work-tree >&2" 2>| grep true)
 
-if test -n "$is_git_repository"
+# Check if we're in a git repo (without spawning a new fish shell)
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1
     set cmd git status --short
 end
 

@@ -34,13 +34,8 @@ let
       ];
 
       darwinImports = with inputs; [
-        # Core terminal UX
-        self.homeModules.fish
-        self.homeModules.starship
-        # zoxide is imported via command-line module
-        self.homeModules.atuin
-        self.homeModules.carapace
-        self.homeModules.comma
+        # NOTE: fish, starship, atuin, carapace, comma, and zoxide are
+        # already imported via command-line module - don't duplicate them!
 
         # Editor and CLI toolkit
         self.homeModules.command-line
