@@ -11,13 +11,6 @@ let
       homeDirectory = if isDarwin then "/Users/dflanagan" else "/home/dflanagan";
 
       darwinImports = with inputs; [
-        # Core terminal UX
-        self.homeModules.fish
-        self.homeModules.starship
-        self.homeModules.atuin
-        self.homeModules.carapace
-        self.homeModules.comma
-
         # Editor and CLI toolkit
         self.homeModules.command-line
 
