@@ -24,7 +24,6 @@
 
       # Browsers
       inputs.self.darwinModules.google-chrome
-      inputs.self.darwinModules.helium
 
       # Communication
       inputs.self.darwinModules.slack
@@ -34,7 +33,6 @@
       inputs.self.darwinModules.onepassword
       inputs.self.darwinModules.alt-tab
       inputs.self.darwinModules.fantastical
-      inputs.self.darwinModules.notion
       inputs.self.darwinModules.setapp
       inputs.self.darwinModules.skim
       inputs.self.darwinModules.dockdoor
@@ -43,7 +41,6 @@
 
       # Development
       inputs.self.darwinModules.docker
-      inputs.self.darwinModules.k6-studio
       inputs.self.darwinModules.gcloud
       inputs.self.darwinModules.deskflow
       (

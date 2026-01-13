@@ -36,7 +36,6 @@
       inputs.self.darwinModules.firefox
       inputs.self.darwinModules.vivaldi
       inputs.self.darwinModules.orion
-      inputs.self.darwinModules.helium
 
       # Communication
       inputs.self.darwinModules.slack
@@ -46,7 +45,6 @@
 
       # Productivity & Utilities
       inputs.self.darwinModules.onepassword
-      inputs.self.darwinModules.notion
       inputs.self.darwinModules.setapp
       inputs.self.darwinModules.skim
       inputs.self.darwinModules.dockdoor
@@ -55,7 +53,6 @@
 
       # Development
       inputs.self.darwinModules.docker
-      inputs.self.darwinModules.k6-studio
       inputs.self.darwinModules.gcloud
 
       # Machine-specific config

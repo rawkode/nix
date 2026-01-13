@@ -69,10 +69,7 @@
     {
       homebrew = {
         enable = lib.mkDefault true;
-        casks = [
-          "zed"
-          "zed@preview"
-        ];
+        casks = [ "zed" ];
       };
     };
 }
