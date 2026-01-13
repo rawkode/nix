@@ -25,6 +25,8 @@
       inputs.self.darwinModules.docker
       inputs.self.darwinModules.fantastical
       inputs.self.darwinModules.deskflow
+      inputs.self.darwinModules.ice
+      inputs.self.darwinModules.betterdisplay
 
       # Machine-specific config
       {
