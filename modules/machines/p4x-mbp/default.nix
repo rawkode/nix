@@ -29,7 +29,6 @@
       inputs.self.darwinModules.visual-studio-code
 
       # Terminals
-      inputs.self.darwinModules.ghostty
       inputs.self.darwinModules.wezterm
 
       # Browsers
@@ -47,15 +46,12 @@
 
       # Productivity & Utilities
       inputs.self.darwinModules.onepassword
-      inputs.self.darwinModules.alt-tab
-      inputs.self.darwinModules.fantastical
       inputs.self.darwinModules.notion
       inputs.self.darwinModules.setapp
       inputs.self.darwinModules.skim
       inputs.self.darwinModules.dockdoor
       inputs.self.darwinModules.parallels
       inputs.self.darwinModules.descript
-      inputs.self.darwinModules.deskflow
 
       # Development
       inputs.self.darwinModules.docker

@@ -20,10 +20,6 @@
       # Apps
       inputs.self.darwinModules.fish
       inputs.self.darwinModules.user
-      inputs.self.darwinModules.ghostty
-      inputs.self.darwinModules.alt-tab
-      inputs.self.darwinModules.fantastical
-      inputs.self.darwinModules.deskflow
 
       # Machine-specific config
       {

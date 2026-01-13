@@ -1,7 +1,21 @@
 {
   flake.darwinModules.profiles-darwin-base =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
+      # Common homebrew casks for all darwin machines
+      homebrew = {
+        enable = lib.mkDefault true;
+        casks = [
+          "alt-tab"
+          "betterdisplay"
+          "deskflow"
+          "fantastical"
+          "ghostty"
+          "jordanbaird-ice"
+        ];
+        taps = [ "deskflow/tap" ];
+      };
+
       # Shell configuration
       programs.zsh.enable = true;
       environment.shells = [

@@ -20,13 +20,7 @@
       # Apps
       inputs.self.darwinModules.fish
       inputs.self.darwinModules.user
-      inputs.self.darwinModules.ghostty
-      inputs.self.darwinModules.alt-tab
       inputs.self.darwinModules.docker
-      inputs.self.darwinModules.fantastical
-      inputs.self.darwinModules.deskflow
-      inputs.self.darwinModules.ice
-      inputs.self.darwinModules.betterdisplay
 
       # Machine-specific config
       {
