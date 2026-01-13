@@ -11,7 +11,7 @@
           "deskflow"
           "fantastical"
           "ghostty"
-          "jordanbaird-ice"
+          "bartender"
         ];
         taps = [ "deskflow/tap" ];
       };
